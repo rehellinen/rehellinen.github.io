@@ -5,11 +5,17 @@
  */
 import Vue from 'vue'
 import App from './App'
-import {Header, Container, Aside, Main, Footer} from 'element-ui'
+import {
+  Header, Container, Aside, Main, Footer,
+  Row, Col,
+  Menu, Submenu, MenuItemGroup, MenuItem
+} from 'element-ui'
 import 'assets/theme/index.css'
 
 [
-  Header, Container, Aside, Main, Footer
+  Header, Container, Aside, Main, Footer,
+  Row, Col,
+  Menu, Submenu, MenuItemGroup, MenuItem
 ].forEach(item => Vue.use(item))
 
 new Vue({

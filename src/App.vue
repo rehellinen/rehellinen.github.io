@@ -1,20 +1,21 @@
 <template lang="pug">
   el-container.container
-    el-header
+    el-header(height="80px")
       my-header
     el-container.main
-      el-aside(width="200px") Aside
-      el-container
-        el-main Main
-        el-footer Footer
-      el-container
+      el-aside
+        my-menu
+      el-main Main
+    el-footer Footer
 </template>
 
 <script>
   import MyHeader from './components/Header/Header'
+  import MyMenu from './components/Menu/Menu'
   export default {
     components: {
-      MyHeader
+      MyHeader,
+      MyMenu
     }
   }
 </script>

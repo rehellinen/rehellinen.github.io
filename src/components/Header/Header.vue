@@ -14,11 +14,11 @@ export default {
     display: flex
     align-items: center
     width: 100%
-    height: 60px
+    height: 100%
     background-color: $theme-color
     .header__text
       color: white
-      font-size: $bigger-font-size
+      font-size: $vast-font-size
       margin-left: 15px
   .de
 </style>
