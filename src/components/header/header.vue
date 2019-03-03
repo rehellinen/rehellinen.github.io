@@ -2,14 +2,19 @@
   div.container
     div.header
       p.header__text rehellinen
+      top-menu
     div.github
       a(href="https://github.com/rehellinen")
         p Fork me on github : rehellinen
 </template>
 
 <script>
-export default {
-}
+  import TopMenu from '../top-menu/top-menu'
+  export default {
+    components: {
+      TopMenu
+    }
+  }
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
@@ -20,6 +25,7 @@ export default {
     .header
       display: flex
       align-items: center
+      justify-content: space-between
       width: 100%
       height: 75px
       .header__text

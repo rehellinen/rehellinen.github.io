@@ -1,9 +1,9 @@
 <template lang="pug">
   div.container
     div.contact
-      p.title 联系我
-      p 微信：13229438008
-      p 邮箱：rehellinen@foxmail.com
+      p.title Contact Me
+      p WeChat：13229438008
+      p Email：rehellinen@foxmail.com
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
       height: 140px
       p
         color: $minor-font-color
+        margin-top: 2px
       .title
         color: $main-font-color
         font-size: $biggest-font-size

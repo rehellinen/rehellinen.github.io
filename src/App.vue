@@ -6,16 +6,17 @@
       el-aside(width="250px")
         my-menu
       el-main
+        router-view
         my-main
     el-footer
       my-footer
 </template>
 
 <script>
-  import MyHeader from './components/Header/Header'
-  import MyMenu from './components/Menu/Menu'
-  import MyMain from './components/Main/Main'
-  import MyFooter from './components/Footer/Footer'
+  import MyHeader from './components/header/header'
+  import MyMenu from './components/menu/menu'
+  import MyMain from './components/main/main'
+  import MyFooter from './components/footer/footer'
 
   export default {
     components: {

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import MyArticle from '../Article/Article'
+  import MyArticle from '../article/article'
   export default {
     components: {
       MyArticle

@@ -5,6 +5,7 @@
  */
 import Vue from 'vue'
 import App from './App'
+import {router} from './utils/router'
 import {
   Header, Container, Aside, Main, Footer,
   Row, Col,
@@ -20,5 +21,6 @@ import 'assets/theme/index.css'
 
 new Vue({
   el: '#app',
+  router,
   render: h => h(App)
 })
