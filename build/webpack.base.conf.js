@@ -16,12 +16,13 @@ module.exports = {
   output: {
     path: r('../dist'),
     filename: '[name].bundle.js',
+    publicPath: '/assets/',
     chunkFilename: "[name].chunk.js"
   },
   resolve: {
     alias: {
-      sass: r('../src/assets/sass'),
-      assets: r('../src/assets'),
+      sass: r('../assets/sass'),
+      assets: r('../assets'),
     },
     extensions: ['.js', '.vue', '.json']
   },
@@ -61,6 +62,10 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader'
       },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader'
+      }
     ]
   },
 
