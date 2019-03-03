@@ -21,6 +21,7 @@ module.exports = {
   resolve: {
     alias: {
       sass: r('../src/assets/sass'),
+      assets: r('../src/assets'),
     },
     extensions: ['.js', '.vue', '.json']
   },
@@ -55,7 +56,11 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ]
-      }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader'
+      },
     ]
   },
 

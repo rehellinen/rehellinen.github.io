@@ -1,7 +1,13 @@
 {
-  "presets": ["@babel/preset-env"],
-  "plugins": [["@babel/plugin-transform-runtime", {
-    "helpers": false,
-    "regenerator": true
-  }]]
+  "presets": [["@babel/preset-env", { "modules": false }]],
+  "plugins": [
+    ["@babel/plugin-transform-runtime", {
+      "helpers": false,
+      "regenerator": true
+    }],
+    ["component", {
+      "libraryName": "element-ui",
+      "styleLibraryName": "theme-chalk"
+    }]
+  ]
 }
