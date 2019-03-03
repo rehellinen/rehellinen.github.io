@@ -7,19 +7,22 @@
         my-menu
       el-main
         my-main
-    el-footer Footer
+    el-footer
+      my-footer
 </template>
 
 <script>
   import MyHeader from './components/Header/Header'
   import MyMenu from './components/Menu/Menu'
   import MyMain from './components/Main/Main'
+  import MyFooter from './components/Footer/Footer'
 
   export default {
     components: {
       MyHeader,
       MyMenu,
-      MyMain
+      MyMain,
+      MyFooter
     }
   }
 </script>
@@ -36,5 +39,7 @@
       background-color: $background-color
     .main
       width: 100%
+    .el-footer
+      padding: 0
   .de
 </style>

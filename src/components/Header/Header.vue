@@ -3,7 +3,8 @@
     div.header
       p.header__text rehellinen
     div.github
-      p Fork me on github : rehellinen
+      a(href="https://github.com/rehellinen")
+        p Fork me on github : rehellinen
 </template>
 
 <script>
@@ -31,9 +32,12 @@ export default {
       background-color: $main-font-color
       display: flex
       align-items: center
-      p
-        color: white
-        font-size: $normal-font-color
+      a
+        width: 250px
         margin-left: 4%
+        text-decoration: none
+        p
+          color: white
+          font-size: $normal-font-color
   .de
 </style>
