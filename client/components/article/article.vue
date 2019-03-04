@@ -1,6 +1,6 @@
 <template lang="pug">
   div.container
-    img(src="/assets/images/12.png")
+    img(src="/static/images/12.png")
     div.time
       p.day 16
       p.month May

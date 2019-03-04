@@ -12,7 +12,7 @@ const r = path => resolve(__dirname, path)
 
 module.exports = {
   context: r('../'),
-  entry: { app: './src/index.js' },
+  entry: { app: './client/index.js' },
   output: {
     path: r('../dist'),
     filename: '[name].bundle.js',
@@ -21,8 +21,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      sass: r('../assets/sass'),
-      assets: r('../assets'),
+      sass: r('../static/sass'),
+      assets: r('../static'),
     },
     extensions: ['.js', '.vue', '.json']
   },
