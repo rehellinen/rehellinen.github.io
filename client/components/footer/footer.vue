@@ -21,7 +21,7 @@ export default {
     align-items: center
     justify-content: space-around
     .contact
-      height: 140px
+      height: 110px
       p
         color: $minor-font-color
         margin-top: 2px
