@@ -7,7 +7,6 @@
         my-menu
       el-main
         router-view
-        my-main
     el-footer
       my-footer
 </template>

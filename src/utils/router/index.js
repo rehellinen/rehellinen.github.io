@@ -5,13 +5,17 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Foo from '../../components/article/article'
+import Detail from '../../components/detail/detail'
+import List from '../../components/list/list'
+import Main from '../../components/main/main'
 
 Vue.use(Router)
 
 
 const routes = [
-  { path: '/foo', component: Foo }
+  {path: '/', component: Main},
+  { path: '/detail/:article_id', component: Detail },
+  { path: '/list/:list_id', component: List },
 ]
 
 export const router = new Router({
