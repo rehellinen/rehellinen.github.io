@@ -10,7 +10,7 @@ import chalk from 'chalk'
 import config from './utils/config'
 
 const r = path => resolve(__dirname, path)
-const middlewares = ['exception', 'router']
+const middlewares = ['exception', 'cors', 'router']
 global.$config = config
 
 class Server {
