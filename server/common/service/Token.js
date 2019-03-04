@@ -80,26 +80,4 @@ export class Token {
     })
     return cachedKey
   }
-
-  /**
-   * 从微信API获取数据
-   * @param extParams 额外参数
-   * @return {Promise<void>}
-   */
-  async getFromUrl (extParams) {
-    const params = Object.assign({
-      appid: this.appId,
-      secret: this.appSecret,
-    }, extParams)
-
-    const {data} = await axios.get(this.url, { params })
-
-    if (!data.openid) {
-      throw new WechatException({
-        message: data.errmsg
-      })
-    }
-
-    return data
-  }
 }
