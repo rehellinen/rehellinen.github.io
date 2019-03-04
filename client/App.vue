@@ -2,25 +2,20 @@
   el-container.container
     el-header(height="120px")
       my-header
-    el-container.main
-      el-aside(width="250px")
-        my-menu
-      el-main
-        router-view
+    el-main
+      router-view
     el-footer
       my-footer
 </template>
 
 <script>
   import MyHeader from './components/header/header'
-  import MyMenu from './components/menu/menu'
   import MyMain from './components/main/main'
   import MyFooter from './components/footer/footer'
 
   export default {
     components: {
       MyHeader,
-      MyMenu,
       MyMain,
       MyFooter
     }
@@ -36,6 +31,7 @@
       padding: 0
       border-bottom: 1px solid $border-one
     .el-main
+      padding: 20px 10%
       background-color: $background-color
     .main
       width: 100%

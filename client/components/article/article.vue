@@ -35,7 +35,7 @@ export default {
       top: 5px
       left: 10px
       background-color: white
-      padding: 5px 15px
+      padding: 8px 15px
       .day
         font-size: $bigger-font-size
         line-height: $biggest-font-size
@@ -43,5 +43,6 @@ export default {
       .month
         font-size: $small-font-size
         line-height: $small-font-size
+        margin-top: 4px
   .de
 </style>

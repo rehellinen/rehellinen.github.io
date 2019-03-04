@@ -4,7 +4,7 @@
       p.header__text rehellinen
       top-menu
     div.github
-      a(href="https://github.com/rehellinen")
+      a(href="https://github.com/rehellinen" target="_blank")
         p Fork me on github : rehellinen
 </template>
 

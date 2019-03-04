@@ -27,7 +27,7 @@ export class BaseModel {
     }).catch(ex => {
       console.log(ex)
     })
-    console.log(res)
+    return res.data.data
   }
 }
 
