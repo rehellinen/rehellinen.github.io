@@ -1,10 +1,10 @@
 <template lang="pug">
-  el-container.container
+  el-container.wrapper
     el-header(height="120px")
       my-header
     el-main
       router-view
-    el-footer
+    el-footer(height="200px")
       my-footer
 </template>
 
@@ -25,8 +25,8 @@
 <style lang="sass" rel="stylesheet/sass">
   @import "~sass/reset"
   @import "~sass/base"
-  .container
-    /*min-height: 100vh*/
+  .wrapper
+    min-height: 100vh
     .el-header
       padding: 0
       border-bottom: 1px solid $border-one

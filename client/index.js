@@ -9,14 +9,16 @@ import {router} from './utils/router'
 import {
   Header, Container, Aside, Main, Footer,
   Row, Col,
-  Menu, Submenu, MenuItemGroup, MenuItem
+  Menu, Submenu, MenuItemGroup, MenuItem,
+  Form, FormItem, Input, Button
 } from 'element-ui'
 import 'assets/theme/index.css'
 
 [
   Header, Container, Aside, Main, Footer,
   Row, Col,
-  Menu, Submenu, MenuItemGroup, MenuItem
+  Menu, Submenu, MenuItemGroup, MenuItem,
+  Form, FormItem, Input, Button
 ].forEach(item => Vue.use(item))
 
 new Vue({

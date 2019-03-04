@@ -1,7 +1,10 @@
 <template lang="pug">
-  el-menu(default-active="1" class="el-menu-demo" mode="horizontal" @select="")
-    el-menu-item(v-for="(item, index) in menu" :index="(index + 1).toString()" :key="item.id")
-      router-link(tag="div" :to="item.url") {{item.name}}
+  div.menu-container
+    el-menu(default-active="1" class="el-menu-demo" mode="horizontal" @select="")
+      el-menu-item(v-for="(item, index) in menu" :index="(index + 1).toString()" :key="item.id")
+        router-link(tag="div" :to="item.url") {{item.name}}
+    router-link.icon(tag="div" to="/login")
+      img(src="./user.png")
 </template>
 
 <script>
@@ -26,6 +29,16 @@
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
-  .el-menu
-    border: 0
+  .menu-container
+    display: flex
+    .el-menu
+      border: 0
+      margin-right: 8px
+    .icon
+      display: flex
+      align-items: center
+      img
+        width: 25px
+        height: 25px
+        margin: 0 8px
 </style>

@@ -1,16 +1,12 @@
 <template lang="pug">
   div
-    el-row(:gutter="20")
-      el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="24")
-        my-article
-      el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="24")
-        my-article
-      el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="24")
-        my-article
-      el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="24")
-        my-article
-      el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="24")
-        my-article
+    el-row(:gutter="10")
+      my-article
+      my-article
+      my-article
+      my-article
+      my-article
+      my-article
 </template>
 
 <script>

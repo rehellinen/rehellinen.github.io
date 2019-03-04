@@ -1,21 +1,43 @@
 <template lang="pug">
-  div.container
-    img(src="/static/images/12.png")
+  el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="24")
+    img(:src="img_url")
     div.time
-      p.day 16
-      p.month May
-    p.title 这是标题
-    p.desc 这是简介这是简介这是简介这是简介
+      p.day {{day}}
+      p.month {{month}}
+    p.title {{title}}
+    p.desc {{subtitle}}
 </template>
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    subtitle: {
+      type: String,
+      default: ''
+    },
+    month: {
+      type: String,
+      default: ''
+    },
+    day: {
+      type: String,
+      default: ''
+    },
+    img_url: {
+      type: String,
+      default: ''
+    },
+  }
 }
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
   @import "~sass/base"
-  .container
+  .el-col
     display: flex
     flex-direction: column
     position: relative
@@ -35,7 +57,7 @@ export default {
       top: 5px
       left: 10px
       background-color: white
-      padding: 8px 15px
+      padding: 5px 15px
       .day
         font-size: $bigger-font-size
         line-height: $biggest-font-size
@@ -43,6 +65,6 @@ export default {
       .month
         font-size: $small-font-size
         line-height: $small-font-size
-        margin-top: 4px
+        margin-top: 3px
   .de
 </style>
