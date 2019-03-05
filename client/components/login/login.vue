@@ -1,5 +1,9 @@
 <template lang="pug">
   div
+    my-dialog(:visible="visible"
+    :title="title"
+    :content="content"
+    @close="closeDialog")
     p.title 管理员登录
     el-form(ref="form" :model="form" label-width="80px")
       el-form-item(label="账号：")
@@ -13,22 +17,31 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        name: '',
-        password: ''
+  import MyDialog from '../dialog/dialog'
+  import {dialogMixin} from "../../utils/mixins"
+  import {Token} from "../../utils/Token"
+
+  export default {
+    data () {
+      return {
+        form: {
+          name: '',
+          password: ''
+        }
       }
-    }
-  },
-  methods: {
-    onSubmit (e) {
-      console.log(this.form.name)
-      console.log(this.form.password)
-    }
+    },
+    methods: {
+      async onSubmit (e) {
+        const res = await new Token(this.form.name, this.form.password)
+          .getTokenFromServer()
+        this.openDialog('提示', res)
+      }
+    },
+    components: {
+      MyDialog
+    },
+    mixins: [dialogMixin]
   }
-}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

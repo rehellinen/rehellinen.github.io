@@ -19,40 +19,46 @@ export class Token {
   async verify () {
     let token = this.getTokenFromCache()
 
-    if (token) await this._verifyFromServer()
-    else await this.getTokenFromServer()
+    if (token) {
+      return await this._verifyFromServer()
+    } else {
+      return await this.getTokenFromServer()
+    }
   }
 
   async _verifyFromServer (token) {
-    const {data, status} = await axios.get(this.verifyUrl, {
-      headers: {
-        token
-      },
+    const {data, status} = await axios({
+      url: this.verifyUrl,
+      method: 'get',
+      headers: { token },
       validateStatus: (status) => status < 500
     })
     if (!data.data.isValid) {
-      await this.getTokenFromServer()
+      return await this.getTokenFromServer()
     }
   }
 
   // 从服务器获取Token
   async getTokenFromServer () {
-    const data = await axios.get(this.tokenUrl, {
-      params: {
+    console.log(this.name)
+    let {data, status} = await axios({
+      url: this.tokenUrl,
+      method: 'post',
+      validateStatus: status => status >= 200 && status < 500,
+      data: {
         name: this.name,
-        password: this.password
+        password: this.password,
       }
     })
 
-    let status = data.status.toString()
+    status = status.toString()
     let startChar = status.charAt(0)
 
     // 处理成功时的情况
     if (startChar === '2') {
       store.set(this.key, data.data.data)
     }
-
-    return data.data.data
+    return data.message
   }
 
   /**
