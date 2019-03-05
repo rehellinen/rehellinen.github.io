@@ -1,35 +1,31 @@
 <template lang="pug">
   div.container
-    div
-      p 123
-    div
-      p 123
-    div
-      p 123
+    el-menu(
+      default-active="2"
+      class="el-menu-vertical-demo"
+    )
+      router-link(v-for="item in menu" :key="item.id" tag="div" :to="item.url")
+        el-menu-item(index="1")
+          i.el-icon-setting
+          span(slot="title") {{item.name}}
 </template>
 
 <script>
+  import {MenuModel} from "../../model/MenuModel"
+
   export default {
+    data () {
+      return {
+        menu: []
+      }
+    },
+    async created () {
+      this.menu = await new MenuModel().getBackMenu()
+    }
   }
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
   @import "~sass/base"
-
   .container
-    display: flex
-    flex-direction: column
-    height: 100%
-    border-right: 1px solid $border-one
-    width: 200px
-    div
-      height: 50px
-      display: flex
-      justify-content: center
-      align-items: center
-      border-top: 1px solid $border-one
-      p
-        font-size: $big-font-size
-
-  .de
 </style>

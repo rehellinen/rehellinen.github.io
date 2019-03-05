@@ -15,9 +15,10 @@ export class MenuModel extends BaseModel{
   }
 
   getMenu (type) {
-    return this.getAll({
-      type,
-      status: 1
-    }, [], ['listorder'])
+    const cond = {status: 1}
+    if (type) {
+      cond.type = type
+    }
+    return this.getAll(cond, [], ['listorder'])
   }
 }

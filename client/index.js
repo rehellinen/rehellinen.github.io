@@ -10,7 +10,8 @@ import {
   Header, Container, Aside, Main, Footer,
   Row, Col,
   Menu, Submenu, MenuItemGroup, MenuItem,
-  Form, FormItem, Input, Button, Dialog
+  Form, FormItem, Input, Button, Dialog,
+  Table, TableColumn
 } from 'element-ui'
 import 'assets/theme/index.css'
 
@@ -18,7 +19,8 @@ import 'assets/theme/index.css'
   Header, Container, Aside, Main, Footer,
   Row, Col,
   Menu, Submenu, MenuItemGroup, MenuItem,
-  Form, FormItem, Input, Button, Dialog
+  Form, FormItem, Input, Button, Dialog,
+  Table, TableColumn
 ].forEach(item => Vue.use(item))
 
 new Vue({

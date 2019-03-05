@@ -9,6 +9,11 @@ import config from '../utils/config'
 
 @controller('menu')
 class TokenRouter {
+  @get('all')
+  async getAll (ctx, next) {
+    await MenuController.getMenu(ctx, next)
+  }
+
   @get('front')
   async getFront (ctx, next) {
     await MenuController.getMenu(ctx, next, config.MENU.FRONT)

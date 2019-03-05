@@ -22,7 +22,7 @@
     },
     methods: {
       async _getMenu () {
-        this.menu = await Menu.getMenu()
+        this.menu = await Menu.getFrontMenu()
       }
     }
   }

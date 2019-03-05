@@ -6,8 +6,16 @@
 import {BaseModel} from "./BaseModel"
 
 export class MenuModel extends BaseModel{
-  async getMenu () {
-    return await this.request({url: 'menu'})
+  async getAllMenu () {
+    return await this.request({url: 'menu/all'})
+  }
+
+  async getFrontMenu () {
+    return await this.request({url: 'menu/front'})
+  }
+
+  async getBackMenu () {
+    return await this.request({url: 'menu/back'})
   }
 }
 
