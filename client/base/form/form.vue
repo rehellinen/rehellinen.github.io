@@ -46,6 +46,5 @@ export default {
     color: $main-font-color
     font-size: $vast-font-size
     font-weight: bold
-    margin-left: 80px
-    margin-bottom: 25px
+    margin: 20px 0 20px 80px
 </style>

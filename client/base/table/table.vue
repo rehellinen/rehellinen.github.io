@@ -6,14 +6,21 @@
     border
     style="width: 100%"
     )
-      el-table-column(prop="id" label="ID" fixed)
+      // id
+      el-table-column(prop="id" label="ID" fixed width="50")
+      // 其他
       el-table-column(
         v-for="(label, prop, index) in config"
         :prop="prop" :label="label" :key="index")
-      el-table-column(label="操作" fixed="right")
+      // 排序
+      el-table-column(prop="listorder" label="排序" width="60")
+      // 状态
+      el-table-column(prop="status" label="状态" width="60")
+      // 操作
+      el-table-column(label="操作" fixed="right" width="145")
         template(slot-scope="scope")
-          el-button(type="text" size="small") 编辑
-          el-button(type="text" size="small") 删除
+          el-button(size="mini") 编辑
+          el-button(type="danger" size="mini") 删除
 </template>
 
 <script>

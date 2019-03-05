@@ -43,7 +43,7 @@ export const cmsMixin = {
     }
   },
   created () {
-    this._init()
+    this._initCMS()
   },
   methods: {
     changeType (type) {

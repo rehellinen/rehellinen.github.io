@@ -22,7 +22,7 @@
       this.menu = await new MenuModel().getAllMenu()
     },
     methods: {
-      _init () {
+      _initCMS () {
         this.bread.push('菜单管理')
         this.form = {
           name: '菜单名称',
@@ -31,9 +31,7 @@
         }
         this.table = {
           url: 'url',
-          type: '类型',
-          listorder: '排序',
-          status: '状态'
+          type: '类型'
         }
       }
     },
