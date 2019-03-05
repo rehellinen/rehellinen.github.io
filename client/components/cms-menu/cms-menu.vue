@@ -1,11 +1,30 @@
 <template lang="pug">
   div
-    my-bread(@table="changeType(1)" :data="bread")
-    my-table(v-if="type === 1"
-    :config="table" :data="menu" @add="changeType(2)")
-    my-form(v-if="type === 2"
-    title="添加菜单", :config="form" )
+    my-bread(
+      @table="changeType(1)"
+      :data="bread"
+    )
 
+    my-table(
+      v-if="type === 1"
+      :config="table"
+      :data="data"
+      @add="changeType(2)"
+      @edit="toEdit"
+    )
+
+    my-form(
+      v-else-if="type === 2"
+      title="添加菜单"
+      :config="form"
+    )
+
+    my-form(
+      title="编辑菜单",
+      :config="form"
+      :data="editData"
+      v-else
+    )
 </template>
 
 <script>
@@ -15,11 +34,10 @@
   export default {
     data () {
       return {
-        menu: []
       }
     },
     async created () {
-      this.menu = await new MenuModel().getAllMenu()
+      this.data = await new MenuModel().getAllMenu()
     },
     methods: {
       _initCMS () {

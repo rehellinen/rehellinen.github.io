@@ -1,10 +1,10 @@
 <template lang="pug">
   div
     p.title {{title}}
-    el-form(ref="form" :model="form" label-width="80px")
+    el-form(ref="data" :model="data" label-width="80px")
       el-form-item(v-for="(label, name, index) in config"
         :label="label" :key="index")
-        el-input(v-model="form[name]")
+        el-input(v-model="data[name]")
 
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
@@ -30,10 +30,14 @@ export default {
       type: String,
       default: '提交'
     },
+    data: {
+      type: Object,
+      default: () => ({})
+    }
   },
   methods: {
     onSubmit () {
-      console.log(this.form)
+      console.log(this.data)
     }
   }
 }

@@ -36,10 +36,12 @@ export const dialogMixin = {
 export const cmsMixin = {
   data () {
     return {
+      data: [],
       type: 1,
       form: {},
       table: {},
-      bread: ['首页']
+      bread: ['首页'],
+      editData: {}
     }
   },
   created () {
@@ -50,7 +52,11 @@ export const cmsMixin = {
       this.type = type
       if (type === 1 && this.bread.length > 2) this.bread.pop()
       else if (type === 2) this.bread.push('添加')
-      else if (type === 3) this.bread.push('修改')
+      else this.bread.push('修改')
+    },
+    toEdit (e) {
+      this.changeType(3)
+      this.editData = this.data[e.index]
     }
   },
   components: {
