@@ -1,22 +1,10 @@
 <template lang="pug">
   div
-    my-form(title="添加菜单", :config="config" v-if="type === 2")
-    el-button.add-button(size="small" @click="changeType(2)") 添加
-    el-table(
-      :data="menu"
-      border
-      style="width: 100%"
-    )
-      el-table-column(prop="id" label="ID" fixed)
-      el-table-column(prop="name" label="名称")
-      el-table-column(prop="url" label="url")
-      el-table-column(prop="type" label="类型")
-      el-table-column(prop="listorder" label="排序")
-      el-table-column(prop="status" label="状态")
-      el-table-column(label="排序" fixed="right")
-        template(slot-scope="scope")
-          el-button(type="text" size="small") 编辑
-          el-button(type="text" size="small") 删除
+    my-table(v-if="type === 1"
+    :config="table" :data="menu" @add="changeType(2)")
+    my-form(v-if="type === 2"
+    title="添加菜单", :config="form" )
+
 </template>
 
 <script>
@@ -34,10 +22,16 @@
     },
     methods: {
       _initForm () {
-        this.config = {
+        this.form = {
           name: '菜单名称',
           url: '路由',
           type: '类型',
+        }
+        this.table = {
+          url: 'url',
+          type: '类型',
+          listorder: '排序',
+          status: '状态'
         }
       }
     },
@@ -46,6 +40,4 @@
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
-  .add-button
-    margin-bottom: 10px
 </style>

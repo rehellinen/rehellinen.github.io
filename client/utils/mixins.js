@@ -5,6 +5,7 @@
  */
 import {Token} from "./Token"
 import MyForm from '../base/form/form'
+import MyTable from '../base/table/table'
 
 export const dialogMixin = {
   async created () {
@@ -35,7 +36,8 @@ export const cmsMixin = {
   data () {
     return {
       type: 1,
-      config: {}
+      form: {},
+      table: {}
     }
   },
   created () {
@@ -47,7 +49,8 @@ export const cmsMixin = {
     }
   },
   components: {
-    MyForm
+    MyForm,
+    MyTable
   }
 }
 
