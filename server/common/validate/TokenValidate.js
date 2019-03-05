@@ -9,13 +9,14 @@ export class TokenValidate extends BaseValidate{
   constructor() {
     super()
     this.rules = {
-      code: ['require', 'code'],
+      name: ['require', 'name'],
+      password: ['require', 'password'],
       token: ['require', 'token']
     }
 
     this.scene = {
       check: ['token'],
-      get: ['code']
+      get: ['name', 'password']
     }
   }
 }

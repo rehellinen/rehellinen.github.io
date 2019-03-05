@@ -4,6 +4,8 @@
  *  Create On 2018/9/26 10:21
  */
 import X2JS from 'x2js'
+import getRawBody from 'raw-body'
+
 let x2js = new X2JS({
   escapeMode: false
 })
@@ -50,6 +52,20 @@ function getRandChars (length = 16) {
   return str
 }
 
+async function getParams (ctx) {
+  let params
+  if (ctx.method === 'GET') {
+    params = ctx.query
+  } else {
+    const rawReqBody = await getRawBody(ctx.req, {
+      length: ctx.req.headers['content-length'],
+      limit: '1mb'
+    })
+    params = parseParams(rawReqBody)
+  }
+  return params
+}
+
 function parseParams (params) {
   params = params.toString()
   let paramsObj = {}
@@ -75,4 +91,4 @@ function isEmptyObj (obj) {
   return keys.length === 0;
 }
 
-export {parseXML, formatMessage, getRandChars, parseParams, isEmptyObj}
+export {parseXML, formatMessage, getRandChars, parseParams, isEmptyObj, getParams}

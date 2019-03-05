@@ -8,14 +8,37 @@ import axios from 'axios'
 import md5 from 'md5'
 import {getRandChars} from '../../utils/utils'
 import cache from 'memory-cache'
-import {WechatException} from "../exception/WechatException"
 import {TokenException} from "../exception/TokenException"
+import {AccountModel} from "../../model/AccountModel"
+import config from "../../utils/config"
 
 export class Token {
-  constructor (conf = {}) {
-    this.appId = conf.appId
-    this.appSecret = conf.appSecret
-    this.url = conf.url
+  async get (params) {
+    const userInfo = await new AccountModel().checkAccount(params.name)
+    this.checkPassword(params.password, userInfo)
+    return this.saveToCache('admin')
+  }
+
+  checkPassword (reqPassword, dbInfo) {
+    const md5Password = md5(config.PASSWORD_PREFIX + reqPassword + dbInfo.salt)
+    if (md5Password !== dbInfo.password) {
+      throw new TokenException({
+        message: '密码错误'
+      })
+    }
+  }
+
+  /**
+   * 保存Token到缓存
+   * @param cachedValue 需要保存的信息
+   */
+  saveToCache (cachedValue) {
+    const cachedKey = Token.generateToken()
+
+    cache.put(cachedKey, JSON.stringify(cachedValue), $config.TOKEN_EXPIRES_IN, () => {
+      cache.del(cachedKey)
+    })
+    return cachedKey
   }
 
   /**
@@ -66,18 +89,5 @@ export class Token {
     const prefix = $config.TOKEN_PREFIX
 
     return md5(`${str}-${time}-${prefix}`)
-  }
-
-  /**
-   * 保存Token到缓存
-   * @param cachedValue 需要保存的信息
-   */
-  saveToCache (cachedValue) {
-    const cachedKey = Token.generateToken()
-
-    cache.put(cachedKey, JSON.stringify(cachedValue), $config.TOKEN_EXPIRES_IN, () => {
-      cache.del(cachedKey)
-    })
-    return cachedKey
   }
 }
