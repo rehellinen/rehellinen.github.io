@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import TopMenu from '../top-menu/top-menu'
+  import TopMenu from '../../base/top-menu/top-menu'
   export default {
     components: {
       TopMenu

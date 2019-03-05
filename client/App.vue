@@ -10,13 +10,11 @@
 
 <script>
   import MyHeader from './components/header/header'
-  import MyMain from './components/main/main'
   import MyFooter from './components/footer/footer'
 
   export default {
     components: {
       MyHeader,
-      MyMain,
       MyFooter
     }
   }
@@ -31,10 +29,8 @@
       padding: 0
       border-bottom: 1px solid $border-one
     .el-main
-      padding: 20px 10%
+      padding: 20px 10px
       background-color: $background-color
-    .main
-      width: 100%
     .el-footer
       padding: 0
   .de

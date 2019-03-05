@@ -9,6 +9,7 @@ import Detail from '../../components/detail/detail'
 import List from '../../components/list/list'
 import Main from '../../components/main/main'
 import Login from '../../components/login/login'
+import Cms from '../../components/cms/cms'
 
 Vue.use(Router)
 
@@ -18,6 +19,9 @@ const routes = [
   { path: '/detail/:article_id', component: Detail },
   { path: '/list/:list_id', component: List },
   { path: '/login', component: Login },
+  { path: '/cms', component: Cms,
+
+  }
 ]
 
 export const router = new Router({
