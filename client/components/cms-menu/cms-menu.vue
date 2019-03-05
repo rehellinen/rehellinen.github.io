@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    my-bread(@table="changeType(1)" :data="bread")
     my-table(v-if="type === 1"
     :config="table" :data="menu" @add="changeType(2)")
     my-form(v-if="type === 2"
@@ -21,7 +22,8 @@
       this.menu = await new MenuModel().getAllMenu()
     },
     methods: {
-      _initForm () {
+      _init () {
+        this.bread.push('菜单管理')
         this.form = {
           name: '菜单名称',
           url: '路由',

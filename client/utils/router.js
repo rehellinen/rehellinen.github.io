@@ -10,6 +10,7 @@ import List from '../components/list/list'
 import Main from '../components/main/main'
 import Login from '../components/login/login'
 import Cms from '../components/cms/cms'
+import CmsIndex from '../components/cms-index/cms-index'
 import CmsMenu from '../components/cms-menu/cms-menu'
 import CmsArticle from '../components/cms-article/cms-article'
 
@@ -23,6 +24,7 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/cms', component: Cms,
     children: [
+      { path: '/', component: CmsIndex},
       { path: 'menu', component: CmsMenu },
       { path: 'article', component: CmsArticle },
     ]

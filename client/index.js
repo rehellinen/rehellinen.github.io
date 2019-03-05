@@ -11,7 +11,8 @@ import {
   Row, Col,
   Menu, Submenu, MenuItemGroup, MenuItem,
   Form, FormItem, Input, Button, Dialog,
-  Table, TableColumn
+  Table, TableColumn,
+  Breadcrumb, BreadcrumbItem
 } from 'element-ui'
 import 'assets/theme/index.css'
 
@@ -20,7 +21,8 @@ import 'assets/theme/index.css'
   Row, Col,
   Menu, Submenu, MenuItemGroup, MenuItem,
   Form, FormItem, Input, Button, Dialog,
-  Table, TableColumn
+  Table, TableColumn,
+  Breadcrumb, BreadcrumbItem
 ].forEach(item => Vue.use(item))
 
 new Vue({

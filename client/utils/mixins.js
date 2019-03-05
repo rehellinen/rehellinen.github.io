@@ -6,6 +6,7 @@
 import {Token} from "./Token"
 import MyForm from '../base/form/form'
 import MyTable from '../base/table/table'
+import MyBread from '../base/bread-crumb/bread-crumb'
 
 export const dialogMixin = {
   async created () {
@@ -37,20 +38,25 @@ export const cmsMixin = {
     return {
       type: 1,
       form: {},
-      table: {}
+      table: {},
+      bread: ['首页']
     }
   },
   created () {
-    this._initForm()
+    this._init()
   },
   methods: {
     changeType (type) {
       this.type = type
+      if (type === 1 && this.bread.length > 2) this.bread.pop()
+      else if (type === 2) this.bread.push('添加')
+      else if (type === 3) this.bread.push('修改')
     }
   },
   components: {
     MyForm,
-    MyTable
+    MyTable,
+    MyBread
   }
 }
 
