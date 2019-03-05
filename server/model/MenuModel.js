@@ -14,8 +14,9 @@ export class MenuModel extends BaseModel{
     })
   }
 
-  getMenu () {
+  getMenu (type) {
     return this.getAll({
+      type,
       status: 1
     }, [], ['listorder'])
   }
