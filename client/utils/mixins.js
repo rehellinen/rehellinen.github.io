@@ -4,6 +4,7 @@
  *  Create On 2019/3/5 15:34
  */
 import {Token} from "./Token"
+import MyForm from '../base/form/form'
 
 export const dialogMixin = {
   async created () {
@@ -27,6 +28,26 @@ export const dialogMixin = {
     closeDialog () {
       this.visible = false
     }
+  }
+}
+
+export const cmsMixin = {
+  data () {
+    return {
+      type: 1,
+      config: {}
+    }
+  },
+  created () {
+    this._initForm()
+  },
+  methods: {
+    changeType (type) {
+      this.type = type
+    }
+  },
+  components: {
+    MyForm
   }
 }
 
