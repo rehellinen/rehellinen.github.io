@@ -16,14 +16,9 @@ export class Token {
     this.key = 'token'
   }
 
-  async verify () {
+  async isLogin () {
     let token = this.getTokenFromCache()
-
-    if (token) {
-      return await this._verifyFromServer()
-    } else {
-      return await this.getTokenFromServer()
-    }
+    return token ? true : false
   }
 
   async _verifyFromServer (token) {
@@ -40,7 +35,6 @@ export class Token {
 
   // 从服务器获取Token
   async getTokenFromServer () {
-    console.log(this.name)
     let {data, status} = await axios({
       url: this.tokenUrl,
       method: 'post',
@@ -56,7 +50,7 @@ export class Token {
 
     // 处理成功时的情况
     if (startChar === '2') {
-      store.set(this.key, data.data.data)
+      store.set(this.key, data.data)
     }
     return data.message
   }
