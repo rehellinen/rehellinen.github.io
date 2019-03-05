@@ -75,9 +75,7 @@ export class Token {
    */
   static checkToken (ctx) {
     const token = cache.get(ctx.header.token)
-    if (!token) {
-      throw new TokenException()
-    }
+    if (!token) throw new TokenException()
   }
 
   /**

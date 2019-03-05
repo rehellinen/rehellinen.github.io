@@ -16,5 +16,9 @@ export class TokenController {
   }
 
   static checkToken (ctx) {
+    Token.checkToken(ctx)
+    throw new SuccessMessage({
+      data: {isValid: true}
+    })
   }
 }
