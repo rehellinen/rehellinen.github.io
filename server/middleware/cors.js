@@ -11,15 +11,20 @@ export const cors = app => {
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,
     credentials: true,
-    allowMethods: ['GET', 'POST', 'DELETE'],
-    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    allowMethods: ['GET', 'POST', 'DELETE', 'PUT'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'token'],
   }));
 
   // 处理options请求
   app.use(async (ctx, next)=> {
     ctx.set('Access-Control-Allow-Origin', '*')
-    ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With')
-    ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
+    ctx.set(
+      'Access-Control-Allow-Headers',
+      'token, Content-Type, Content-Length, Authorization, Accept, X-Requested-With'
+    )
+    ctx.set('Access-Control-Allow-Methods',
+      'PUT, POST, GET, DELETE, OPTIONS'
+    )
     if (ctx.method === 'OPTIONS') ctx.body = 200
     else await next()
   })

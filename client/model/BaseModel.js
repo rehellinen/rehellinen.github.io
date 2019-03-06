@@ -5,6 +5,7 @@
  */
 import config from '../utils/config'
 import axios from 'axios'
+import {Token} from "../utils/Token"
 
 export class BaseModel {
   constructor() {
@@ -20,14 +21,22 @@ export class BaseModel {
    *  3. data [请求时携带的参数]
    */
   async request (params) {
-    const res = await axios({
+    const token = new Token().getTokenFromCache()
+
+    const {data, status} = await axios({
       url: `${this.baseUrl}/${params.url}`,
       method: params.method || 'get',
-      data: params.data
+      data: params.data,
+      headers: {
+        token,
+        'content-type': 'application/json',
+      },
+      validateStatus: (status) => status < 500
     }).catch(ex => {
       console.log(ex)
     })
-    return res.data.data
+
+    return data.data
   }
 }
 
