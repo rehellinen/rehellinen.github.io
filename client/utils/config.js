@@ -9,6 +9,11 @@ export default {
     INDEX: 1,
     ADD: 2,
     EDIT: 3
-  }
+  },
+  STATUS: {
+    NORMAL: 1,
+    DELETED: -1,
+    ABNORMAL: 0
+  },
 }
 

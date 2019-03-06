@@ -18,6 +18,7 @@
       @add="changeType(2)"
       @edit="toEdit",
       @delete="toDelete"
+      @order="changeOrder"
     )
 
     my-form(
@@ -44,10 +45,10 @@
   const Menu = new MenuModel()
 
   export default {
-    async created () {
-      this.data = await Menu.getAllMenu()
-    },
     methods: {
+      async _getData () {
+        this.data = await Menu.getAllMenu()
+      },
       _initCMS () {
         this.bread.push('菜单管理')
         this.form = {
@@ -75,6 +76,13 @@
         const id = this.data[data.index].id
         const res = await Menu.deleteMenu(id)
         this.openDialog('提示', res.message)
+        this._getData()
+      },
+      async changeOrder (data) {
+        this.data[data.index].listorder = data.order
+        const res = await Menu.editMenu(this.data[data.index])
+        this.openDialog('提示', res.message)
+        this._getData()
       }
     },
     mixins: [cmsMixin, dialogMixin]

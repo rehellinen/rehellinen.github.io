@@ -50,8 +50,9 @@ export const cmsMixin = {
       formData: {}
     }
   },
-  created () {
+  async created () {
     this._initCMS()
+    await this._getData()
   },
   methods: {
     // 新组件需覆盖的方法
