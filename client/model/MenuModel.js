@@ -26,5 +26,14 @@ export class MenuModel extends BaseModel{
       message: true
     })
   }
+
+  async editMenu (data) {
+    return await this.request({
+      url: 'menu',
+      method: 'put',
+      data,
+      message: true
+    })
+  }
 }
 

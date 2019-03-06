@@ -47,7 +47,7 @@ export const cmsMixin = {
       form: {},
       table: {},
       bread: ['首页'],
-      editData: {}
+      formData: {}
     }
   },
   created () {
@@ -66,7 +66,7 @@ export const cmsMixin = {
     },
     toEdit (e) {
       this.changeType(config.CMS.EDIT)
-      this.editData = this.data[e.index]
+      this.formData = this.data[e.index]
     },
     toIndex () {
       this.changeType(config.CMS.INDEX)

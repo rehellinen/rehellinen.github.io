@@ -19,8 +19,14 @@
       // 操作
       el-table-column(label="操作" fixed="right" width="145")
         template(slot-scope="scope")
-          el-button(size="mini" @click.native.prevent="toEdit(scope.$index)") 编辑
-          el-button(type="danger" size="mini") 删除
+          el-button(
+            size="mini"
+            @click.native.prevent="toEdit(scope.$index)"
+          ) 编辑
+          el-button(
+            type="danger" size="mini"
+            @click.native.prevent="toDelete(scope.$index)"
+          ) 删除
 </template>
 
 <script>
@@ -41,7 +47,10 @@ export default {
     },
     toEdit (index) {
       this.$emit('edit', { index })
-    }
+    },
+    toDelete (index) {
+      this.$emit('delete', { index })
+    },
   }
 }
 </script>

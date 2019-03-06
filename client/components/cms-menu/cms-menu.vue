@@ -16,20 +16,23 @@
       :config="table"
       :data="data"
       @add="changeType(2)"
-      @edit="toEdit"
+      @edit="toEdit",
+      @delete="toDelete"
     )
 
     my-form(
       v-else-if="type === 2"
       title="添加菜单"
-      :config="form"
+      :config="form",
+      :data="formData"
       @submit="toSubmit"
     )
 
     my-form(
       title="编辑菜单",
       :config="form"
-      :data="editData"
+      :data="formData"
+      @submit="toSubmit"
       v-else
     )
 </template>
@@ -41,10 +44,6 @@
   const Menu = new MenuModel()
 
   export default {
-    data () {
-      return {
-      }
-    },
     async created () {
       this.data = await Menu.getAllMenu()
     },
@@ -57,6 +56,7 @@
           type: '类型',
         }
         this.table = {
+          name: '菜单名称',
           url: 'url',
           type: '类型'
         }
@@ -70,6 +70,9 @@
         const res = await Menu.editMenu(data)
         this.openDialog('提示', res.message)
         this.toIndex()
+      },
+      async toDelete (data) {
+
       }
     },
     mixins: [cmsMixin, dialogMixin]
