@@ -153,6 +153,10 @@ export class BaseModel {
     return res
   }
 
+  async deleteById (id) {
+    await this.editOne({id}, {status: -1})
+  }
+
   _processCondition (model, condition) {
     for (let key in condition) {
       model = model.where(key, 'in', condition[key])

@@ -14,19 +14,23 @@ export class MenuModel extends BaseModel{
     })
   }
 
-  getMenu (type) {
+  async getMenu (type) {
     const cond = {status: 1}
     if (type) {
       cond.type = type
     }
-    return this.getAll(cond, [], ['listorder'])
+    return await this.getAll(cond, [], ['listorder'])
   }
 
-  addMenu (data) {
-    return this.saveOne(data)
+  async addMenu (data) {
+    return await this.saveOne(data)
   }
 
-  editMenu (id, data) {
-    return this.editOne({id}, data)
+  async editMenu (id, data) {
+    return await this.editOne({id}, data)
+  }
+
+  async delMenu (id) {
+    return await this.deleteById(id)
   }
 }

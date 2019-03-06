@@ -18,6 +18,7 @@ export class MenuValidate extends BaseValidate{
     this.scene = {
       add: ['name', 'url', 'type'],
       edit: ['id', 'name', 'url', 'type'],
+      del: ['id']
     }
   }
 }

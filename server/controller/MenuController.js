@@ -29,4 +29,12 @@ export class MenuController {
       message: '编辑菜单成功'
     })
   }
+
+  static async delMenu (ctx, next) {
+    const id = ctx.checkedParams.id
+    await new MenuModel().delMenu(id)
+    throw new SuccessMessage({
+      message: '删除菜单成功'
+    })
+  }
 }

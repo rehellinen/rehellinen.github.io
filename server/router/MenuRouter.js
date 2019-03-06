@@ -3,7 +3,7 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 10:50
  */
-import {controller, get, put, post} from "../common/decorator/router"
+import {controller, get, put, post, del} from "../common/decorator/router"
 import {MenuController} from "../controller/MenuController"
 import config from '../utils/config'
 import {validate} from "../common/decorator/middleware"
@@ -28,12 +28,18 @@ class TokenRouter {
   @put('')
   @validate({name: 'Menu', scene: 'edit'})
   async edit (ctx, next) {
-    await MenuController.editMenu(ctx, next, config.MENU.FRONT)
+    await MenuController.editMenu(ctx, next)
   }
 
   @post('')
   @validate({name: 'Menu', scene: 'add'})
   async add (ctx, next) {
-    await MenuController.addMenu(ctx, next, config.MENU.FRONT)
+    await MenuController.addMenu(ctx, next)
+  }
+
+  @del('')
+  @validate({name: 'Menu', scene: 'del'})
+  async del (ctx, next) {
+    await MenuController.delMenu(ctx, next)
   }
 }
