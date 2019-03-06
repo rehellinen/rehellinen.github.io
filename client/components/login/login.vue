@@ -17,7 +17,6 @@
 </template>
 
 <script>
-  import MyDialog from '../dialog/dialog'
   import {dialogMixin} from "../../utils/mixins"
   import {Token} from "../../utils/Token"
 
@@ -36,9 +35,6 @@
           .getTokenFromServer()
         this.openDialog('提示', res)
       }
-    },
-    components: {
-      MyDialog
     },
     mixins: [dialogMixin]
   }

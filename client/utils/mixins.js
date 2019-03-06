@@ -7,6 +7,7 @@ import {Token} from "./Token"
 import MyForm from '../base/form/form'
 import MyTable from '../base/table/table'
 import MyBread from '../base/bread-crumb/bread-crumb'
+import MyDialog from '../base/dialog/dialog'
 import config from './config'
 
 export const dialogMixin = {
@@ -31,6 +32,9 @@ export const dialogMixin = {
     closeDialog () {
       this.visible = false
     }
+  },
+  components: {
+    MyDialog
   }
 }
 
@@ -63,6 +67,9 @@ export const cmsMixin = {
     toEdit (e) {
       this.changeType(config.CMS.EDIT)
       this.editData = this.data[e.index]
+    },
+    toIndex () {
+      this.changeType(config.CMS.INDEX)
     },
     toSubmit (e) {
       if (this.type === config.CMS.ADD) {

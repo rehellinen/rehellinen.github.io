@@ -1,5 +1,11 @@
 <template lang="pug">
   div
+    my-dialog(:visible="visible"
+      :title="title"
+      :content="content"
+      @close="closeDialog"
+    )
+
     my-bread(
       @table="changeType(1)"
       :data="bread"
@@ -29,7 +35,7 @@
 </template>
 
 <script>
-  import {cmsMixin} from "../../utils/mixins"
+  import {cmsMixin, dialogMixin} from "../../utils/mixins"
   import {MenuModel} from "../../model/MenuModel"
 
   const Menu = new MenuModel()
@@ -57,13 +63,16 @@
       },
       async addData (data) {
         const res = await Menu.addMenu(data)
-        console.log(res)
+        this.openDialog('提示', res.message)
+        this.toIndex()
       },
-      editData (data) {
-
+      async editData (data) {
+        const res = await Menu.editMenu(data)
+        this.openDialog('提示', res.message)
+        this.toIndex()
       }
     },
-    mixins: [cmsMixin]
+    mixins: [cmsMixin, dialogMixin]
   }
 </script>
 

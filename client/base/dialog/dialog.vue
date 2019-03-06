@@ -6,7 +6,7 @@
   )
     span {{content}}
     span(slot="footer" class="dialog-footer")
-      el-button(@click="closeDialog") 取消
+      el-button(@click="closeDialog") {{button}}
 </template>
 
 <script>
@@ -23,6 +23,10 @@ export default {
     content: {
       type: String,
       default: ''
+    },
+    button: {
+      type: String,
+      default: '确定'
     }
   },
   methods: {
