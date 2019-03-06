@@ -72,7 +72,9 @@
         this.toIndex()
       },
       async toDelete (data) {
-
+        const id = this.data[data.index].id
+        const res = await Menu.deleteMenu(id)
+        this.openDialog('提示', res.message)
       }
     },
     mixins: [cmsMixin, dialogMixin]

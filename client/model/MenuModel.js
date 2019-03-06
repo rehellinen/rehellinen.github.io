@@ -35,5 +35,14 @@ export class MenuModel extends BaseModel{
       message: true
     })
   }
+
+  async deleteMenu (id) {
+    return await this.request({
+      url: 'menu',
+      method: 'delete',
+      data: {id},
+      message: true
+    })
+  }
 }
 
