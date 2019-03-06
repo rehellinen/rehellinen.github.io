@@ -3,9 +3,10 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 10:50
  */
-import {controller, get} from "../common/decorator/router"
+import {controller, get, put, post} from "../common/decorator/router"
 import {MenuController} from "../controller/MenuController"
 import config from '../utils/config'
+import {validate} from "../common/decorator/middleware"
 
 @controller('menu')
 class TokenRouter {
@@ -22,5 +23,17 @@ class TokenRouter {
   @get('back')
   async getBack (ctx, next) {
     await MenuController.getMenu(ctx, next, config.MENU.BACK)
+  }
+
+  @put('')
+  @validate({name: 'Menu', scene: 'edit'})
+  async edit (ctx, next) {
+    await MenuController.editMenu(ctx, next, config.MENU.FRONT)
+  }
+
+  @post('')
+  @validate({name: 'Menu', scene: 'add'})
+  async add (ctx, next) {
+    await MenuController.addMenu(ctx, next, config.MENU.FRONT)
   }
 }

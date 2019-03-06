@@ -13,10 +13,13 @@ import {AccountModel} from "../../model/AccountModel"
 import config from "../../utils/config"
 
 export class Token {
-  async get (params) {
-    const userInfo = await new AccountModel().checkAccount(params.name)
-    this.checkPassword(params.password, userInfo)
-    return this.saveToCache('admin')
+  /**
+   * 验证权限是管理员
+   * @param ctx
+   * @param scope
+   */
+  static isSuper (ctx) {
+    Token.checkScope(ctx, config.SCOPE.SUPER)
   }
 
   checkPassword (reqPassword, dbInfo) {
@@ -39,6 +42,12 @@ export class Token {
       cache.del(cachedKey)
     })
     return cachedKey
+  }
+
+  async get (params) {
+    const userInfo = await new AccountModel().checkAccount(params.name)
+    this.checkPassword(params.password, userInfo)
+    return this.saveToCache({scope: config.SCOPE.SUPER})
   }
 
   /**

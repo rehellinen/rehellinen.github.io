@@ -21,4 +21,12 @@ export class MenuModel extends BaseModel{
     }
     return this.getAll(cond, [], ['listorder'])
   }
+
+  addMenu (data) {
+    return this.saveOne(data)
+  }
+
+  editMenu (id, data) {
+    return this.editOne({id}, data)
+  }
 }
