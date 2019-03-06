@@ -14,7 +14,8 @@ export const exception = (app) => {
         ctx.type = types.json
         ctx.body = {
           status: 500,
-          message: e.toString()
+          message: e.toString(),
+          data: null
         }
       } else {
         ctx.body = '服务器内部错误'

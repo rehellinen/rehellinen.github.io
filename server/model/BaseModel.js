@@ -158,6 +158,11 @@ export class BaseModel {
   }
 
   _processCondition (model, condition) {
+    if (Array.isArray(condition)) {
+      model = model.where(...condition)
+      return
+    }
+
     for (let key in condition) {
       model = model.where(key, 'in', condition[key])
     }

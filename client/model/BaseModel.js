@@ -23,7 +23,6 @@ export class BaseModel {
    */
   async request (params) {
     const token = new Token().getTokenFromCache()
-
     const {data, status} = await axios({
       url: `${this.baseUrl}/${params.url}`,
       method: params.method || 'get',

@@ -13,8 +13,11 @@ import config from './config'
 export const dialogMixin = {
   async created () {
     const isLogin = await new Token().isLogin()
-    if (!isLogin) this.$router.push('/login')
-    if (this.$route.path === '/login') this.$router.push('/cms')
+    if (!isLogin) {
+      this.$router.push('/login')
+    } else {
+      if (this.$route.path === '/login') this.$router.push('/cms')
+    }
   },
   data () {
     return {

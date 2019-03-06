@@ -15,9 +15,14 @@ export class MenuModel extends BaseModel{
   }
 
   async getMenu (type) {
-    const cond = {status: 1}
+    let cond
     if (type) {
-      cond.type = type
+      cond = {
+        type,
+        status: 1
+      }
+    } else {
+      cond = ['status', '>', -1]
     }
     return await this.getAll(cond, [], ['listorder'])
   }

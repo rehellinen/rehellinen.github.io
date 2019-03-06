@@ -33,7 +33,8 @@
       async onSubmit (e) {
         const res = await new Token(this.form.name, this.form.password)
           .getTokenFromServer()
-        this.openDialog('提示', res)
+        if (res.status === 1) this.$router.push('/cms')
+        this.openDialog('提示', res.message)
       }
     },
     mixins: [dialogMixin]

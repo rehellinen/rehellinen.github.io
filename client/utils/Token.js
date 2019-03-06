@@ -11,14 +11,15 @@ export class Token {
   constructor (name, password) {
     this.name = name
     this.password = password
-    this.tokenUrl = config.restUrl + '/token/admin'
+    this.tokenUrl = config.restUrl + '/token'
     this.verifyUrl = config.restUrl + '/token/check'
     this.key = 'token'
   }
 
   async isLogin () {
     let token = this.getTokenFromCache()
-    return token ? true : false
+    if (!token) return false
+    return await this._verifyFromServer(token)
   }
 
   async _verifyFromServer (token) {
@@ -28,9 +29,7 @@ export class Token {
       headers: { token },
       validateStatus: (status) => status < 500
     })
-    if (!data.data.isValid) {
-      return await this.getTokenFromServer()
-    }
+    return data.data.isValid
   }
 
   // 从服务器获取Token
@@ -52,7 +51,7 @@ export class Token {
     if (startChar === '2') {
       store.set(this.key, data.data)
     }
-    return data.message
+    return data
   }
 
   /**

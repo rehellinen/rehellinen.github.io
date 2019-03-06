@@ -6,11 +6,12 @@
 import {controller, get, put, post, del} from "../common/decorator/router"
 import {MenuController} from "../controller/MenuController"
 import config from '../utils/config'
-import {validate} from "../common/decorator/middleware"
+import {auth, validate} from "../common/decorator/middleware"
 
 @controller('menu')
 class TokenRouter {
   @get('all')
+  @auth('super')
   async getAll (ctx, next) {
     await MenuController.getMenu(ctx, next)
   }
