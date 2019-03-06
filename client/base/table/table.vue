@@ -22,9 +22,12 @@
             @blur="changeOrder(scope.$index)"
           )
       // 状态
-      el-table-column(prop="status" label="状态" width="60")
+      el-table-column(prop="status" label="状态" width="75")
         template(slot-scope="scope")
-          p {{statusCN(scope.row.status)}}
+          el-button(
+            size="mini"
+            @click.native.prevent="changeStatus(scope.$index)"
+          ) {{statusCN(scope.row.status)}}
 
       // 编辑与删除操作
       el-table-column(label="操作" fixed="right" width="145")
@@ -67,6 +70,9 @@
       },
       toDelete (index) {
         this.$emit('delete', { index })
+      },
+      changeStatus (index) {
+        this.$emit('status', { index })
       },
       changeOrder (index) {
         if (!this.listorder[index]) return

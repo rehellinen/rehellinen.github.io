@@ -19,6 +19,7 @@
       @edit="toEdit",
       @delete="toDelete"
       @order="changeOrder"
+      @status="changeStatus"
     )
 
     my-form(
@@ -41,6 +42,7 @@
 <script>
   import {cmsMixin, dialogMixin} from "../../utils/mixins"
   import {MenuModel} from "../../model/MenuModel"
+  import config from "../../utils/config"
 
   const Menu = new MenuModel()
 
@@ -75,6 +77,15 @@
       async toDelete (data) {
         const id = this.data[data.index].id
         const res = await Menu.deleteMenu(id)
+        this.openDialog('提示', res.message)
+        this._getData()
+      },
+      async changeStatus (data) {
+        this.data[data.index].status =
+          this.data[data.index].status === config.STATUS.NORMAL ?
+            config.STATUS.ABNORMAL : config.STATUS.NORMAL
+        console.log(this.data[data.index])
+        const res = await Menu.editMenu(this.data[data.index])
         this.openDialog('提示', res.message)
         this._getData()
       },

@@ -7,7 +7,11 @@ import {ParamsException} from "../exception/ParamsException"
 
 export class Methods {
   require (data = {}, field = '', fieldCN = '') {
-    if (!data[field]) {
+    if (
+      data[field] === null ||
+      data[field] === undefined ||
+      Number.isNaN(data[field])
+    ) {
       this.throw(field, fieldCN, '不能为空')
     }
   }

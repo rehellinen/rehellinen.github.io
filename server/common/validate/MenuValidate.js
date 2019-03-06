@@ -14,11 +14,12 @@ export class MenuValidate extends BaseValidate{
       url: ['require', 'url'],
       type: ['require', 'type'],
       listorder: ['require', 'listorder'],
+      status: ['require', 'status'],
     }
 
     this.scene = {
       add: ['name', 'url', 'type'],
-      edit: ['id', 'name', 'url', 'type', 'listorder'],
+      edit: ['id', 'name', 'url', 'type', 'listorder', 'status'],
       del: ['id']
     }
   }
