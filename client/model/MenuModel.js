@@ -17,5 +17,14 @@ export class MenuModel extends BaseModel{
   async getBackMenu () {
     return await this.request({url: 'menu/back'})
   }
+
+  async addMenu (data) {
+    return await this.request({
+      url: 'menu',
+      method: 'post',
+      data,
+      message: true
+    })
+  }
 }
 

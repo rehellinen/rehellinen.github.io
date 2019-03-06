@@ -17,6 +17,7 @@
       v-else-if="type === 2"
       title="添加菜单"
       :config="form"
+      @submit="toSubmit"
     )
 
     my-form(
@@ -31,13 +32,15 @@
   import {cmsMixin} from "../../utils/mixins"
   import {MenuModel} from "../../model/MenuModel"
 
+  const Menu = new MenuModel()
+
   export default {
     data () {
       return {
       }
     },
     async created () {
-      this.data = await new MenuModel().getAllMenu()
+      this.data = await Menu.getAllMenu()
     },
     methods: {
       _initCMS () {
@@ -51,6 +54,13 @@
           url: 'url',
           type: '类型'
         }
+      },
+      async addData (data) {
+        const res = await Menu.addMenu(data)
+        console.log(res)
+      },
+      editData (data) {
+
       }
     },
     mixins: [cmsMixin]

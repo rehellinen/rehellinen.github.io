@@ -13,9 +13,7 @@
 <script>
 export default {
   data () {
-    return {
-      form: {}
-    }
+    return {}
   },
   props: {
     config: {
@@ -37,7 +35,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log(this.data)
+      this.$emit('submit', this.data)
     }
   }
 }

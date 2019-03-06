@@ -16,9 +16,10 @@ export class BaseModel {
    * 对 axios 请求进行封装
    * @param params 请求参数配置
    *  params参数:
-   *  1. url [api地址]
-   *  2. method [http请求方式]
-   *  3. data [请求时携带的参数]
+   *  1. url String [api地址]
+   *  2. method String [http请求方式]
+   *  3. data Object [请求时携带的参数]
+   *  4. message Boolean [是否在结果中携带message]
    */
   async request (params) {
     const token = new Token().getTokenFromCache()
@@ -36,7 +37,7 @@ export class BaseModel {
       console.log(ex)
     })
 
-    return data.data
+    return params.message ? data : data.data
   }
 }
 

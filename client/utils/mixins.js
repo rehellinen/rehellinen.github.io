@@ -7,6 +7,7 @@ import {Token} from "./Token"
 import MyForm from '../base/form/form'
 import MyTable from '../base/table/table'
 import MyBread from '../base/bread-crumb/bread-crumb'
+import config from './config'
 
 export const dialogMixin = {
   async created () {
@@ -36,6 +37,7 @@ export const dialogMixin = {
 export const cmsMixin = {
   data () {
     return {
+      model: '',
       data: [],
       type: 1,
       form: {},
@@ -48,15 +50,26 @@ export const cmsMixin = {
     this._initCMS()
   },
   methods: {
+    // 新组件需覆盖的方法
+    _initCMS () {},
+    addData (data) {},
+    editData (data) {},
     changeType (type) {
       this.type = type
-      if (type === 1 && this.bread.length > 2) this.bread.pop()
-      else if (type === 2) this.bread.push('添加')
+      if (type === config.CMS.INDEX && this.bread.length > 2) this.bread.pop()
+      else if (type === config.CMS.ADD) this.bread.push('添加')
       else this.bread.push('修改')
     },
     toEdit (e) {
-      this.changeType(3)
+      this.changeType(config.CMS.EDIT)
       this.editData = this.data[e.index]
+    },
+    toSubmit (e) {
+      if (this.type === config.CMS.ADD) {
+        this.addData(e)
+      } else if (this.type === config.CMS.EDIT) {
+        this.editData(e)
+      }
     }
   },
   components: {
