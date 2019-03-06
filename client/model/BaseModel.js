@@ -39,5 +39,32 @@ export class BaseModel {
 
     return params.message ? data : data.data
   }
+
+  async add (url, data) {
+    return await this.request({
+      url,
+      data,
+      method: 'post',
+      message: true
+    })
+  }
+
+  async edit (url, data) {
+    return await this.request({
+      url,
+      data,
+      method: 'put',
+      message: true
+    })
+  }
+
+  async delete (url, id) {
+    return await this.request({
+      url,
+      method: 'delete',
+      data: {id},
+      message: true
+    })
+  }
 }
 
