@@ -46,8 +46,6 @@
   import {cmsMixin} from "../../mixins/cmsMixin"
   import {dialogMixin} from "../../mixins/dialogMixin"
   import {MenuModel} from "../../model/MenuModel"
-  import config from "../../utils/config"
-  import {copyObj} from "../../utils/utils"
 
   const Menu = new MenuModel()
 
@@ -71,47 +69,25 @@
       },
       async addData (data) {
         this._requestWithInfo(
-          await Menu.addMenu(data),
-          () => {
-            this.toIndex()
-            this._getData()
-          }
+          async () => await Menu.addMenu(data)
         )
       },
       async editData (data) {
         this._requestWithInfo(
-          await Menu.editMenu(data),
-          () => {
-            this.toIndex()
-            this._getData()
-          }
+          async () => await Menu.editMenu(data)
         )
       },
       async deleteData (data) {
         const id = this.data[data.index].id
-
         this._requestWithQuery('是否确定删除',
-          await Menu.deleteMenu(id),
-          this._getData
+          async () => await Menu.deleteMenu(id),
         )
       },
-      async changeStatus (data) {
-        const status = this.data[data.index].status === config.STATUS.NORMAL ?
-            config.STATUS.ABNORMAL : config.STATUS.NORMAL
-        const reqData = copyObj(this.data[data.index])
-        reqData.status = status
-
-        this._requestWithQuery('是否确定更改状态',
-          await Menu.editMenu(reqData),
-          this._getData
-        )
+      async changeStatus (e) {
+        this._changeStatus(e, Menu, 'editMenu')
       },
-      async changeOrder (data) {
-        this.data[data.index].listorder = data.order
-        this._requestWithQuery('是否确定更改排序',
-          await Menu.editMenu(this.data[data.index]),
-          this._getData
-        )
+      async changeOrder (e) {
+        await this._changeOrder(e, Menu, 'editMenu')
       }
     },
     mixins: [cmsMixin, dialogMixin]

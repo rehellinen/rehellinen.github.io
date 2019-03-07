@@ -2,6 +2,9 @@
   el-dialog(
     :title="title"
     :visible.sync="visible"
+    :close-on-click-modal="false",
+    :close-on-press-escape="false",
+    :show-close="false"
     width="30%"
   )
     span {{content}}
