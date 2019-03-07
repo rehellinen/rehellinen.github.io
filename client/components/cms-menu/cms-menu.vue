@@ -78,21 +78,25 @@
         this.toIndex()
       },
       async toDelete (data) {
-        this.openDialog('提示', '是否确定删除', async () => {
-          const id = this.data[data.index].id
-          const res = await Menu.deleteMenu(id)
-          this.openDialog('提示', res.message)
-          this._getData()
-        })
+        this.openDialog('提示', '是否确定删除',
+          async () => {
+            const id = this.data[data.index].id
+            const res = await Menu.deleteMenu(id)
+            this.openDialog('提示', res.message)
+            this._getData()
+          })
       },
       async changeStatus (data) {
-        this.data[data.index].status =
-          this.data[data.index].status === config.STATUS.NORMAL ?
-            config.STATUS.ABNORMAL : config.STATUS.NORMAL
-        console.log(this.data[data.index])
-        const res = await Menu.editMenu(this.data[data.index])
-        this.openDialog('提示', res.message)
-        this._getData()
+        this.openDialog('提示', '是否确定更改状态',
+          async () => {
+            this.data[data.index].status =
+              this.data[data.index].status === config.STATUS.NORMAL ?
+                config.STATUS.ABNORMAL : config.STATUS.NORMAL
+            const res = await Menu.editMenu(this.data[data.index])
+            this.openDialog('提示', res.message)
+            this._getData()
+          }
+        )
       },
       async changeOrder (data) {
         this.data[data.index].listorder = data.order
