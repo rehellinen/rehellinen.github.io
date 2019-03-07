@@ -10,7 +10,7 @@
     )
 
     my-bread(
-      @table="changeType(1)"
+      @table="toIndex"
       :data="bread"
     )
 
@@ -18,9 +18,9 @@
       v-if="type === 1"
       :config="table"
       :data="data"
-      @add="changeType(2)"
+      @add="toAdd"
       @edit="toEdit",
-      @delete="toDelete"
+      @delete="deleteData"
       @order="changeOrder"
       @status="changeStatus"
     )
@@ -43,9 +43,11 @@
 </template>
 
 <script>
-  import {cmsMixin, dialogMixin} from "../../utils/mixins"
+  import {cmsMixin} from "../../mixins/cmsMixin"
+  import {dialogMixin} from "../../mixins/dialogMixin"
   import {MenuModel} from "../../model/MenuModel"
   import config from "../../utils/config"
+  import {copyObj} from "../../utils/utils"
 
   const Menu = new MenuModel()
 
@@ -55,54 +57,61 @@
         this.data = await Menu.getAllMenu()
       },
       _initCMS () {
-        this.bread.push('菜单管理')
-        this.form = {
+        this._pushBread('菜单管理')
+        this._setForm({
           name: '菜单名称',
           url: '路由',
           type: '类型',
-        }
-        this.table = {
+        })
+        this._setTable({
           name: '菜单名称',
-          url: 'url',
+          url: '路由',
           type: '类型'
-        }
+        })
       },
       async addData (data) {
-        const res = await Menu.addMenu(data)
-        this.openDialog('提示', res.message)
-        this.toIndex()
-      },
-      async editData (data) {
-        const res = await Menu.editMenu(data)
-        this.openDialog('提示', res.message)
-        this.toIndex()
-      },
-      async toDelete (data) {
-        this.openDialog('提示', '是否确定删除',
-          async () => {
-            const id = this.data[data.index].id
-            const res = await Menu.deleteMenu(id)
-            this.openDialog('提示', res.message)
-            this._getData()
-          })
-      },
-      async changeStatus (data) {
-        this.openDialog('提示', '是否确定更改状态',
-          async () => {
-            this.data[data.index].status =
-              this.data[data.index].status === config.STATUS.NORMAL ?
-                config.STATUS.ABNORMAL : config.STATUS.NORMAL
-            const res = await Menu.editMenu(this.data[data.index])
-            this.openDialog('提示', res.message)
+        this._requestWithInfo(
+          await Menu.addMenu(data),
+          () => {
+            this.toIndex()
             this._getData()
           }
         )
       },
+      async editData (data) {
+        this._requestWithInfo(
+          await Menu.editMenu(data),
+          () => {
+            this.toIndex()
+            this._getData()
+          }
+        )
+      },
+      async deleteData (data) {
+        const id = this.data[data.index].id
+
+        this._requestWithQuery('是否确定删除',
+          await Menu.deleteMenu(id),
+          this._getData
+        )
+      },
+      async changeStatus (data) {
+        const status = this.data[data.index].status === config.STATUS.NORMAL ?
+            config.STATUS.ABNORMAL : config.STATUS.NORMAL
+        const reqData = copyObj(this.data[data.index])
+        reqData.status = status
+
+        this._requestWithQuery('是否确定更改状态',
+          await Menu.editMenu(reqData),
+          this._getData
+        )
+      },
       async changeOrder (data) {
         this.data[data.index].listorder = data.order
-        const res = await Menu.editMenu(this.data[data.index])
-        this.openDialog('提示', res.message)
-        this._getData()
+        this._requestWithQuery('是否确定更改排序',
+          await Menu.editMenu(this.data[data.index]),
+          this._getData
+        )
       }
     },
     mixins: [cmsMixin, dialogMixin]

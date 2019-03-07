@@ -40,8 +40,8 @@ export default {
   },
   methods: {
     toConfirm () {
-      this.cb && this.cb()
       this.$emit('confirm')
+      this.cb && this.cb()
     },
     toCancel () {
       this.$emit('cancel')

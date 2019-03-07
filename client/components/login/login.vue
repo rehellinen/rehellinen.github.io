@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import {dialogMixin} from "../../utils/mixins"
+  import {dialogMixin} from "../../mixins/dialogMixin"
   import {Token} from "../../utils/Token"
 
   export default {

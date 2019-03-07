@@ -6,3 +6,7 @@
 import {resolve} from 'path'
 
 export const r = path => resolve(__dirname, path)
+
+export const copyObj = (obj) => {
+  return JSON.parse(JSON.stringify(obj))
+}
