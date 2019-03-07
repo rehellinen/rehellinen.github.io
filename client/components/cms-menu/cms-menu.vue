@@ -3,7 +3,10 @@
     my-dialog(:visible="visible"
       :title="title"
       :content="content"
-      @close="closeDialog"
+      :cb="cb",
+      :cancel="cancel",
+      @confirm="toConfirm"
+      @cancel="toCancel"
     )
 
     my-bread(
@@ -75,10 +78,12 @@
         this.toIndex()
       },
       async toDelete (data) {
-        const id = this.data[data.index].id
-        const res = await Menu.deleteMenu(id)
-        this.openDialog('提示', res.message)
-        this._getData()
+        this.openDialog('提示', '是否确定删除', async () => {
+          const id = this.data[data.index].id
+          const res = await Menu.deleteMenu(id)
+          this.openDialog('提示', res.message)
+          this._getData()
+        })
       },
       async changeStatus (data) {
         this.data[data.index].status =

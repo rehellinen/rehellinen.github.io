@@ -6,7 +6,8 @@
   )
     span {{content}}
     span(slot="footer" class="dialog-footer")
-      el-button(@click="closeDialog") {{button}}
+      el-button(@click="toConfirm") {{button}}
+      el-button(@click="toCancel" v-if="cancel" type="danger") 取消
 </template>
 
 <script>
@@ -27,11 +28,23 @@ export default {
     button: {
       type: String,
       default: '确定'
+    },
+    cancel: {
+      type: Boolean,
+      default: false
+    },
+    cb: {
+      type: Function,
+      default: () => new Function()
     }
   },
   methods: {
-    closeDialog () {
-      this.$emit('close')
+    toConfirm () {
+      this.cb && this.cb()
+      this.$emit('confirm')
+    },
+    toCancel () {
+      this.$emit('cancel')
     }
   }
 }
