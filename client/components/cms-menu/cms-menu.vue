@@ -55,6 +55,7 @@
         this.data = await Menu.getAllMenu()
       },
       _initCMS () {
+        this._setModel(Menu)
         this._pushBread('菜单管理')
         this._setForm({
           name: '菜单名称',
@@ -68,26 +69,19 @@
         })
       },
       async addData (data) {
-        this._requestWithInfo(
-          async () => await Menu.addMenu(data)
-        )
+        this._addData(data, 'addMenu')
       },
       async editData (data) {
-        this._requestWithInfo(
-          async () => await Menu.editMenu(data)
-        )
+        this._editData(data, 'editMenu')
       },
       async deleteData (data) {
-        const id = this.data[data.index].id
-        this._requestWithQuery('是否确定删除',
-          async () => await Menu.deleteMenu(id),
-        )
+        this._deleteData(data, 'deleteMenu')
       },
       async changeStatus (e) {
-        this._changeStatus(e, Menu, 'editMenu')
+        this._changeStatus(e, 'editMenu')
       },
       async changeOrder (e) {
-        await this._changeOrder(e, Menu, 'editMenu')
+        await this._changeOrder(e, 'editMenu')
       }
     },
     mixins: [cmsMixin, dialogMixin]
