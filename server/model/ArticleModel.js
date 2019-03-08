@@ -15,8 +15,10 @@ export class ArticleModel extends BaseModel{
   }
 
   getArticles () {
-    return this.getAll({
-      status: 1
-    }, [], ['listorder'])
+    return this.getAll(
+      ['status', '>', -1],
+      [],
+      ['listorder']
+    )
   }
 }

@@ -5,11 +5,13 @@
  */
 import {controller, get} from "../common/decorator/router"
 import {ArticleController} from "../controller/ArticleController"
+import {auth} from "../common/decorator/middleware"
 
 @controller('article')
 class TokenRouter {
-  @get('')
-  async getToken (ctx, next) {
+  @get('all')
+  @auth('super')
+  async getArticle (ctx, next) {
     await ArticleController.getArticles(ctx, next)
   }
 }
