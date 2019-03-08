@@ -18,16 +18,16 @@ export class MenuModel extends BaseModel{
     return await this.request({url: 'menu/back'})
   }
 
-  async addMenu (data) {
-    return await this.add('menu', data)
+  async addData (data) {
+    return await super.addData('menu', data)
   }
 
-  async editMenu (data) {
-    return await this.edit('menu', data)
+  async editData (data) {
+    return await super.editData('menu', data)
   }
 
-  async deleteMenu (id) {
-    return await this.delete('menu', id)
+  async deleteData (id) {
+    return await super.deleteData('menu', id)
   }
 }
 

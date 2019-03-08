@@ -99,19 +99,19 @@
         ])
       },
       async addData (data) {
-        this._addData(data, 'addMenu')
+        this._addData(data, 'addData')
       },
       async editData (data) {
-        this._editData(data, 'editMenu')
+        this._editData(data, 'editData')
       },
       async deleteData (data) {
-        this._deleteData(data, 'deleteMenu')
+        this._deleteData(data, 'deleteData')
       },
       async changeStatus (e) {
-        this._changeStatus(e, 'editMenu')
+        this._changeStatus(e, 'editData')
       },
       async changeOrder (e) {
-        await this._changeOrder(e, 'editMenu')
+        this._changeOrder(e, 'editData')
       }
     },
     mixins: [cmsMixin, dialogMixin]

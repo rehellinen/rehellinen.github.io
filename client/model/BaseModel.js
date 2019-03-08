@@ -39,7 +39,7 @@ export class BaseModel {
     return params.message ? data : data.data
   }
 
-  async add (url, data) {
+  async addData (url, data) {
     return await this.request({
       url,
       data,
@@ -48,7 +48,7 @@ export class BaseModel {
     })
   }
 
-  async edit (url, data) {
+  async editData (url, data) {
     return await this.request({
       url,
       data,
@@ -57,7 +57,7 @@ export class BaseModel {
     })
   }
 
-  async delete (url, id) {
+  async deleteData (url, id) {
     return await this.request({
       url,
       method: 'delete',
