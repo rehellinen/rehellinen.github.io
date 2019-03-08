@@ -7,7 +7,15 @@ import {MenuModel} from "../model/MenuModel"
  *  Create On 2019/3/4 11:06
  */
 export class MenuController {
-  static async getMenu (ctx, next, type) {
+  static async getAllMenu (ctx, next, type) {
+    const data = await new MenuModel().getAllMenu()
+    throw new SuccessMessage({
+      message: '获取所有菜单成功',
+      data
+    })
+  }
+
+  static async getMenuByType (ctx, next, type) {
     const data = await new MenuModel().getMenu(type)
     throw new SuccessMessage({
       message: '获取菜单成功',

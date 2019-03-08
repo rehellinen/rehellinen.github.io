@@ -13,32 +13,35 @@ class TokenRouter {
   @get('all')
   @auth('super')
   async getAll (ctx, next) {
-    await MenuController.getMenu(ctx, next)
+    await MenuController.getAllMenu(ctx, next)
   }
 
   @get('front')
   async getFront (ctx, next) {
-    await MenuController.getMenu(ctx, next, config.MENU.FRONT)
+    await MenuController.getMenuByType(ctx, next, config.MENU.FRONT)
   }
 
   @get('back')
   async getBack (ctx, next) {
-    await MenuController.getMenu(ctx, next, config.MENU.BACK)
+    await MenuController.getMenuByType(ctx, next, config.MENU.BACK)
   }
 
   @put('')
+  @auth('super')
   @validate({name: 'Menu', scene: 'edit'})
   async edit (ctx, next) {
     await MenuController.editMenu(ctx, next)
   }
 
   @post('')
+  @auth('super')
   @validate({name: 'Menu', scene: 'add'})
   async add (ctx, next) {
     await MenuController.addMenu(ctx, next)
   }
 
   @del('')
+  @auth('super')
   @validate({name: 'Menu', scene: 'del'})
   async del (ctx, next) {
     await MenuController.delMenu(ctx, next)

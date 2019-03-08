@@ -14,15 +14,15 @@ export class MenuModel extends BaseModel{
     })
   }
 
+  async getAllMenu () {
+    let cond = ['status', '>', -1]
+    return await this.getAll(cond, [], ['listorder'])
+  }
+
   async getMenu (type) {
-    let cond
-    if (type) {
-      cond = {
-        type,
-        status: 1
-      }
-    } else {
-      cond = ['status', '>', -1]
+    let cond = {
+      type,
+      status: 1
     }
     return await this.getAll(cond, [], ['listorder'])
   }
