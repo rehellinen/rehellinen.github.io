@@ -28,4 +28,7 @@
 <style scoped lang="sass" rel="stylesheet/sass">
   @import "~sass/base"
   .container
+    height: 100%
+    ul
+      height: 100%
 </style>
