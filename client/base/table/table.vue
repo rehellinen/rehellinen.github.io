@@ -60,7 +60,7 @@
         default: () => []
       },
       config: {
-        type: Object,
+        type: Array,
         default: () => ({})
       },
     },

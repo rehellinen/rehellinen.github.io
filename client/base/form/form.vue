@@ -1,23 +1,44 @@
 <template lang="pug">
-  div
+  div.form-container
     p.title {{title}}
     el-form(ref="data" :model="data" label-width="80px")
-      el-form-item(v-for="(label, name, index) in config"
-        :label="label" :key="index")
-        el-input(v-model="data[name]")
+      el-form-item(
+        v-for="(conf, index) in config"
+        :label="conf.label"
+        :key="index"
+      )
+        el-input(
+          v-if="!conf.type || conf.type === inputType.INPUT"
+          v-model="data[conf.name]"
+        )
+
+        el-select(
+          v-if="conf.type === inputType.SELECT"
+          v-model="data[conf.name]"
+        )
+          el-option(
+            v-for="(item, i) in conf.options"
+            :label="item.label"
+            :value="item.value"
+            :key="i"
+          )
 
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
 </template>
 
 <script>
-export default {
+  import config from '../../utils/config'
+
+  export default {
   data () {
-    return {}
+    return {
+      inputType: config.FORM
+    }
   },
   props: {
     config: {
-      type: Object,
+      type: Array,
       default: () => ({})
     },
     title: {
@@ -43,10 +64,13 @@ export default {
 
 <style scoped lang="sass" rel="stylesheet/sass">
   @import "~sass/base"
-
-  .title
-    color: $main-font-color
-    font-size: $vast-font-size
-    font-weight: bold
-    margin: 20px 0 20px 80px
+  .form-container
+    max-width: 500px
+    .title
+      color: $main-font-color
+      font-size: $vast-font-size
+      font-weight: bold
+      margin: 20px 0 20px 80px
+    .el-select
+      width: 100%
 </style>

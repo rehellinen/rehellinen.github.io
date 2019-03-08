@@ -46,7 +46,7 @@
   import {cmsMixin} from "../../mixins/cmsMixin"
   import {dialogMixin} from "../../mixins/dialogMixin"
   import {MenuModel} from "../../model/MenuModel"
-
+  import config from '../../utils/config'
   const Menu = new MenuModel()
 
   export default {
@@ -57,11 +57,31 @@
       _initCMS () {
         this._setModel(Menu)
         this._pushBread('菜单管理')
-        this._setForm({
-          name: '菜单名称',
-          url: '路由',
-          type: '类型',
-        })
+        this._setForm([
+          {
+            name: 'name',
+            label: '菜单名称'
+          },
+          {
+            name: 'url',
+            label: '路由'
+          },
+          {
+            name: 'type',
+            label: '类型',
+            type: config.FORM.SELECT,
+            options: [
+              {
+                label: '前端',
+                value: 1
+              },
+              {
+                label: '后台',
+                value: 2
+              },
+            ]
+          },
+        ])
         this._setTable([
           {
             name: 'name',

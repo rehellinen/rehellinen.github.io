@@ -15,5 +15,9 @@ export default {
     DELETED: -1,
     ABNORMAL: 0
   },
+  FORM: {
+    INPUT: 1,
+    SELECT: 2
+  }
 }
 
