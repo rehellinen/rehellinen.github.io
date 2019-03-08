@@ -10,11 +10,11 @@
       el-table-column(prop="id" label="ID" fixed width="50")
       // 其他属性
       el-table-column(
-        v-for="(conf, prop, index) in config"
-        :prop="prop" :label="conf.label" :key="index"
+        v-for="(conf, index) in config"
+        :label="conf.label" :key="index"
       )
         template(slot-scope="scope")
-          p {{conf.map ? conf.map(scope.row[prop]) : scope.row[prop]}}
+          p {{conf.map ? conf.map(scope.row[conf.name]) : scope.row[conf.name]}}
 
       // 排序
       el-table-column(prop="listorder" label="排序" width="70")

@@ -62,18 +62,21 @@
           url: '路由',
           type: '类型',
         })
-        this._setTable({
-          name: {
+        this._setTable([
+          {
+            name: 'name',
             label: '菜单名称'
           },
-          url: {
+          {
+            name: 'url',
             label: '路由'
           },
-          type: {
+          {
+            name: 'type',
             label: '类型',
             map: (val) => val === 1 ? '前端' : '后台'
           }
-        })
+        ])
       },
       async addData (data) {
         this._addData(data, 'addMenu')
