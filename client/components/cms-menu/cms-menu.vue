@@ -63,9 +63,16 @@
           type: '类型',
         })
         this._setTable({
-          name: '菜单名称',
-          url: '路由',
-          type: '类型'
+          name: {
+            label: '菜单名称'
+          },
+          url: {
+            label: '路由'
+          },
+          type: {
+            label: '类型',
+            map: (val) => val === 1 ? '前端' : '后台'
+          }
         })
       },
       async addData (data) {

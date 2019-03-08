@@ -8,10 +8,13 @@
     )
       // id
       el-table-column(prop="id" label="ID" fixed width="50")
-      // 其他
+      // 其他属性
       el-table-column(
-        v-for="(label, prop, index) in config"
-        :prop="prop" :label="label" :key="index")
+        v-for="(conf, prop, index) in config"
+        :prop="prop" :label="conf.label" :key="index"
+      )
+        template(slot-scope="scope")
+          p {{conf.map ? conf.map(scope.row[prop]) : scope.row[prop]}}
 
       // 排序
       el-table-column(prop="listorder" label="排序" width="70")
