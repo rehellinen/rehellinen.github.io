@@ -8,17 +8,17 @@ import config from "../utils/config"
 
 export class AccountModel extends BaseModel{
   constructor () {
-    super()
-
-    this.model = this.db.Model.extend({
+    super({
       tableName: 'account'
     })
   }
 
   async checkAccount (name) {
     const res = await this.getAll({
-      name,
-      status: config.STATUS.NORMAL
+      condition: {
+        name,
+        status: config.STATUS.NORMAL
+      }
     })
     return res[0]
   }

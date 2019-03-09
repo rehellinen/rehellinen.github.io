@@ -7,18 +7,15 @@ import {BaseModel} from "./BaseModel"
 
 export class ArticleModel extends BaseModel{
   constructor () {
-    super()
-
-    this.model = this.db.Model.extend({
+    super({
       tableName: 'article'
     })
   }
 
   getArticles () {
-    return this.getAll(
-      ['status', '>', -1],
-      [],
-      ['listorder']
-    )
+    return this.getAll({
+      condition: ['status', '>', -1],
+      order: ['order']
+    })
   }
 }

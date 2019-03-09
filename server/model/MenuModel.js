@@ -4,27 +4,31 @@
  *  Create On 2019/3/4 11:08
  */
 import {BaseModel} from "./BaseModel"
+import config from '../utils/config'
 
 export class MenuModel extends BaseModel{
   constructor () {
-    super()
-
-    this.model = this.db.Model.extend({
+    super({
       tableName: 'menu'
     })
   }
 
   async getAllMenu () {
-    let cond = ['status', '>', -1]
-    return await this.getAll(cond, [], ['listorder'])
+    return await this.getAll({
+      condition: ['status', '>', -1],
+      order: ['order', 'id']
+    })
   }
 
   async getMenu (type) {
     let cond = {
       type,
-      status: 1
+      status: config.STATUS.NORMAL
     }
-    return await this.getAll(cond, [], ['listorder'])
+    return await this.getAll({
+      condition: cond,
+      order: ['order']
+    })
   }
 
   async addMenu (data) {

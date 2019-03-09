@@ -9,12 +9,15 @@ import {DatabaseException} from "../common/exception/DatabaseException"
 export class BaseModel {
   /**
    * 初始化模型
+   * @param tableName
    * @param conf Object
    *  - relation Array 定义需要进行关联的模型
    */
-  constructor (conf = {}) {
+  constructor ({tableName, conf = {}}) {
+    // 获取唯一的db实例
     this.db = DataBase.getInstance()
-
+    // 初始化对应的表
+    this.generateModel('model', tableName)
     // 初始化需要进行关联的模型
     if (conf.relation && Array.isArray(conf.relation)) {
       for (let item of conf.relation) {
@@ -23,9 +26,9 @@ export class BaseModel {
     }
   }
 
-  generateModel (modelName) {
+  generateModel (modelName, tableName = modelName) {
     this[modelName] = this.db.Model.extend({
-      tableName: modelName
+      tableName: tableName
     })
   }
 
@@ -36,7 +39,7 @@ export class BaseModel {
    * @param relation String 关联的模型名称
    * @return {Promise<void>}
    */
-  async getOneById (id, condition = {}, relation = []) {
+  async getOneById ({id, condition = {}, relation = []}) {
     let data
     let model = this.model.forge().where('id', id)
     this._processCondition(model, condition)
@@ -56,7 +59,7 @@ export class BaseModel {
    * @param order Array 设置排序的字段
    * @return {Promise<*>}
    */
-  async getAll (condition = {}, relation = [], order = []) {
+  async getAll ({condition = {}, relation = [], order = []}) {
     let data
     let model = this.model.forge()
 
@@ -79,7 +82,7 @@ export class BaseModel {
    * @param order Array 设置排序的字段
    * @return {Promise<*>}
    */
-  async pagination (pageConf = {}, condition = {}, relation = [], order = ['id']) {
+  async pagination ({pageConf = {}, condition = {}, relation = [], order = ['id']}) {
     let data
     let model = this.model.forge()
 
@@ -98,30 +101,6 @@ export class BaseModel {
     return data.serialize()
   }
 
-  /**
-   * 将openId保存到数据库
-   * @param openid
-   * @return {Promise<*>}
-   */
-  async saveOpenId (openid) {
-    let userId
-    const savedData = {
-      UOPENID: openid,
-      USTATE: $config.STATUS.NORMAL
-    }
-    const user = await this.model
-      .where(savedData)
-      .fetch()
-
-    if (!user) {
-      const res = await this.saveOne(savedData)
-      userId = res.UID
-    } else {
-      userId = user.attributes.UID
-    }
-    return userId
-  }
-
   async saveOne (data) {
     let model = this.model.forge(data)
 
@@ -137,7 +116,7 @@ export class BaseModel {
     return res
   }
 
-  async editOne (condition = {}, data) {
+  async editOne ({condition = {}, data}) {
     let model = this.model.forge(data)
 
     this._processCondition(model, condition)
@@ -154,7 +133,24 @@ export class BaseModel {
   }
 
   async deleteById (id) {
-    await this.editOne({id}, {status: -1})
+    return await this.editOne({
+      condition: {id},
+      data: {status: -1}
+    })
+  }
+
+  async changeStatus (id, status) {
+    return await this.editOne({
+      condition: {id},
+      data: {status}
+    })
+  }
+
+  async changeOrder (id, order) {
+    return await this.editOne({
+      condition: {id},
+      data: {order}
+    })
   }
 
   _processCondition (model, condition) {
