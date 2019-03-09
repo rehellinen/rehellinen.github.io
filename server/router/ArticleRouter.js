@@ -7,11 +7,13 @@ import {controller, get} from "../common/decorator/router"
 import {ArticleController} from "../controller/ArticleController"
 import {auth} from "../common/decorator/middleware"
 
+const article = new ArticleController()
+
 @controller('article')
 class TokenRouter {
   @get('all')
   @auth('super')
   async getArticle (ctx, next) {
-    await ArticleController.getArticles(ctx, next)
+    await article.getArticles(ctx, next)
   }
 }

@@ -12,7 +12,7 @@ export class ArticleController extends BaseController{
     super(new ArticleModel())
   }
 
-  static async getArticles (ctx) {
+  async getArticles (ctx) {
     const data = await this.model.getArticles()
     throw new SuccessMessage({
       message: '获取文章成功',
