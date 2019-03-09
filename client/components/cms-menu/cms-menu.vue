@@ -97,21 +97,6 @@
             map: (val) => val === 1 ? '前端' : '后台'
           }
         ])
-      },
-      async addData (data) {
-        this._addData(data, 'addData')
-      },
-      async editData (data) {
-        this._editData(data, 'editData')
-      },
-      async deleteData (data) {
-        this._deleteData(data, 'deleteData')
-      },
-      async changeStatus (e) {
-        this._changeStatus(e, 'editData')
-      },
-      async changeOrder (e) {
-        this._changeOrder(e, 'editData')
       }
     },
     mixins: [cmsMixin, dialogMixin]

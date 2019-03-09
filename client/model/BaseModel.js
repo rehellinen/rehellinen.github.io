@@ -8,7 +8,8 @@ import axios from 'axios'
 import {Token} from "../utils/Token"
 
 export class BaseModel {
-  constructor() {
+  constructor(modelName) {
+    this.modelName = modelName
     this.baseUrl = config.restUrl
   }
 
@@ -39,29 +40,47 @@ export class BaseModel {
     return params.message ? data : data.data
   }
 
-  async addData (url, data) {
+  async addData (data) {
     return await this.request({
-      url,
+      url: this.modelName,
       data,
       method: 'post',
       message: true
     })
   }
 
-  async editData (url, data) {
+  async editData (data) {
     return await this.request({
-      url,
+      url: this.modelName,
       data,
       method: 'put',
       message: true
     })
   }
 
-  async deleteData (url, id) {
+  async deleteData (id) {
     return await this.request({
-      url,
+      url: this.modelName,
       method: 'delete',
       data: {id},
+      message: true
+    })
+  }
+
+  async changeStatus (id, status) {
+    return await this.request({
+      url: `${this.modelName}/status`,
+      method: 'put',
+      data: {id, status},
+      message: true
+    })
+  }
+
+  async changeOrder (id, order) {
+    return await this.request({
+      url: `${this.modelName}/order`,
+      method: 'put',
+      data: {id, order},
       message: true
     })
   }

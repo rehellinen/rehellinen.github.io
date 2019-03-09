@@ -36,11 +36,6 @@ export const cmsMixin = {
     // 新组件需覆盖的方法
     _initCMS () {},
     _getData () {},
-    addData (data) {},
-    editData (data) {},
-    deleteData (data) {},
-    changeStatus (data) {},
-    changeOrder (data) {},
 
     // 跳转到添加页面
     toAdd (e) {
@@ -103,40 +98,40 @@ export const cmsMixin = {
         }, true)
     },
 
-    _addData (data, action) {
+    addData (data) {
       this._requestWithInfo(
-        async () => await this.model[action](data)
+        async () => await this.model.addData(data)
       )
     },
 
-    _editData (data, action) {
+    editData (data) {
       this._requestWithInfo(
-        async () => await this.model[action](data)
+        async () => await this.model.editData(data)
       )
     },
 
-    _deleteData (data, action) {
+    deleteData (data) {
       const id = this.data[data.index].id
       this._requestWithQuery('是否确定删除',
-        async () => await this.model[action](id),
+        async () => await this.model.deleteData(id),
       )
     },
 
-    async _changeStatus (e, action) {
-      const status = this.data[e.index].status === config.STATUS.NORMAL ?
+    async changeStatus (e, action) {
+      const reqData = this.data[e.index]
+      const status = reqData.status === config.STATUS.NORMAL ?
         config.STATUS.ABNORMAL : config.STATUS.NORMAL
-      const reqData = copyObj(this.data[e.index])
-      reqData.status = status
 
       this._requestWithQuery('是否确定更改状态',
-        async () => await this.model[action](reqData)
+        async () => await this.model.changeStatus(reqData.id, status)
       )
     },
 
-    async _changeOrder (e, action) {
-      this.data[e.index].listorder = e.order
+    async changeOrder (e, action) {
+      const reqData = this.data[e.index]
+
       this._requestWithQuery('是否确定更改排序',
-        async () => await this.model[action](this.data[e.index])
+        async () => await this.model.changeOrder(reqData.id, e.order)
       )
     },
 

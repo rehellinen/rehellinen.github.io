@@ -6,6 +6,10 @@
 import {BaseModel} from "./BaseModel"
 
 export class MenuModel extends BaseModel{
+  constructor () {
+    super('menu')
+  }
+
   async getAllMenu () {
     return await this.request({url: 'menu/all'})
   }
@@ -16,18 +20,6 @@ export class MenuModel extends BaseModel{
 
   async getBackMenu () {
     return await this.request({url: 'menu/back'})
-  }
-
-  async addData (data) {
-    return await super.addData('menu', data)
-  }
-
-  async editData (data) {
-    return await super.editData('menu', data)
-  }
-
-  async deleteData (id) {
-    return await super.deleteData('menu', id)
   }
 }
 

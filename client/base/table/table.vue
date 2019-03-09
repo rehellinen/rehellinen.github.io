@@ -20,7 +20,7 @@
       el-table-column(prop="listorder" label="排序" width="70")
         template(slot-scope="scope")
           el-input(
-            :placeholder="scope.row.listorder"
+            :placeholder="scope.row.order"
             v-model="listorder[scope.$index]"
             @blur="changeOrder(scope.$index)"
           )
