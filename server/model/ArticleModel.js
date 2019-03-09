@@ -14,8 +14,30 @@ export class ArticleModel extends BaseModel{
 
   getArticles () {
     return this.getAll({
+      condition: {status: 1},
+      order: ['order']
+    })
+  }
+
+  getAllArticles () {
+    return this.getAll({
       condition: ['status', '>', -1],
       order: ['order']
     })
+  }
+
+  async addArticles (data) {
+    return await this.saveOne(data)
+  }
+
+  async editArticles (id, data) {
+    return await this.editOne({
+      condition: {id},
+      data
+    })
+  }
+
+  async delArticles (id) {
+    return await this.deleteById(id)
   }
 }

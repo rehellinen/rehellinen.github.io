@@ -36,7 +36,10 @@ export class MenuModel extends BaseModel{
   }
 
   async editMenu (id, data) {
-    return await this.editOne({id}, data)
+    return await this.editOne({
+      condition: {id},
+      data
+    })
   }
 
   async delMenu (id) {

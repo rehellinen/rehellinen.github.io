@@ -19,5 +19,36 @@ export class ArticleController extends BaseController{
       data
     })
   }
+
+  async getAllArticles (ctx) {
+    const data = await this.model.getAllArticles()
+    throw new SuccessMessage({
+      message: '获取文章成功',
+      data
+    })
+  }
+
+  async addArticles (ctx, next) {
+    await this.model.addArticles(ctx.checkedParams)
+    throw new SuccessMessage({
+      message: '添加文章成功'
+    })
+  }
+
+  async editArticles (ctx, next) {
+    const id = ctx.checkedParams.id
+    await this.model.editArticles(id, ctx.checkedParams)
+    throw new SuccessMessage({
+      message: '编辑文章成功'
+    })
+  }
+
+  async delArticles(ctx, next) {
+    const id = ctx.checkedParams.id
+    await this.model.delArticles(id)
+    throw new SuccessMessage({
+      message: '删除文章成功'
+    })
+  }
 }
 
