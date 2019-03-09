@@ -1,46 +1,46 @@
 import {SuccessMessage} from "../common/exception/SuccessMessage"
 import {MenuModel} from "../model/MenuModel"
+import {BaseController} from "./BaseController"
 
-/**
- *  MenuController.js
- *  Create By rehellinen
- *  Create On 2019/3/4 11:06
- */
-export class MenuController {
-  static async getAllMenu (ctx, next, type) {
-    const data = await new MenuModel().getAllMenu()
+export class MenuController extends BaseController{
+  constructor () {
+    super(new MenuModel())
+  }
+
+  async getAllMenu (ctx, next, type) {
+    const data = await this.model.getAllMenu()
     throw new SuccessMessage({
       message: '获取所有菜单成功',
       data
     })
   }
 
-  static async getMenuByType (ctx, next, type) {
-    const data = await new MenuModel().getMenu(type)
+  async getMenuByType (ctx, next, type) {
+    const data = await this.model.getMenu(type)
     throw new SuccessMessage({
       message: '获取菜单成功',
       data
     })
   }
 
-  static async addMenu (ctx, next) {
-    await new MenuModel().addMenu(ctx.checkedParams)
+  async addMenu (ctx, next) {
+    await this.model.addMenu(ctx.checkedParams)
     throw new SuccessMessage({
       message: '添加菜单成功'
     })
   }
 
-  static async editMenu (ctx, next) {
+  async editMenu (ctx, next) {
     const id = ctx.checkedParams.id
-    await new MenuModel().editMenu(id, ctx.checkedParams)
+    await this.model.editMenu(id, ctx.checkedParams)
     throw new SuccessMessage({
       message: '编辑菜单成功'
     })
   }
 
-  static async delMenu (ctx, next) {
+  async delMenu (ctx, next) {
     const id = ctx.checkedParams.id
-    await new MenuModel().delMenu(id)
+    await this.model.delMenu(id)
     throw new SuccessMessage({
       message: '删除菜单成功'
     })

@@ -8,42 +8,58 @@ import {MenuController} from "../controller/MenuController"
 import config from '../utils/config'
 import {auth, validate} from "../common/decorator/middleware"
 
+const menu = new MenuController()
+
 @controller('menu')
-class TokenRouter {
+class MenuRouter {
   @get('all')
   @auth('super')
   async getAll (ctx, next) {
-    await MenuController.getAllMenu(ctx, next)
+    await menu.getAllMenu(ctx, next)
   }
 
   @get('front')
   async getFront (ctx, next) {
-    await MenuController.getMenuByType(ctx, next, config.MENU.FRONT)
+    await menu.getMenuByType(ctx, next, config.MENU.FRONT)
   }
 
   @get('back')
   async getBack (ctx, next) {
-    await MenuController.getMenuByType(ctx, next, config.MENU.BACK)
+    await menu.getMenuByType(ctx, next, config.MENU.BACK)
   }
 
   @put('')
   @auth('super')
   @validate({name: 'Menu', scene: 'edit'})
   async edit (ctx, next) {
-    await MenuController.editMenu(ctx, next)
+    await menu.editMenu(ctx, next)
   }
 
   @post('')
   @auth('super')
   @validate({name: 'Menu', scene: 'add'})
   async add (ctx, next) {
-    await MenuController.addMenu(ctx, next)
+    await menu.addMenu(ctx, next)
   }
 
   @del('')
   @auth('super')
   @validate({name: 'Menu', scene: 'del'})
   async del (ctx, next) {
-    await MenuController.delMenu(ctx, next)
+    await menu.delMenu(ctx, next)
+  }
+
+  @put('/status')
+  @auth('super')
+  @validate({name: 'Common', scene: 'status'})
+  changeStatus (ctx, next) {
+    return menu.changeStatus(ctx, next)
+  }
+
+  @put('/order')
+  @auth('super')
+  @validate({name: 'Common', scene: 'order'})
+  changeOrder (ctx, next) {
+    return menu.changeOrder(ctx, next)
   }
 }
