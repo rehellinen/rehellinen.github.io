@@ -13,14 +13,31 @@
 <script>
   import {MenuModel} from "../../model/MenuModel"
 
+  const menu = new MenuModel()
+
   export default {
     data () {
       return {
-        menu: []
+        menu: [],
+        back: [],
+        front: []
       }
     },
     async created () {
-      this.menu = await new MenuModel().getBackMenu()
+      this.back = await menu.getBackMenu()
+      this.front = await menu.getFrontMenu()
+      this.updateMenu()
+    },
+    watch: {
+      $route (to) {
+        this.updateMenu()
+      }
+    },
+    methods: {
+      updateMenu () {
+        this.menu = this.$route.path.startsWith('/cms') ?
+          this.back : this.front
+      }
     }
   }
 </script>

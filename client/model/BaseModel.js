@@ -5,6 +5,7 @@
  */
 import config from '../utils/config'
 import axios from 'axios'
+import router from 'vue-router'
 import {Token} from "../utils/Token"
 
 export class BaseModel {
@@ -37,7 +38,28 @@ export class BaseModel {
       console.log(ex)
     })
 
-    return params.message ? data : data.data
+    // 需要处理的几种情况：
+    // 1. 400 --- 参数错误
+    // 2. 401 --- token无效
+    // 3. 404 --- 找不到资源
+    // 4. 500 --- 服务器错误
+
+
+
+    // 参数错误
+    if (status === 400) {
+
+    }
+
+    // Token过期
+    if (status === 401) {
+      router.push('/login')
+    }
+
+    // 成功
+    if (status === 200) {
+      return params.message ? data : data.data
+    }
   }
 
   async addData (data) {
