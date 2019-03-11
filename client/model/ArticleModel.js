@@ -13,4 +13,8 @@ export class ArticleModel extends BaseModel{
   async getAllArticles () {
     return await this.request({url: 'article/all'})
   }
+
+  async getArticles () {
+    return await this.request({url: 'article'})
+  }
 }
