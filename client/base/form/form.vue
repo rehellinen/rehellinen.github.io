@@ -23,43 +23,58 @@
             :key="i"
           )
 
+        my-editor.editor(
+          ref="editor"
+          v-if="conf.type === inputType.EDITOR",
+          :data-name="conf.name"
+          @blur="editorBlur"
+        )
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
 </template>
 
 <script>
   import config from '../../utils/config'
+  import MyEditor from '../../base/editor/editor'
 
   export default {
-  data () {
-    return {
-      inputType: config.FORM
-    }
-  },
-  props: {
-    config: {
-      type: Array,
-      default: () => ({})
+    data () {
+      return {
+        inputType: config.FORM
+      }
     },
-    title: {
-      type: String,
-      default: ''
+    props: {
+      config: {
+        type: Array,
+        default: () => ({})
+      },
+      title: {
+        type: String,
+        default: ''
+      },
+      buttonText: {
+        type: String,
+        default: '提交'
+      },
+      data: {
+        type: Object,
+        default: () => ({})
+      }
     },
-    buttonText: {
-      type: String,
-      default: '提交'
+    methods: {
+      onSubmit () {
+        this.$emit('submit', this.data)
+      },
+      editorBlur (e) {
+        const name = this.$refs.editor[0].$attrs['data-name']
+        this.data[name] = e.content
+        console.log(this.data)
+      }
     },
-    data: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  methods: {
-    onSubmit () {
-      this.$emit('submit', this.data)
+    components: {
+      MyEditor
     }
   }
-}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
@@ -73,4 +88,6 @@
       margin: 20px 0 20px 80px
     .el-select
       width: 100%
+    .editor
+      width: 550px
 </style>

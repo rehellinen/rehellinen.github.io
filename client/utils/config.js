@@ -17,7 +17,8 @@ export default {
   },
   FORM: {
     INPUT: 1,
-    SELECT: 2
+    SELECT: 2,
+    EDITOR: 3
   }
 }
 

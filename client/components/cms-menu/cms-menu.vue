@@ -47,6 +47,7 @@
   import {dialogMixin} from "../../mixins/dialogMixin"
   import {MenuModel} from "../../model/MenuModel"
   import config from '../../utils/config'
+
   const Menu = new MenuModel()
 
   export default {

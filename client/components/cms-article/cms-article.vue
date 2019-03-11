@@ -68,7 +68,8 @@
           },
           {
             name: 'content',
-            label: '内容'
+            label: '内容',
+            type: config.FORM.EDITOR
           },
         ])
         this._setTable([
