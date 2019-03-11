@@ -68,7 +68,6 @@
       editorBlur (e) {
         const name = this.$refs.editor[0].$attrs['data-name']
         this.data[name] = e.content
-        console.log(this.data)
       }
     },
     components: {
