@@ -25,6 +25,9 @@
       onEditorBlur(quill) {
         this.$emit('blur', {content: this.content})
       },
+      setContent (newContent) {
+        this.content = newContent
+      }
     },
     components: {
       quillEditor

@@ -1,7 +1,7 @@
 <template lang="pug">
   div.form-container
     p.title {{title}}
-    el-form(ref="data" :model="data" label-width="80px")
+    el-form(ref="data" :model="formData" label-width="80px")
       el-form-item(
         v-for="(conf, index) in config"
         :label="conf.label"
@@ -9,12 +9,12 @@
       )
         el-input(
           v-if="!conf.type || conf.type === inputType.INPUT"
-          v-model="data[conf.name]"
+          v-model="formData[conf.name]"
         )
 
         el-select(
           v-if="conf.type === inputType.SELECT"
-          v-model="data[conf.name]"
+          v-model="formData[conf.name]"
         )
           el-option(
             v-for="(item, i) in conf.options"
@@ -34,7 +34,8 @@
           ref="image"
           v-if="conf.type === inputType.IMAGE",
           :data-name="conf.name"
-          @uploaded="imageUploaded"
+          :initialVal="formData[conf.name]"
+          @image="imageUploaded"
         )
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
@@ -46,6 +47,13 @@
   import MyImageUploader from '../../base/image-uploader/image-uploader'
 
   export default {
+    mounted () {
+      for (let conf of this.config) {
+        if (conf.type === config.FORM.EDITOR) {
+          this.$refs.editor[0].setContent(this.formData[conf.name])
+        }
+      }
+    },
     data () {
       return {
         inputType: config.FORM
@@ -54,7 +62,7 @@
     props: {
       config: {
         type: Array,
-        default: () => ({})
+        default: () => ([])
       },
       title: {
         type: String,
@@ -64,22 +72,22 @@
         type: String,
         default: '提交'
       },
-      data: {
+      formData: {
         type: Object,
         default: () => ({})
       }
     },
     methods: {
       onSubmit () {
-        this.$emit('submit', this.data)
+        this.$emit('submit', this.formData)
       },
       editorBlur (e) {
         const name = this.$refs.editor[0].$attrs['data-name']
-        this.data[name] = e.content
+        this.formData[name] = e.content
       },
       imageUploaded (e) {
         const name = this.$refs.image[0].$attrs['data-name']
-        this.data[name] = e.path
+        this.formData[name] = e.image
       }
     },
     components: {

@@ -29,14 +29,14 @@
       v-else-if="type === 2"
       title="添加菜单"
       :config="form",
-      :data="formData"
+      :form-data="formData"
       @submit="toSubmit"
     )
 
     my-form(
       title="编辑菜单",
       :config="form"
-      :data="formData"
+      :form-data="formData"
       @submit="toSubmit"
       v-else
     )

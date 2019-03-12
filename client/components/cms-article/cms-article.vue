@@ -29,14 +29,14 @@
     v-else-if="type === 2"
     title="添加文章"
     :config="form",
-    :data="formData"
+    :form-data="formData"
     @submit="toSubmit"
     )
 
     my-form(
     title="编辑文章",
     :config="form"
-    :data="formData"
+    :form-data="formData"
     @submit="toSubmit"
     v-else
     )
