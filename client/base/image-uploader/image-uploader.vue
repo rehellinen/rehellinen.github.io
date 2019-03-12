@@ -3,17 +3,15 @@
     el-upload(
       action="http://127.0.0.1:9528/image"
       name="image"
-      :on-preview="handlePreview",
+      list-type="picture"
+      :on-success="uploadSuccess",
+      :on-error="uploadError"
       :file-list="fileList"
     )
       el-button(size="small" type="primary") 点击上传
 </template>
 
 <script>
-  import {ImageModel} from "../../model/ImageModel"
-
-  const imageModel = new ImageModel()
-
   export default {
     data () {
       return {
@@ -21,24 +19,12 @@
       }
     },
     methods: {
-      handlePreview (file) {
-        console.log(file)
+      uploadSuccess (response, file, fileList) {
+        this.$emit('uploaded', response.data)
       },
-      async processImage (event) {
-        const image = event.target.files[0]
-        // 获取上传图片的URL
-        const fr = new FileReader()
-        fr.readAsDataURL(image)
-        fr.onloadend = async (e) => {
-          this.image = e.target.result
-
-          let formData = new FormData()
-          formData.append('image', this.image, 'test.jpg')
-
-          const res = await imageModel.uploadImage(formData)
-          this.$emit('uploaded', {image: res.data})
-        }
-      }
+      uploadError (err, file, fileList) {
+        console.log(err)
+      },
     }
   }
 </script>

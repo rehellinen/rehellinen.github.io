@@ -10,7 +10,6 @@ export class ImageController {
   async addImage (ctx, next) {
     const date = new Date()
     const today = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`
-    console.log(ctx.imageName)
     throw new SuccessMessage({
       message: '上传图片成功',
       data: {

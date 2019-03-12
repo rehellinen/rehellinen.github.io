@@ -63,19 +63,19 @@ export class BaseModel {
     }
   }
 
-  async addData (data) {
+  async addData (reqData) {
     return await this.request({
       url: this.modelName,
-      data,
+      reqData,
       method: 'post',
       message: true
     })
   }
 
-  async editData (data) {
+  async editData (reqData) {
     return await this.request({
       url: this.modelName,
-      data,
+      reqData,
       method: 'put',
       message: true
     })
@@ -85,7 +85,7 @@ export class BaseModel {
     return await this.request({
       url: this.modelName,
       method: 'delete',
-      data: {id},
+      reqData: {id},
       message: true
     })
   }
@@ -94,7 +94,7 @@ export class BaseModel {
     return await this.request({
       url: `${this.modelName}/status`,
       method: 'put',
-      data: {id, status},
+      reqData: {id, status},
       message: true
     })
   }
@@ -103,7 +103,7 @@ export class BaseModel {
     return await this.request({
       url: `${this.modelName}/order`,
       method: 'put',
-      data: {id, order},
+      reqData: {id, order},
       message: true
     })
   }

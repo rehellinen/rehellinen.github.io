@@ -13,11 +13,12 @@ export class ArticleValidate extends BaseValidate{
       title: ['require', 'title'],
       subtitle: ['require', 'subtitle'],
       content: ['require', 'content'],
+      main_img_url: ['require', 'main_img_url'],
     }
 
     this.scene = {
-      add: ['title', 'subtitle', 'content'],
-      edit: ['id', 'title', 'subtitle', 'content'],
+      add: ['title', 'subtitle', 'content', 'main_img_url'],
+      edit: ['id', 'title', 'subtitle', 'content', 'main_img_url'],
       del: ['id']
     }
   }

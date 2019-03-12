@@ -34,7 +34,7 @@
           ref="image"
           v-if="conf.type === inputType.IMAGE",
           :data-name="conf.name"
-          @image="imageUploaded"
+          @uploaded="imageUploaded"
         )
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
@@ -79,7 +79,7 @@
       },
       imageUploaded (e) {
         const name = this.$refs.image[0].$attrs['data-name']
-        this.data[name] = e.image
+        this.data[name] = e.path
       }
     },
     components: {
