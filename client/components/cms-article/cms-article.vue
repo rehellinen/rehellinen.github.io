@@ -67,6 +67,11 @@
             label: '副标题'
           },
           {
+            name: 'main_img_url',
+            label: '主图',
+            type: config.FORM.IMAGE
+          },
+          {
             name: 'content',
             label: '内容',
             type: config.FORM.EDITOR

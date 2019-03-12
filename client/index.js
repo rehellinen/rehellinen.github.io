@@ -12,7 +12,8 @@ import {
   Menu, Submenu, MenuItemGroup, MenuItem,
   Form, FormItem, Input, Button, Dialog, Select, Option,
   Table, TableColumn,
-  Breadcrumb, BreadcrumbItem
+  Breadcrumb, BreadcrumbItem,
+  Upload
 } from 'element-ui'
 import 'assets/theme/index.css'
 
@@ -22,7 +23,8 @@ import 'assets/theme/index.css'
   Menu, Submenu, MenuItemGroup, MenuItem,
   Form, FormItem, Input, Button, Dialog, Select, Option,
   Table, TableColumn,
-  Breadcrumb, BreadcrumbItem
+  Breadcrumb, BreadcrumbItem,
+  Upload
 ].forEach(item => Vue.use(item))
 
 new Vue({

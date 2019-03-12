@@ -29,6 +29,13 @@
           :data-name="conf.name"
           @blur="editorBlur"
         )
+
+        my-image-uploader(
+          ref="image"
+          v-if="conf.type === inputType.IMAGE",
+          :data-name="conf.name"
+          @image="imageUploaded"
+        )
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
 </template>
@@ -36,6 +43,7 @@
 <script>
   import config from '../../utils/config'
   import MyEditor from '../../base/editor/editor'
+  import MyImageUploader from '../../base/image-uploader/image-uploader'
 
   export default {
     data () {
@@ -68,10 +76,15 @@
       editorBlur (e) {
         const name = this.$refs.editor[0].$attrs['data-name']
         this.data[name] = e.content
+      },
+      imageUploaded (e) {
+        const name = this.$refs.image[0].$attrs['data-name']
+        this.data[name] = e.image
       }
     },
     components: {
-      MyEditor
+      MyEditor,
+      MyImageUploader
     }
   }
 </script>

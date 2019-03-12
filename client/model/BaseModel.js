@@ -22,16 +22,17 @@ export class BaseModel {
    *  2. method String [http请求方式]
    *  3. data Object [请求时携带的参数]
    *  4. message Boolean [是否在结果中携带message]
+   *  5. contentType String [设置content-type]
    */
-  async request (params) {
+  async request ({url, reqData, message, method = 'get', contentType = 'application/json'}) {
     const token = new Token().getTokenFromCache()
     const {data, status} = await axios({
-      url: `${this.baseUrl}/${params.url}`,
-      method: params.method || 'get',
-      data: params.data,
+      url: `${this.baseUrl}/${url}`,
+      method: method,
+      data: reqData,
       headers: {
         token,
-        'content-type': 'application/json',
+        'content-type': contentType,
       },
       validateStatus: (status) => status < 500
     }).catch(ex => {
@@ -58,7 +59,7 @@ export class BaseModel {
 
     // 成功
     if (status === 200) {
-      return params.message ? data : data.data
+      return message ? data : data.data
     }
   }
 
