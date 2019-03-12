@@ -4,7 +4,7 @@
       my-header
     el-main
       router-view
-    el-footer(height="170px")
+    el-footer(height="240px")
       my-footer
 </template>
 
