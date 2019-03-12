@@ -4,22 +4,27 @@
       action="http://127.0.0.1:9528/image"
       name="image"
       list-type="picture"
+      :show-file-list="false"
       :on-success="uploadSuccess",
       :on-error="uploadError"
-      :file-list="fileList"
     )
       el-button(size="small" type="primary") 点击上传
+    img(:src="imgUrl")
 </template>
 
 <script>
   export default {
     data () {
       return {
-        fileList: []
+        imgUrl: ''
       }
     },
     methods: {
+      setImgUrl (url) {
+        this.imgUrl = url
+      },
       uploadSuccess (response, file, fileList) {
+        this.imgUrl = file.url
         this.$emit('uploaded', response.data)
       },
       uploadError (err, file, fileList) {

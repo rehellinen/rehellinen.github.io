@@ -35,7 +35,7 @@
           v-if="conf.type === inputType.IMAGE",
           :data-name="conf.name"
           :initialVal="formData[conf.name]"
-          @image="imageUploaded"
+          @uploaded="imageUploaded"
         )
       el-form-item
         el-button(@click="onSubmit") {{buttonText}}
@@ -51,6 +51,10 @@
       for (let conf of this.config) {
         if (conf.type === config.FORM.EDITOR) {
           this.$refs.editor[0].setContent(this.formData[conf.name])
+        }
+
+        if (conf.type === config.FORM.IMAGE) {
+          this.$refs.image[0].setImgUrl(this.formData[conf.name])
         }
       }
     },
@@ -87,7 +91,7 @@
       },
       imageUploaded (e) {
         const name = this.$refs.image[0].$attrs['data-name']
-        this.formData[name] = e.image
+        this.formData[name] = e.path
       }
     },
     components: {
