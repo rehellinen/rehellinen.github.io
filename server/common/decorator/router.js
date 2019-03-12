@@ -39,7 +39,6 @@ const normalizePath = (path) => {
 const baseMethod = (conf) => {
   return (target, key) => {
     target[key] = Array.isArray(target[key]) ?  target[key] : [target[key]]
-
     const length = target[key].length
     let action = target[key][length - 1]
     action.prototype.method = conf.method

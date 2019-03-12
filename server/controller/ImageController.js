@@ -3,23 +3,19 @@
  *  Create By rehellinen
  *  Create On 2019/3/11 21:13
  */
-import {r} from "../utils/utils"
-import Multer from 'koa-multer'
 import {SuccessMessage} from "../common/exception/SuccessMessage"
-
-const date = new Date()
-const storage = Multer.diskStorage({
-  destination: r(`../../upload/${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`),
-  filename (ctx, file, cb) {
-    const filenameArr = file.originalname.split('.');
-    cb(null, Date.now() + '.' + filenameArr[filenameArr.length - 1]);
-  }
-})
-export const upload = Multer({storage})
+import {fileName} from "../common/service/Multer"
 
 export class ImageController {
-  addImage (ctx, next) {
-    upload.single('image')(ctx, next)
-    throw new SuccessMessage()
+  async addImage (ctx, next) {
+    const date = new Date()
+    const today = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`
+    console.log(ctx.imageName)
+    throw new SuccessMessage({
+      message: '上传图片成功',
+      data: {
+        path: `/upload/${today}/${fileName}`
+      }
+    })
   }
 }

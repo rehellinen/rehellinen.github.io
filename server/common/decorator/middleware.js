@@ -8,7 +8,7 @@ import {Token} from "../service/Token"
 export const validate = ({name, scene}) => {
   // TODO: 验证name首字母是否大写
   const Validate = require(`../validate/${name}Validate`)[`${name}Validate`]
-  return addMiddleware(async (ctx, next) => {
+  return middleware(async (ctx, next) => {
     await new Validate().check(ctx, scene)
     await next()
   })
@@ -21,13 +21,13 @@ export const auth = (type) => {
   } else if (type === 'super') {
     scope = $config.SCOPE.SUPER
   }
-  return addMiddleware(async (ctx, next) => {
+  return middleware(async (ctx, next) => {
     Token.checkScope(ctx, scope)
     await next()
   })
 }
 
-const addMiddleware = (middleware) => {
+export const middleware = (middleware) => {
   return (target, key) => {
     if (!Array.isArray(target[key])){
       target[key] = [target[key]]
