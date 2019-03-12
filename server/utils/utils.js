@@ -5,6 +5,9 @@
  */
 import X2JS from 'x2js'
 import getRawBody from 'raw-body'
+import {resolve} from 'path'
+
+export const r = path => resolve(__dirname, path)
 
 let x2js = new X2JS({
   escapeMode: false
