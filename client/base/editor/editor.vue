@@ -3,7 +3,7 @@
     v-model="content"
     ref="myQuillEditor"
     :options="editorOption"
-    @blur="onEditorBlur($event)"
+    @change="onEditorChange($event)"
   )
 </template>
 
@@ -22,8 +22,8 @@
       }
     },
     methods: {
-      onEditorBlur(quill) {
-        this.$emit('blur', {content: this.content})
+      onEditorChange (quill) {
+        this.$emit('change', {content: this.content})
       },
       setContent (newContent) {
         this.content = newContent

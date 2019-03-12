@@ -27,7 +27,7 @@
           ref="editor"
           v-if="conf.type === inputType.EDITOR",
           :data-name="conf.name"
-          @blur="editorBlur"
+          @change="editorChange"
         )
 
         my-image-uploader(
@@ -81,7 +81,7 @@
       onSubmit () {
         this.$emit('submit', this.formData)
       },
-      editorBlur (e) {
+      editorChange (e) {
         const name = this.$refs.editor[0].$attrs['data-name']
         this.formData[name] = e.content
       },
