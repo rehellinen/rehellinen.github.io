@@ -38,7 +38,6 @@ export default {
       width: 100%
       min-height: 200px
     .title
-      color: $normal-font-size
       font-size: $big-font-size
       margin-top: 5px
     .desc

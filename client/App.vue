@@ -1,12 +1,9 @@
 <template lang="pug">
   el-container.wrapper
-    el-header(height="120px")
+    el-header(height="220px")
       my-header
-    el-container
-      el-aside(width="250px")
-        left-menu
-      el-main
-        router-view
+    el-main
+      router-view
     el-footer(height="170px")
       my-footer
 </template>
@@ -35,6 +32,7 @@
       border-bottom: 1px solid $border-one
     .el-main
       background-color: $background-color
+      padding: 10px 15%
     .el-footer
       padding: 0
   .de

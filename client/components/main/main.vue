@@ -1,11 +1,11 @@
 <template lang="pug">
   div
     el-row(:gutter="10")
-      my-article(v-for="article in articles" :article="article" :key="article.id")
+      article-main(v-for="article in articles" :article="article" :key="article.id")
 </template>
 
 <script>
-  import MyArticle from '../../base/article/article'
+  import ArticleMain from '../../base/article-main/article-main'
   import {ArticleModel} from "../../model/ArticleModel"
 
   const article = new ArticleModel()
@@ -20,7 +20,7 @@
       this.articles = await article.getArticles()
     },
     components: {
-      MyArticle
+      ArticleMain
     }
   }
 </script>

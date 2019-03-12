@@ -16,10 +16,10 @@
 </template>
 
 <script>
-  import MyArticle from '../../base/article/article'
+  import ArticleList from '../../base/article-list/article-list'
   export default {
     components: {
-      MyArticle
+      ArticleList
     }
   }
 </script>

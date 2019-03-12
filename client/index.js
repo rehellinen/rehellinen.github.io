@@ -13,7 +13,8 @@ import {
   Form, FormItem, Input, Button, Dialog, Select, Option,
   Table, TableColumn,
   Breadcrumb, BreadcrumbItem,
-  Upload
+  Upload,
+  Card
 } from 'element-ui'
 import 'assets/theme/index.css'
 
@@ -24,7 +25,8 @@ import 'assets/theme/index.css'
   Form, FormItem, Input, Button, Dialog, Select, Option,
   Table, TableColumn,
   Breadcrumb, BreadcrumbItem,
-  Upload
+  Upload,
+  Card
 ].forEach(item => Vue.use(item))
 
 new Vue({

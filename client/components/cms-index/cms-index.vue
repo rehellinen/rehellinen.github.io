@@ -1,13 +1,20 @@
 <template lang="pug">
-  div
-    p 123
+  el-row
+    el-col(:xl="6" :lg="6" :md="8" :sm="12" :xs="12")
+      el-card
+        div(slot="header")
+          p 文章数量
+        div()
+          p 123
 </template>
 
 <script>
 export default {
+  created () {
+
+  }
 }
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
-
 </style>
