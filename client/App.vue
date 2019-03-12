@@ -1,6 +1,6 @@
 <template lang="pug">
   el-container.wrapper
-    el-header(height="220px")
+    el-header(height="200px")
       my-header
     el-main
       router-view

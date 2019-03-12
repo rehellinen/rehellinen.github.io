@@ -1,11 +1,18 @@
 <template lang="pug">
   div.container
     div.header
-      p.header__text rehellinen
+      div
+        span.yellow rehe
+        span.black llinen
       top-menu
-    div.github
-      a(href="https://github.com/rehellinen" target="_blank")
-        p Fork me on github : rehellinen
+    div.sub-header
+      div
+        a(href="https://github.com/rehellinen" target="_blank")
+          p.name JavaScript、C++、Python、PHP
+        a(href="https://github.com/rehellinen" target="_blank")
+          p.desc welcome to fork me on github
+      div.language
+        p I Love Coding
 </template>
 
 <script>
@@ -26,24 +33,35 @@
       display: flex
       align-items: center
       justify-content: space-between
-      width: 100%
-      height: 75px
-      .header__text
+      height: 105px
+      padding: 0 10%
+      span
+        font-weight: bold
         color: $theme-color
         font-size: $vast-font-size
-        margin-left: 4%
-    .github
-      width: 100%
-      height: 45px
-      background-color: $main-font-color
+        letter-spacing: 2px
+      .black
+        color: $normal-font-color
+    .sub-header
+      padding: 0 10%
+      height: 90px
+      background-color: $theme-color
       display: flex
       align-items: center
+      justify-content: space-between
       a
         width: 250px
-        margin-left: 4%
         text-decoration: none
         p
           color: white
-          font-size: $normal-font-color
+        .name
+          font-size: $big-font-size
+          letter-spacing: 1px
+        .desc
+          font-size: $small-font-size
+          margin-top: 3px
+      .language
+        p
+          color: white
   .de
 </style>
