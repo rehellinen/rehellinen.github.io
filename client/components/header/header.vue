@@ -2,6 +2,8 @@
   div.container
     div.header
       div
+        div.main-icon
+          .block
         span.yellow rehe
         span.black llinen
       top-menu
@@ -35,6 +37,17 @@
       justify-content: space-between
       height: 105px
       padding: 0 10%
+      .main-icon
+        display: inline-block
+        width: 15px
+        height: 15px
+        transform: rotate(90deg)
+        background-color: $theme-color
+        margin-right: 15px
+        .block
+          background-color: white
+          width: 10px
+          height: 10px
       span
         font-weight: bold
         color: $theme-color
