@@ -1,5 +1,6 @@
 import {MenuModel} from "../model/MenuModel"
 import {SuccessMessage} from "../common/exception/SuccessMessage"
+import config from "../utils/config"
 
 /**
  *  BaseController.js
@@ -25,6 +26,17 @@ export class BaseController {
     await this.model.changeOrder(params.id, params.order)
     throw new SuccessMessage({
       message: '更改排序成功'
+    })
+  }
+
+  async getById (ctx, next) {
+    const id = ctx.checkedParams.id
+    const data = await this.model.getOneById({
+      id, condition: {status: config.STATUS.NORMAL}
+    })
+    throw new SuccessMessage({
+      message: '获取数据成功',
+      data
     })
   }
 }

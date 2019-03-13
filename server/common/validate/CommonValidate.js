@@ -16,7 +16,8 @@ export class CommonValidate extends BaseValidate{
 
     this.scene = {
       status: ['id', 'status'],
-      order: ['id', 'order']
+      order: ['id', 'order'],
+      id: ['id']
     }
   }
 }

@@ -22,6 +22,12 @@ class TokenRouter {
     await article.getAllArticles(ctx, next)
   }
 
+  @get('one')
+  @validate({name: 'Common', scene: 'id'})
+  async getArticleById (ctx, next) {
+    await article.getById(ctx, next)
+  }
+
   @put('')
   @auth('super')
   @validate({name: 'Article', scene: 'edit'})
