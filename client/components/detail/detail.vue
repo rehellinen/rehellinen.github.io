@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.detail
+  div.detail-container
     img.main-img(:src="article.main_img_url")
     p.title {{article.title}}
     p.sub-title {{article.subtitle}}
@@ -13,17 +13,17 @@
   const article = new ArticleModel()
 
   export default {
-    data () {
+    data() {
       return {
         article: {}
       }
     },
-    created () {
+    created() {
       const articleId = this.$route.params.article_id
       this.getData(articleId)
     },
     methods: {
-      async getData (id) {
+      async getData(id) {
         this.article = await article.getById(id)
       }
     }
@@ -33,8 +33,9 @@
 <style scoped lang="sass" rel="stylesheet/sass">
   @import "~sass/base"
 
-  .detail
-    width: 75%
+  .detail-container
+    display: flex
+    flex-direction: column
     .main-img
       width: 100%
     .title
@@ -48,6 +49,7 @@
       margin-top: 5px
     .content
       margin: 20px 0
-
-  .de
+    .side-bar
+      width: 30%
+    .de
 </style>
