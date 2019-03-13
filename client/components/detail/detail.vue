@@ -22,6 +22,12 @@
       const articleId = this.$route.params.article_id
       this.getData(articleId)
     },
+    watch: {
+      $route (newRoute) {
+        const articleId = newRoute.params.article_id
+        this.getData(articleId)
+      }
+    },
     methods: {
       async getData(id) {
         this.article = await article.getById(id)

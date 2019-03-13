@@ -2,9 +2,10 @@
   div.side-bar-container
     div.recommend
       p.title Most Popular Articles
-      div.article(
+      router-link.article(
         v-for="article in popularArticles"
         :key="article.id"
+        :to="{path: `/detail/${article.id}`}" tag="div"
       )
         img(:src="article.main_img_url")
         div.text-container
