@@ -1,26 +1,19 @@
 <template lang="pug">
   div
-    el-row(:gutter="10")
-      article-main(v-for="article in articles" :article="article" :key="article.id")
+    el-row(:gutter="20")
+      el-col(:span="16")
+        router-view
+      el-col(:span="8")
+        side-bar
 </template>
 
 <script>
-  import ArticleMain from '../../base/article-main/article-main'
-  import {ArticleModel} from "../../model/ArticleModel"
+  import SideBar from '../../base/side-bar/side-bar'
 
-  const article = new ArticleModel()
 
   export default {
-    data () {
-      return {
-        articles: []
-      }
-    },
-    async created () {
-      this.articles = await article.getArticles()
-    },
     components: {
-      ArticleMain
+      SideBar
     }
   }
 </script>

@@ -17,4 +17,8 @@ export class ArticleModel extends BaseModel{
   async getArticles () {
     return await this.request({url: 'article'})
   }
+
+  async getPopularArticles () {
+    return await this.request({url: 'article/popular'})
+  }
 }

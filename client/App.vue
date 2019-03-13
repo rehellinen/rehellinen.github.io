@@ -3,12 +3,13 @@
     el-header(height="200px")
       my-header
     el-main
-      router-view
+      my-main
     el-footer(height="240px")
       my-footer
 </template>
 
 <script>
+  import MyMain from './components/main/main'
   import MyHeader from './components/header/header'
   import MyFooter from './components/footer/footer'
   import LeftMenu from './components/left-menu/left-menu'
@@ -17,7 +18,8 @@
     components: {
       MyHeader,
       MyFooter,
-      LeftMenu
+      LeftMenu,
+      MyMain
     }
   }
 </script>
@@ -37,6 +39,7 @@
       padding: 0
     p
       font-size: $normal-font-size
+      color: $normal-font-color
     .line
       height: 1px
       background-color: $border-one
