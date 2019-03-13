@@ -1,12 +1,14 @@
 <template lang="pug">
   div.article-container
     div.one-article(v-for="article in articles" :article="article" :key="article.id")
-      router-link.article(:to="{path: `/detail/${article.id}`}" tag="div")
-        div.zoom
-          div(:style="imgStyle(article)")
-        div.text-container
-          p.title {{article.title}}
-          p.subtitle {{article.subtitle}}
+      router-link(:to="{path: `/detail/${article.id}`}" tag="div")
+        el-row.article(:gutter="30")
+          el-col(:span="12" :xs="24")
+            div.main-img(:style="imgStyle(article)")
+          el-col(:span="12" :xs="24")
+            div.text-container
+              p.title {{article.title}}
+              p.subtitle {{article.subtitle}}
       div.line
 </template>
 
@@ -43,18 +45,13 @@
     a
       text-decoration: none
     .article
-      display: flex
-      .zoom
-        width: 350px
-        div
-          width: 100%
-          height: 0
-          padding-bottom: 55%
-          overflow: hidden
-          background: no-repeat center center
-          background-size: cover
+      .main-img
+        width: 100%
+        height: 0
+        padding-bottom: 60%
+        background-size: cover
+        margin: 10px 0
       .text-container
-        margin-left: 6%
         .title
           font-size: $bigger-font-size
           font-weight: bold

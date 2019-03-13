@@ -44,6 +44,6 @@
       height: 1px
       background-color: $border-one
       width: 100%
-      margin: 30px 0
+      margin: 20px 0
   .de
 </style>

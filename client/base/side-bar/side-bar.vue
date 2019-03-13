@@ -53,8 +53,9 @@
     img
       width: 70px
       height: 70px
+      object-fit: cover
     .text-container
-      margin-left: 10px
+      margin-left: 15px
       .title
         font-size: $normal-font-size
         font-weight: bold

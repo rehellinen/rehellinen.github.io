@@ -37,8 +37,10 @@
 
   .menu-container
     display: flex
+    justify-content: space-between
+    width: 100%
     .menu
-      width: 120px
+      max-width: 120px
       border: 0
       margin-right: 8px
       display: flex
