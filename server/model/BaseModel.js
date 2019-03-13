@@ -5,6 +5,7 @@
  */
 import {DataBase} from './DataBase'
 import {DatabaseException} from "../common/exception/DatabaseException"
+import config from "../utils/config"
 
 export class BaseModel {
   /**
@@ -135,7 +136,7 @@ export class BaseModel {
   async deleteById (id) {
     return await this.editOne({
       condition: {id},
-      data: {status: -1}
+      data: {status: config.STATUS.DELETED}
     })
   }
 

@@ -15,7 +15,7 @@ export class MenuModel extends BaseModel{
 
   async getAllMenu () {
     return await this.getAll({
-      condition: ['status', '>', -1],
+      condition: ['status', '>', config.STATUS.DELETED],
       order: ['order', 'id']
     })
   }

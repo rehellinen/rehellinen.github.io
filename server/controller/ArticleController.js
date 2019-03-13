@@ -50,5 +50,13 @@ export class ArticleController extends BaseController{
       message: '删除文章成功'
     })
   }
+
+  async getPopularArticles (ctx, next) {
+    const data = await this.model.getPopularArticles()
+    throw new SuccessMessage({
+      message: '获取文章成功',
+      data: data.slice(0, 4)
+    })
+  }
 }
 
