@@ -1,6 +1,6 @@
 <template lang="pug">
   div.article-container
-    div.article
+    router-link.article(:to="{path: `/detail/${article.id}`}" tag="div")
       div.zoom
         div(:style="imgStyle")
       div.text-container
@@ -23,6 +23,8 @@ export default {
       type: Object,
       default: () => ({})
     },
+  },
+  methods: {
   }
 }
 </script>
@@ -32,11 +34,8 @@ export default {
   .article-container
     display: flex
     flex-direction: column
-  .line
-    height: 1px
-    background-color: $border-one
-    width: 100%
-    margin: 20px 0
+    a
+      text-decoration: none
 
   .article
     display: flex

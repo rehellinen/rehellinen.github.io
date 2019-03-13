@@ -32,8 +32,15 @@
       border-bottom: 1px solid $border-one
     .el-main
       background-color: $background-color
-      padding: 30px 15% 0 15%
+      padding: 30px 10% 0 10%
     .el-footer
       padding: 0
+    p
+      font-size: $normal-font-size
+    .line
+      height: 1px
+      background-color: $border-one
+      width: 100%
+      margin: 30px 0
   .de
 </style>

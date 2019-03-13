@@ -26,18 +26,20 @@ export class BaseModel {
    */
   async request ({url, reqData, message, method = 'get', contentType = 'application/json'}) {
     const token = new Token().getTokenFromCache()
-    const {data, status} = await axios({
+    const config = {
       url: `${this.baseUrl}/${url}`,
       method: method,
-      data: reqData,
       headers: {
         token,
         'content-type': contentType,
       },
       validateStatus: (status) => status < 500
-    }).catch(ex => {
-      console.log(ex)
-    })
+    }
+    method === 'get' ? config.params = reqData : config.data = reqData
+    const {data, status} = await axios(config)
+      .catch(ex => {
+        console.log(ex)
+      })
 
     // 需要处理的几种情况：
     // 1. 400 --- 参数错误
@@ -105,6 +107,15 @@ export class BaseModel {
       method: 'put',
       reqData: {id, order},
       message: true
+    })
+  }
+
+  async getById (id) {
+    return await this.request({
+      url: `${this.modelName}/one`,
+      method: 'get',
+      reqData: {id},
+      message: false
     })
   }
 }
