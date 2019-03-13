@@ -2,9 +2,10 @@
   div.article-container
     div.one-article(v-for="article in articles" :article="article" :key="article.id")
       router-link(:to="{path: `/detail/${article.id}`}" tag="div")
-        el-row.article(:gutter="30")
+        el-row.article(:gutter="40")
           el-col(:span="12" :xs="24")
-            div.main-img(:style="imgStyle(article)")
+            div.background
+              div.main-img(:style="imgStyle(article)")
           el-col(:span="12" :xs="24")
             div.text-container
               p.title {{article.title}}
@@ -51,6 +52,7 @@
         padding-bottom: 60%
         background-size: cover
         margin: 10px 0
+        border: 5px solid $border-three
       .text-container
         .title
           font-size: $bigger-font-size

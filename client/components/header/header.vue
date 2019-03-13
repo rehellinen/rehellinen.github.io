@@ -2,10 +2,11 @@
   div.container
     el-row.header.hidden-xs-only
       el-col(:xl="16" :lg="16" :md="16" :sm="12")
-        div.main-icon
-          .block
-        span.yellow rehe
-        span.black llinen
+        router-link(to="/" tag="div")
+          div.main-icon
+            .block
+          span.yellow rehe
+          span.black llinen
       el-col(:xl="8" :lg="8" :md="8" :sm="12")
         top-menu
 

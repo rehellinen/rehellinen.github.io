@@ -55,6 +55,7 @@
       width: 70px
       height: 70px
       object-fit: cover
+      border: 3px solid $border-three
     .text-container
       margin-left: 15px
       .title

@@ -44,6 +44,7 @@
     flex-direction: column
     .main-img
       width: 100%
+      border: 5px solid $border-three
     .title
       color: $main-font-color
       font-size: $bigger-font-size
