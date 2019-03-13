@@ -14,7 +14,7 @@
         a(href="https://github.com/rehellinen" target="_blank")
           p.desc welcome to fork me on github
       div.language
-        p I Love Coding
+        p In My Dictionary, There Is No Impossibility
 </template>
 
 <script>

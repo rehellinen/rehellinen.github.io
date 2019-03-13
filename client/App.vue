@@ -32,7 +32,7 @@
       border-bottom: 1px solid $border-one
     .el-main
       background-color: $background-color
-      padding: 10px 15%
+      padding: 30px 15% 0 15%
     .el-footer
       padding: 0
   .de

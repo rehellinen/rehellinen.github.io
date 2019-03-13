@@ -1,11 +1,30 @@
 <template lang="pug">
   div.container
-    div.icon-container
+    div.sub-contact
+      p.title Contact Me
     div.contact-container
       div.contact
-        p.title Contact Me
-        p WeChat：13229438008
-        p Email：rehellinen@foxmail.com
+        p.title Contact Info
+        div.icon
+          img(src="./wechat.png")
+          p 13229438008
+        div.icon
+          img(src="./qq.png")
+          p 912377791
+        div.icon
+          img(src="./email.png")
+          p rehellinen@foxmail.com
+      div.contact
+        p.title Technology Stack
+        div.icon
+          img(src="./vue.png")
+          p Vue.js, mpvue, ES6, jQuery
+        div.icon
+          img(src="./node.png")
+          p Node.js, ThinkPHP3/5, Koa2, Nuxt.js
+        div.icon
+          img(src="./linux.png")
+          p Linux, Nginx, PM2, MySQL
 </template>
 
 <script>
@@ -19,10 +38,17 @@ export default {
   .container
     display: flex
     flex-direction: column
-    .icon-container
+    .sub-contact
       background-color: $theme-color
-      width: 100%
-      height: 40px
+      height: 50px
+      display: flex
+      align-items: center
+      padding: 0 10%
+      .title
+        color: $border-one
+        font-size: $big-font-size
+        letter-spacing: 1px
+        font-weight: bold
     .contact-container
       width: 100%
       padding: 30px 0
@@ -32,13 +58,23 @@ export default {
       justify-content: space-around
       .contact
         height: 140px
-        p
-          color: $minor-font-color
-          margin-top: 2px
         .title
           color: $main-font-color
           font-size: $biggest-font-size
           font-weight: bold
           margin-bottom: 15px
+          margin-left: 0
+        p
+          color: $minor-font-color
+          font-size: $small-font-size
+          margin-left: 10px
+        .icon
+          display: flex
+          align-items: center
+          margin-top: 5px
+          img
+            height: 25px
+            width: 25px
+
   .de
 </style>
