@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import config from '../../../client/utils/config'
+  import config from '../../utils/config'
   import MyEditor from '../editor/editor'
   import MyImageUploader from '../image-uploader/image-uploader'
 

@@ -10,10 +10,6 @@ export class ArticleModel extends BaseModel{
     super('article')
   }
 
-  async getAllArticles () {
-    return await this.request({url: 'article/all'})
-  }
-
   async getArticles () {
     return await this.request({url: 'article'})
   }

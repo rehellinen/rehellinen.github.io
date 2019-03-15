@@ -3,10 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 11:34
  */
-import config from '../utils/config'
+import config from '../../cms/utils/config'
 import axios from 'axios'
 import router from 'vue-router'
-import {Token} from "../utils/Token"
 
 export class BaseModel {
   constructor(modelName) {
@@ -25,12 +24,10 @@ export class BaseModel {
    *  5. contentType String [设置content-type]
    */
   async request ({url, reqData, message, method = 'get', contentType = 'application/json'}) {
-    const token = new Token().getTokenFromCache()
     const config = {
       url: `${this.baseUrl}/${url}`,
       method: method,
       headers: {
-        token,
         'content-type': contentType,
       },
       validateStatus: (status) => status < 500
@@ -63,51 +60,6 @@ export class BaseModel {
     if (status === 200) {
       return message ? data : data.data
     }
-  }
-
-  async addData (reqData) {
-    return await this.request({
-      url: this.modelName,
-      reqData,
-      method: 'post',
-      message: true
-    })
-  }
-
-  async editData (reqData) {
-    return await this.request({
-      url: this.modelName,
-      reqData,
-      method: 'put',
-      message: true
-    })
-  }
-
-  async deleteData (id) {
-    return await this.request({
-      url: this.modelName,
-      method: 'delete',
-      reqData: {id},
-      message: true
-    })
-  }
-
-  async changeStatus (id, status) {
-    return await this.request({
-      url: `${this.modelName}/status`,
-      method: 'put',
-      reqData: {id, status},
-      message: true
-    })
-  }
-
-  async changeOrder (id, order) {
-    return await this.request({
-      url: `${this.modelName}/order`,
-      method: 'put',
-      reqData: {id, order},
-      message: true
-    })
   }
 
   async getById (id) {

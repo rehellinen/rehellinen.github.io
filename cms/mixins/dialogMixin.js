@@ -3,7 +3,7 @@
  *  Create By rehellinen
  *  Create On 2019/3/5 15:34
  */
-import {Token} from "../../client/utils/Token"
+import {Token} from "../utils/Token"
 import MyDialog from '../base/dialog/dialog'
 
 export const dialogMixin = {

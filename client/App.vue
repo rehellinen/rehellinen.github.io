@@ -12,7 +12,7 @@
   import MyMain from './components/main/main'
   import MyHeader from './components/header/header'
   import MyFooter from './components/footer/footer'
-  import LeftMenu from './components/left-menu/left-menu'
+  import LeftMenu from '../cms/components/left-menu/left-menu'
 
   export default {
     components: {

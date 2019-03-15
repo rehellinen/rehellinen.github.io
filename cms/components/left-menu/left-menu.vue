@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import {MenuModel} from "../../model/MenuModel"
+  import {MenuModel} from "../../../client/model/MenuModel"
 
   const menu = new MenuModel()
 

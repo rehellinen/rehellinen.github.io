@@ -5,28 +5,16 @@
  */
 import Vue from 'vue'
 import App from './App'
-import {router} from './utils/router'
+import {router} from './router/router'
 import {
   Header, Container, Aside, Main, Footer,
-  Row, Col,
-  Menu, Submenu, MenuItemGroup, MenuItem,
-  Form, FormItem, Input, Button, Dialog, Select, Option,
-  Table, TableColumn,
-  Breadcrumb, BreadcrumbItem,
-  Upload,
-  Card
+  Row, Col
 } from 'element-ui'
 import 'assets/theme/index.css'
 
 [
   Header, Container, Aside, Main, Footer,
-  Row, Col,
-  Menu, Submenu, MenuItemGroup, MenuItem,
-  Form, FormItem, Input, Button, Dialog, Select, Option,
-  Table, TableColumn,
-  Breadcrumb, BreadcrumbItem,
-  Upload,
-  Card
+  Row, Col
 ].forEach(item => Vue.use(item))
 
 new Vue({

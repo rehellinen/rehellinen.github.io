@@ -1,8 +1,8 @@
-import config from "../../client/utils/config"
+import config from "../utils/config"
 import MyForm from '../base/form/form'
 import MyTable from '../base/table/table'
 import MyBread from '../base/bread-crumb/bread-crumb'
-import {copyObj} from "../../client/utils/utils"
+import {copyObj} from "../utils/utils"
 /**
  *  cmsMixin.js
  *  Create By rehellinen
