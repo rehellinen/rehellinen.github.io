@@ -1,0 +1,49 @@
+<template lang="pug">
+  el-container.wrapper
+    el-header(height="185px")
+      my-header
+    el-container
+      el-aside(width="250px")
+        left-menu
+      el-main
+        router-view
+    el-footer(height="240px")
+      my-footer
+</template>
+
+<script>
+  import MyHeader from './components/header/header'
+  import MyFooter from './components/footer/footer'
+  import LeftMenu from './components/left-menu/left-menu'
+
+  export default {
+    components: {
+      MyHeader,
+      MyFooter,
+      LeftMenu,
+    }
+  }
+</script>
+
+<style lang="sass" rel="stylesheet/sass">
+  @import "~sass/reset"
+  @import "~sass/base"
+  .wrapper
+    min-height: 100vh
+    .el-header
+      padding: 0
+      border-bottom: 1px solid $border-one
+    .el-main
+      background-color: $background-color
+      padding: 30px 20px
+    .el-footer
+      padding: 0
+    p
+      font-size: $normal-font-size
+      color: $normal-font-color
+    .line
+      height: 1px
+      background-color: $border-one
+      width: 100%
+      margin: 20px 0
+</style>
