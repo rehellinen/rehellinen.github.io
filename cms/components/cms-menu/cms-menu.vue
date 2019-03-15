@@ -45,7 +45,7 @@
 <script>
   import {cmsMixin} from "../../mixins/cmsMixin"
   import {dialogMixin} from "../../mixins/dialogMixin"
-  import {MenuModel} from "../../../client/model/MenuModel"
+  import {MenuModel} from "../../model/MenuModel"
   import config from '../../utils/config'
 
   const Menu = new MenuModel()

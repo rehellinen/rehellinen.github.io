@@ -10,9 +10,9 @@ export const dialogMixin = {
   async created () {
     const isLogin = await new Token().isLogin()
     if (!isLogin) {
-      this.$router.push('/cms/login')
+      this.$router.push('/login')
     } else {
-      if (this.$route.path === '/cms/login') this.$router.push('/cms')
+      if (this.$route.path === '/login') this.$router.push('/')
     }
   },
   data () {

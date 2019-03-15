@@ -45,7 +45,7 @@
 <script>
   import {cmsMixin} from "../../mixins/cmsMixin"
   import {dialogMixin} from "../../mixins/dialogMixin"
-  import {ArticleModel} from "../../../client/model/ArticleModel"
+  import {ArticleModel} from "../../model/ArticleModel"
   import config from '../../utils/config'
   const Article = new ArticleModel()
 
