@@ -18,7 +18,7 @@
 
 <script>
   import {dialogMixin} from "../../mixins/dialogMixin"
-  import {Token} from "../../utils/Token"
+  import {Token} from "../../../client/utils/Token"
 
   export default {
     data () {

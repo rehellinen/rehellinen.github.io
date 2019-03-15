@@ -42,9 +42,9 @@
 </template>
 
 <script>
-  import config from '../../utils/config'
-  import MyEditor from '../../base/editor/editor'
-  import MyImageUploader from '../../base/image-uploader/image-uploader'
+  import config from '../../../client/utils/config'
+  import MyEditor from '../editor/editor'
+  import MyImageUploader from '../image-uploader/image-uploader'
 
   export default {
     mounted () {

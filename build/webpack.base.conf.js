@@ -8,13 +8,17 @@ const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const entry = process.argv[process.argv.length - 1]
+
 const r = path => resolve(__dirname, path)
 
 module.exports = {
   context: r('../'),
-  entry: { app: './client/index.js' },
+  entry: {
+    app: `./${entry}/index.js`,
+  },
   output: {
-    path: r('../dist'),
+    path: r(`../dist/${entry}`),
     filename: '[name].bundle.js',
     publicPath: '/assets/',
     chunkFilename: "[name].chunk.js"

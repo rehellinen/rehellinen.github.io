@@ -46,7 +46,7 @@
 </template>
 
 <script>
-  import config from '../../utils/config'
+  import config from '../../../client/utils/config'
 
   export default {
     data () {
