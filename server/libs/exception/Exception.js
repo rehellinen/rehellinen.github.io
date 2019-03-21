@@ -1,4 +1,4 @@
-export class BaseException extends Error{
+export class Exception extends Error{
   constructor (config = {}) {
     super()
     if (config.hasOwnProperty('httpCode')) {
@@ -15,11 +15,17 @@ export class BaseException extends Error{
     }
   }
 
+  setDefault ({httpCode, status, message}) {
+    if (!this.httpCode) this.httpCode = httpCode
+    if (!this.status) this.status = status
+    if (!this.message) this.message = message
+  }
+
   getError () {
     return {
       status: this.status,
       message: this.message,
-      data: this.data || {}
+      data: this.data
     }
   }
 }

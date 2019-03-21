@@ -3,10 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/5 10:37
  */
-import {BaseModel} from "./BaseModel"
-import config from "../utils/config"
+import {Model} from "../libs/model/Model"
 
-export class AccountModel extends BaseModel{
+export class AccountModel extends Model{
   constructor () {
     super({
       tableName: 'account'
@@ -17,7 +16,7 @@ export class AccountModel extends BaseModel{
     const res = await this.getAll({
       condition: {
         name,
-        status: config.STATUS.NORMAL
+        status: $config.STATUS.NORMAL
       }
     })
     return res[0]

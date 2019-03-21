@@ -4,7 +4,7 @@
  *  Create On 2019/3/11 21:13
  */
 import {SuccessMessage} from "../common/exception/SuccessMessage"
-import {fileName} from "../common/service/Multer"
+import {fileName} from "../libs/utils/multer"
 
 export class ImageController {
   async addImage (ctx, next) {

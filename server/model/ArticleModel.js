@@ -3,10 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 17:58
  */
-import {BaseModel} from "./BaseModel"
-import config from "../utils/config"
+import {Model} from "../libs/model/Model"
 
-export class ArticleModel extends BaseModel{
+export class ArticleModel extends Model{
   constructor () {
     super({
       tableName: 'article'
@@ -15,21 +14,21 @@ export class ArticleModel extends BaseModel{
 
   getArticles () {
     return this.getAll({
-      condition: {status: config.STATUS.NORMAL},
+      condition: {status: $config.STATUS.NORMAL},
       order: ['order']
     })
   }
 
   getAllArticles () {
     return this.getAll({
-      condition: ['status', '>', config.STATUS.DELETED],
+      condition: ['status', '>', $config.STATUS.DELETED],
       order: ['order']
     })
   }
 
   getPopularArticles () {
     return this.getAll({
-      condition: {status: config.STATUS.NORMAL},
+      condition: {status: $config.STATUS.NORMAL},
       order: ['count', 'order', 'id']
     })
   }

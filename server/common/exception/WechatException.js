@@ -1,6 +1,6 @@
-import {BaseException} from "./BaseException"
+import {Exception} from "../../libs/exception/Exception"
 
-export class WechatException extends BaseException{
+export class WechatException extends Exception{
   constructor(config) {
     super(config)
     if (!this.httpCode) this.httpCode = 500

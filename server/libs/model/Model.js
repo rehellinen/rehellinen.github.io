@@ -4,10 +4,9 @@
  *  Create On 2018/9/25 22:46
  */
 import {DataBase} from './DataBase'
-import {DatabaseException} from "../common/exception/DatabaseException"
-import config from "../utils/config"
+import {DatabaseException} from "../../common/exception/DatabaseException"
 
-export class BaseModel {
+export class Model {
   /**
    * 初始化模型
    * @param tableName
@@ -60,7 +59,7 @@ export class BaseModel {
    * @param order Array 设置排序的字段
    * @return {Promise<*>}
    */
-  async getAll ({condition = {}, relation = [], order = []}) {
+  async getAll ({condition = {}, relation = [], order = ['id']}) {
     let data
     let model = this.model.forge()
 
@@ -102,6 +101,11 @@ export class BaseModel {
     return data.serialize()
   }
 
+  /**
+   * 保存一条数据
+   * @param data
+   * @return {Promise<void>}
+   */
   async saveOne (data) {
     let model = this.model.forge(data)
 
@@ -117,6 +121,12 @@ export class BaseModel {
     return res
   }
 
+  /**
+   * 编辑一条数据
+   * @param condition
+   * @param data
+   * @return {Promise<void>}
+   */
   async editOne ({condition = {}, data}) {
     let model = this.model.forge(data)
 
@@ -136,23 +146,10 @@ export class BaseModel {
   async deleteById (id) {
     return await this.editOne({
       condition: {id},
-      data: {status: config.STATUS.DELETED}
+      data: {status: $config.STATUS.DELETED}
     })
   }
 
-  async changeStatus (id, status) {
-    return await this.editOne({
-      condition: {id},
-      data: {status}
-    })
-  }
-
-  async changeOrder (id, order) {
-    return await this.editOne({
-      condition: {id},
-      data: {order}
-    })
-  }
 
   _processCondition (model, condition) {
     if (Array.isArray(condition)) {

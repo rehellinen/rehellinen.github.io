@@ -3,9 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 17:59
  */
-import {controller, del, get, post, put} from "../common/decorator/router"
-import {ArticleController} from "../controller/ArticleController"
-import {auth, validate} from "../common/decorator/middleware"
+import {controller, del, get, post, put} from "../../libs/decorator/router"
+import {ArticleController} from "../../controller/ArticleController"
+import {auth, validate} from "../../libs/decorator/decorator"
 
 const article = new ArticleController()
 

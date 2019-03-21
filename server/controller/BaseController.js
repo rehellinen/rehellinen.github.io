@@ -1,6 +1,5 @@
 import {MenuModel} from "../model/MenuModel"
 import {SuccessMessage} from "../common/exception/SuccessMessage"
-import config from "../utils/config"
 
 /**
  *  BaseController.js
@@ -32,7 +31,7 @@ export class BaseController {
   async getById (ctx, next) {
     const id = ctx.checkedParams.id
     const data = await this.model.getOneById({
-      id, condition: {status: config.STATUS.NORMAL}
+      id, condition: {status: $config.STATUS.NORMAL}
     })
     throw new SuccessMessage({
       message: '获取数据成功',

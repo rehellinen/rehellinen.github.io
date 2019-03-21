@@ -3,10 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 11:08
  */
-import {BaseModel} from "./BaseModel"
-import config from '../utils/config'
+import {Model} from "../libs/model/Model"
 
-export class MenuModel extends BaseModel{
+export class MenuModel extends Model{
   constructor () {
     super({
       tableName: 'menu'
@@ -15,7 +14,7 @@ export class MenuModel extends BaseModel{
 
   async getAllMenu () {
     return await this.getAll({
-      condition: ['status', '>', config.STATUS.DELETED],
+      condition: ['status', '>', $config.STATUS.DELETED],
       order: ['order', 'id']
     })
   }
@@ -23,7 +22,7 @@ export class MenuModel extends BaseModel{
   async getMenu (type) {
     let cond = {
       type,
-      status: config.STATUS.NORMAL
+      status: $config.STATUS.NORMAL
     }
     return await this.getAll({
       condition: cond,

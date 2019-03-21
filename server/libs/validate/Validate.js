@@ -4,9 +4,10 @@
  *  Create On 2018/10/12 21:21
  */
 import {Methods} from "./Methods"
-import {getParams} from "../../utils/utils"
+import getRawBody from 'raw-body'
+import {parseParams} from "../utils/utils"
 
-export class BaseValidate extends Methods{
+export class Validate extends Methods{
   constructor (rules = {}, scene = {}) {
     super()
     this.rules = rules
@@ -16,7 +17,8 @@ export class BaseValidate extends Methods{
 
   async check (ctx, scene) {
     let checkedParams = {}
-    let params = await getParams(ctx)
+    let params = await this.getParams(ctx)
+
     const rules = this.scene[scene]
 
     for (let field of rules) {
@@ -28,9 +30,23 @@ export class BaseValidate extends Methods{
         this[item](params, field, errInfo[index])
       })
 
-      checkedParams[field] = decodeURIComponent(params[field])
+      checkedParams[field] = params[field]
     }
 
     ctx.checkedParams = checkedParams
+  }
+
+  async getParams (ctx) {
+    let params
+    if (ctx.method === 'GET') {
+      params = ctx.query
+    } else {
+      const rawReqBody = await getRawBody(ctx.req, {
+        length: ctx.req.headers['content-length'],
+        limit: '1mb'
+      })
+      params = parseParams(rawReqBody)
+    }
+    return params
   }
 }

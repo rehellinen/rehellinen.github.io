@@ -6,6 +6,7 @@
 export const routerMap = new Map()
 
 export const controller = (path) => {
+  if (path === undefined) path = ''
   return (target) => {
     path = normalizePath(path)
     target.prototype.routerPrefix = path
@@ -37,8 +38,10 @@ const normalizePath = (path) => {
 }
 
 const baseMethod = (conf) => {
+  if (conf.path === undefined) conf.path = ''
   return (target, key) => {
     target[key] = Array.isArray(target[key]) ?  target[key] : [target[key]]
+
     const length = target[key].length
     let action = target[key][length - 1]
     action.prototype.method = conf.method

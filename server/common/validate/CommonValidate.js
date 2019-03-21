@@ -3,9 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/9 11:31
  */
-import {BaseValidate} from "./BaseValidate"
+import {Validate} from "../../libs/validate/Validate"
 
-export class CommonValidate extends BaseValidate{
+export class CommonValidate extends Validate{
   constructor() {
     super()
     this.rules = {

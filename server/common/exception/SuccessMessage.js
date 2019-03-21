@@ -1,6 +1,6 @@
-import {BaseException} from "./BaseException"
+import {Exception} from "../../libs/exception/Exception"
 
-export class SuccessMessage extends BaseException{
+export class SuccessMessage extends Exception{
   constructor(config) {
     super(config)
     if (!this.httpCode) this.httpCode = 200
