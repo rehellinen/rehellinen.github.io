@@ -3,7 +3,7 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 11:34
  */
-import config from '../../cms/utils/config'
+import config from '../utils/config'
 import axios from 'axios'
 import router from 'vue-router'
 

@@ -67,6 +67,7 @@
   .container
     display: flex
     flex-direction: column
+    background-color: white
     .header
       display: flex
       align-items: center
