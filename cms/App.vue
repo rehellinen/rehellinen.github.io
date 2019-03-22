@@ -27,9 +27,17 @@
         isLoginPage: false
       }
     },
+    created () {
+      this.updateLayout()
+    },
     watch: {
-      $route (newRoute) {
-        this.isLoginPage = newRoute.path === '/login';
+      $route () {
+        this.updateLayout()
+      }
+    },
+    methods: {
+      updateLayout () {
+        this.isLoginPage = this.$route.path === '/login';
       }
     },
     components: {
