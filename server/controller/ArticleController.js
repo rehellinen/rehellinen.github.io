@@ -58,5 +58,18 @@ export class ArticleController extends BaseController{
       data: data.slice(0, 4)
     })
   }
+
+  async getById (ctx, next) {
+    const id = ctx.checkedParams.id
+    let data = await this.model.getOneById({
+      id, condition: {status: $config.STATUS.NORMAL}
+    })
+    this.model._processArticle(data)
+
+    throw new SuccessMessage({
+      message: '获取数据成功',
+      data
+    })
+  }
 }
 

@@ -6,6 +6,7 @@
 // 该文件用于写入自定义配置
 export default {
   PASSWORD_PREFIX: 'chenqixuan@github.com/rehellinen',
+  IMAGE_PREFIX: 'http://rehellinen.cn',
 
   STATUS: {
     NORMAL: 1,

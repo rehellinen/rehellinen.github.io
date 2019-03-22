@@ -7,7 +7,8 @@
     "client": "webpack-dev-server --progress --config build/webpack.dev.conf.js --type client",
     "cms": "webpack-dev-server --progress --config build/webpack.dev.conf.js --type cms",
     "server": "nodemon --watch ./server ./server/run.js",
-    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config build/webpack.base.conf.js --progress --hide-modules --type client"
+    "build client": "rimraf dist/client && cross-env NODE_ENV=production webpack --config build/webpack.base.conf.js --progress --hide-modules --type client",
+    "build cms": "rimraf dist/cms && cross-env NODE_ENV=production webpack --config build/webpack.base.conf.js --progress --hide-modules --type cms"
   },
   "repository": {
     "type": "git",

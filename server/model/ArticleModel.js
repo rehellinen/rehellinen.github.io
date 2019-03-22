@@ -12,25 +12,37 @@ export class ArticleModel extends Model{
     })
   }
 
-  getArticles () {
-    return this.getAll({
+  async getArticles () {
+    const articles = await this.getAll({
       condition: {status: $config.STATUS.NORMAL},
       order: ['order']
     })
+    articles.forEach(item => this._processArticle(item))
+    return articles
   }
 
-  getAllArticles () {
-    return this.getAll({
+  async getAllArticles () {
+    const articles = await this.getAll({
       condition: ['status', '>', $config.STATUS.DELETED],
       order: ['order']
     })
+    articles.forEach(item => this._processArticle(item))
+    return articles
   }
 
-  getPopularArticles () {
-    return this.getAll({
+  async getPopularArticles () {
+    const articles = await this.getAll({
       condition: {status: $config.STATUS.NORMAL},
       order: ['count', 'order', 'id']
     })
+
+    articles.forEach(item => this._processArticle(item))
+    return articles
+  }
+
+  _processArticle (article) {
+    article.main_img_url = $config.IMAGE_PREFIX + article.main_img_url
+    article.main_img_url = article.main_img_url.replace(/\/upload/, '')
   }
 
   async addArticles (data) {
