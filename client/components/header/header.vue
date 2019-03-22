@@ -45,15 +45,18 @@
   /** header icon **/
   .main-icon
     display: inline-block
-    width: 15px
-    height: 15px
+    width: 13px
+    height: 13px
     transform: rotate(90deg)
     background-color: $theme-color
     margin-right: 15px
     .block
       background-color: white
-      width: 10px
-      height: 10px
+      width: 9px
+      height: 9px
+      position: relative
+      bottom: 1px
+      right: 1px
   span
     font-weight: bold
     color: $theme-color
@@ -80,6 +83,8 @@
       flex-direction: column
       align-items: center
       justify-content: space-around
+      .main-icon
+        margin-right: 12px
     .sub-header
       padding: 0 10%
       height: 90px
