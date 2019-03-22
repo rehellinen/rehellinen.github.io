@@ -4,6 +4,7 @@
       action="http://127.0.0.1:9528/image"
       name="image"
       list-type="picture"
+      :headers="header"
       :show-file-list="false"
       :on-success="uploadSuccess",
       :on-error="uploadError"
@@ -13,11 +14,17 @@
 </template>
 
 <script>
+  import {Token} from "../../utils/Token"
+
   export default {
     data () {
       return {
-        imgUrl: ''
+        imgUrl: '',
+        header: {}
       }
+    },
+    async created () {
+      this.header.token = await new Token().getTokenFromCache()
     },
     methods: {
       setImgUrl (url) {

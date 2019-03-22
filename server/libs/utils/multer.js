@@ -12,7 +12,7 @@ const today = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`
 let fileName = ''
 
 const storage = Multer.diskStorage({
-  destination: r(`../../${$config.UPLOAD_DIR}/${today}`),
+  destination: r(`${$config.UPLOAD_DIR}/${today}`),
   filename (ctx, file, cb) {
     const filenameArr = file.originalname.split('.')
     fileName = `${Date.now()}.${filenameArr[filenameArr.length - 1]}`
