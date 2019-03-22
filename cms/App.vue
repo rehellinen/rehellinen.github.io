@@ -2,11 +2,15 @@
   el-container.wrapper
     el-header(height="185px")
       my-header
-    el-container
+
+    el-main(v-if="isLoginPage")
+      router-view
+    el-container(v-else)
       el-aside(width="250px")
         left-menu
       el-main
         router-view
+
     el-footer(height="240px")
       my-footer
 </template>
@@ -15,8 +19,19 @@
   import MyHeader from './components/header/header'
   import MyFooter from './components/footer/footer'
   import LeftMenu from './components/left-menu/left-menu'
+  import {Token} from "./utils/Token"
 
   export default {
+    data () {
+      return {
+        isLoginPage: false
+      }
+    },
+    watch: {
+      $route (newRoute) {
+        this.isLoginPage = newRoute.path === '/login';
+      }
+    },
     components: {
       MyHeader,
       MyFooter,

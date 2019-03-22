@@ -2,6 +2,7 @@ import config from "../utils/config"
 import MyForm from '../base/form/form'
 import MyTable from '../base/table/table'
 import MyBread from '../base/bread-crumb/bread-crumb'
+import {Token} from "../utils/Token"
 /**
  *  cmsMixin.js
  *  Create By rehellinen
@@ -28,6 +29,7 @@ export const cmsMixin = {
   },
   // CMS初始化
   async created () {
+    await this.checkLogin()
     this._initCMS()
     await this._getData()
   },
@@ -35,6 +37,16 @@ export const cmsMixin = {
     // 新组件需覆盖的方法
     _initCMS () {},
     _getData () {},
+
+    // 检查是否登录
+    async checkLogin () {
+      const isLogin = await new Token().isLogin()
+      if (!isLogin) {
+        this.$router.push('/login')
+      } else {
+        if (this.$route.path === '/login') this.$router.push('/')
+      }
+    },
 
     // 跳转到添加页面
     toAdd (e) {

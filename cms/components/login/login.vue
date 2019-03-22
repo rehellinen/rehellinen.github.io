@@ -1,11 +1,11 @@
 <template lang="pug">
-  div
+  div.container
     my-dialog(:visible="visible"
     :title="title"
     :content="content"
     @close="closeDialog")
-    p.title 管理员登录
     el-form(ref="form" :model="form" label-width="80px")
+      p.title 管理员登录
       el-form-item(label="账号：")
         el-input(v-model="form.name")
 
@@ -18,6 +18,7 @@
 
 <script>
   import {dialogMixin} from "../../mixins/dialogMixin"
+  import {cmsMixin} from "../../mixins/cmsMixin"
   import {Token} from "../../utils/Token"
 
   export default {
@@ -33,20 +34,28 @@
       async onSubmit (e) {
         const res = await new Token(this.form.name, this.form.password)
           .getTokenFromServer()
-        if (res.status === 1) this.$router.push('/cms')
-        this.openDialog('提示', res.message)
+        this.openDialog('提示', res.message,
+          () => {
+            console.log(1)
+            if (res.status === 1) this.$router.push('/')
+          }, true
+        )
       }
     },
-    mixins: [dialogMixin]
+    mixins: [dialogMixin, cmsMixin]
   }
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
   @import "~sass/base"
-  .title
-    color: $main-font-color
-    font-size: $vast-font-size
-    font-weight: bold
-    text-align: center
-    margin-bottom: 25px
+  .container
+    padding: 0 10%
+    .el-form
+      max-width: 500px
+    .title
+      color: $main-font-color
+      font-size: $vast-font-size
+      font-weight: bold
+      margin-bottom: 15px
+      margin-left: 80px
 </style>

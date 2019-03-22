@@ -9,11 +9,11 @@
 </template>
 
 <script>
-export default {
-  created () {
+  import {cmsMixin} from "../../mixins/cmsMixin"
 
+  export default {
+    mixins: [cmsMixin]
   }
-}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
