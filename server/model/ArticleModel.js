@@ -3,9 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 17:58
  */
-import {Model} from "../libs/model/Model"
+import {BaseModel} from "./BaseModel"
 
-export class ArticleModel extends Model{
+export class ArticleModel extends BaseModel{
   constructor () {
     super({
       tableName: 'article'

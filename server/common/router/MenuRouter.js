@@ -48,14 +48,14 @@ class MenuRouter {
     await menu.delMenu(ctx, next)
   }
 
-  @put('/status')
+  @put('status')
   @auth('super')
   @validate({name: 'Common', scene: 'status'})
   changeStatus (ctx, next) {
     return menu.changeStatus(ctx, next)
   }
 
-  @put('/order')
+  @put('order')
   @auth('super')
   @validate({name: 'Common', scene: 'order'})
   changeOrder (ctx, next) {

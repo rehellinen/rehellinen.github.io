@@ -3,9 +3,9 @@
  *  Create By rehellinen
  *  Create On 2019/3/4 11:08
  */
-import {Model} from "../libs/model/Model"
+import {BaseModel} from "./BaseModel"
 
-export class MenuModel extends Model{
+export class MenuModel extends BaseModel{
   constructor () {
     super({
       tableName: 'menu'
@@ -15,7 +15,7 @@ export class MenuModel extends Model{
   async getAllMenu () {
     return await this.getAll({
       condition: ['status', '>', $config.STATUS.DELETED],
-      order: ['order', 'id']
+      order: ['type', 'order', 'id']
     })
   }
 
