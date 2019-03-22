@@ -16,9 +16,9 @@ export const cmsMixin = {
       // 页面类型（首页、添加、编辑）
       type: config.CMS.INDEX,
       // 表单的配置
-      form: {},
+      form: [],
       // 表格的配置
-      table: {},
+      table: [],
       // 面包屑导航栏
       bread: ['首页'],
       // 编辑页面展示的数据

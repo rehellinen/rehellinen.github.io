@@ -34,7 +34,7 @@ class TokenRouter {
   }
 
   @put('')
-  @auth('super')
+  // @auth('super')
   @validate({name: 'Article', scene: 'edit'})
   async edit (ctx, next) {
     await article.editArticles(ctx, next)

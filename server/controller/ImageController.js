@@ -13,7 +13,7 @@ export class ImageController {
     throw new SuccessMessage({
       message: '上传图片成功',
       data: {
-        path: `/upload/${today}/${fileName}`
+        path: `/${today}/${fileName}`
       }
     })
   }

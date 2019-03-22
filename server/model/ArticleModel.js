@@ -50,6 +50,8 @@ export class ArticleModel extends BaseModel{
   }
 
   async editArticles (id, data) {
+    data.main_img_url = data.main_img_url.replace(/http.*\.(cn|com)/g, '')
+    console.log(data.main_img_url)
     return await this.editOne({
       condition: {id},
       data
