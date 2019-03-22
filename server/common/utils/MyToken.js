@@ -14,7 +14,7 @@ export class MyToken extends Token{
   async get (params) {
     const userInfo = await new AccountModel().checkAccount(params.name)
     this.checkPassword(params.password, userInfo)
-    return this._saveToCache()
+    return super.get()
   }
 
   checkPassword (reqPassword, dbInfo) {

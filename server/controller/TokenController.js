@@ -16,7 +16,7 @@ export class TokenController {
   }
 
   checkToken (ctx) {
-    MyToken.checkToken(ctx)
+    MyToken.isSuper(ctx)
     throw new SuccessMessage({
       data: {isValid: true}
     })
