@@ -20,7 +20,6 @@ module.exports = {
   output: {
     path: r(`../dist/${entry}`),
     filename: '[name].bundle.js',
-    publicPath: '/assets/',
     chunkFilename: "[name].chunk.js"
   },
   resolve: {
