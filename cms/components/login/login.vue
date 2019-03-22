@@ -2,7 +2,8 @@
   div.container
     my-dialog(:visible="visible"
     :title="title"
-    :content="content"
+    :content="content",
+    :cb="cb"
     @close="closeDialog")
     el-form(ref="form" :model="form" label-width="80px")
       p.title 管理员登录
@@ -36,8 +37,8 @@
           .getTokenFromServer()
         this.openDialog('提示', res.message,
           () => {
-            console.log(1)
             if (res.status === 1) this.$router.push('/')
+            else this.closeDialog()
           }, true
         )
       }
