@@ -5,8 +5,19 @@
  */
 
 const merge = require('webpack-merge')
-const baseConfig = require('./webpack.base.conf')
+const baseWebpackConf = require('./webpack.base.conf')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
-module.exports = merge(baseConfig, {
+module.exports = merge(baseWebpackConf, {
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+    }),
+  ]
 })

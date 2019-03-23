@@ -14,7 +14,8 @@ module.exports = {
     DEV_TOOL: 'cheap-module-eval-source-map',
 
     // path
-    PUBLIC_PATH: '/'
+    PUBLIC_PATH: '/',
+    PROXY: {}
   },
 
   PROD: {

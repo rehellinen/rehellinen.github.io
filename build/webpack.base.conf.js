@@ -7,7 +7,6 @@ const config = require('./config')
 const {r,isProduction} = require('./utils')
 const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   context: r('./'),
@@ -17,8 +16,8 @@ module.exports = {
   },
   output: {
     path: config.PROD.ASSETS_ROOT,
-    filename: '[name].bundle.js',
-    chunkFilename: "[name].chunk.js",
+    filename: '[name].[hash:8].bundle.js',
+    chunkFilename: "[name].[hash:8].chunk.js",
     publicPath: isProduction
       ? config.PROD.PUBLIC_PATH
       : config.DEV.PUBLIC_PATH
@@ -87,9 +86,6 @@ module.exports = {
     child_process: 'empty'
   },
   plugins: [
-    new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      template: './index.html'
-    })
+    new VueLoaderPlugin()
   ]
 }
