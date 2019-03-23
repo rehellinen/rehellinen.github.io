@@ -1,7 +1,7 @@
 <template lang="pug">
   div.upload
     el-upload(
-      action="http://127.0.0.1:9528/image"
+      :action="uploadUrl"
       name="image"
       list-type="picture"
       :headers="header"
@@ -20,10 +20,12 @@
     data () {
       return {
         imgUrl: '',
+        uploadUrl: '',
         header: {}
       }
     },
     async created () {
+      this.uploadUrl = $config.restUrl + '/image'
       this.header.token = await new Token().getTokenFromCache()
     },
     methods: {
