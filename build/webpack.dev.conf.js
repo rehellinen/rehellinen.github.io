@@ -12,6 +12,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./config')
 const baseWebpackConf = require('./webpack.base.conf')
 const {promisify} = require('util')
+const {logError} = require('./utils')
 
 portFinder.basePort = process.env.PORT || config.DEV.PORT
 const getPortPromise = promisify(portFinder.getPort)
@@ -48,18 +49,16 @@ module.exports = new Promise((resolve, reject) => {
       process.env.PORT = port
       devWebpackConf.devServer.port = port
 
-      devWebpackConf.plugins.push(
-        new friendlyErrorsPlugin({
-          compilationSuccessInfo: {
-            messages: [`running at { http://${config.DEV.HOST}:${port} }`]
-          },
-          onErrors (severity, errors) {
-            console.log(errors)
-          }
-        })
-      )
+      devWebpackConf.plugins.push(new friendlyErrorsPlugin({
+        compilationSuccessInfo: {
+          messages: [`running at { http://${config.DEV.HOST}:${port} }`]
+        },
+        onErrors: logError
+      }))
 
       resolve(devWebpackConf)
     })
-    .catch(ex => {throw ex})
+    .catch(ex => {
+      throw ex
+    })
 })
