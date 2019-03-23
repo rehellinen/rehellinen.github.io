@@ -3,29 +3,30 @@
  *  Create By rehellinen
  *  Create On 2018/11/5 11:37
  */
-const {resolve} = require('path')
+const config = require('./config')
+const {r,isProduction} = require('./utils')
 const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const entry = process.argv[process.argv.length - 1]
-
-const r = path => resolve(__dirname, path)
-
 module.exports = {
-  context: r('../'),
+  context: r('./'),
+  mode: isProduction ? 'production' : 'development',
   entry: {
-    app: `./${entry}/index.js`,
+    app: `./client/index.js`,
   },
   output: {
-    path: r(`../dist/${entry}`),
+    path: config.PROD.ASSETS_ROOT,
     filename: '[name].bundle.js',
-    chunkFilename: "[name].chunk.js"
+    chunkFilename: "[name].chunk.js",
+    publicPath: isProduction
+      ? config.PROD.PUBLIC_PATH
+      : config.DEV.PUBLIC_PATH
   },
   resolve: {
     alias: {
-      sass: r('../static/sass'),
-      assets: r('../static'),
+      sass: r('./static/sass'),
+      assets: r('./static'),
     },
     extensions: ['.js', '.vue', '.json']
   },
@@ -63,15 +64,28 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        }
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader'
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        }
       }
     ]
   },
-
+  node: {
+    setImmediate: false,
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  },
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({

@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "webpack-dev-server --progress --config build/webpack.dev.conf.js --type client",
-    "cms": "webpack-dev-server --progress --config build/webpack.dev.conf.js --type cms",
+    "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "server": "nodemon --watch ./server ./server/run.js",
-    "build client": "rimraf dist/client && cross-env NODE_ENV=production webpack --config build/webpack.base.conf.js --progress --hide-modules --type client",
-    "build cms": "rimraf dist/cms && cross-env NODE_ENV=production webpack --config build/webpack.base.conf.js --progress --hide-modules --type cms"
+    "build": "node build/build.js"
   },
   "repository": {
     "type": "git",
@@ -31,10 +29,13 @@
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
+    "file-loader": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.0.0-beta.2",
     "node-sass": "^4.9.4",
     "nodemon": "^1.18.10",
+    "ora": "^3.2.0",
+    "portfinder": "^1.0.20",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "rimraf": "^2.6.2",
