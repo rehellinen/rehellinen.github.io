@@ -7,6 +7,7 @@ const config = require('./config')
 const {r,isProduction} = require('./utils')
 const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   context: r('./'),
@@ -16,8 +17,8 @@ module.exports = {
   },
   output: {
     path: config.PROD.ASSETS_ROOT,
-    filename: '[name].[hash:8].bundle.js',
-    chunkFilename: "[name].[hash:8].chunk.js",
+    filename: 'js/[name].[hash:8].bundle.js',
+    chunkFilename: "js/[name].[hash:8].chunk.js",
     publicPath: isProduction
       ? config.PROD.PUBLIC_PATH
       : config.DEV.PUBLIC_PATH
@@ -46,7 +47,9 @@ module.exports = {
       {
         test: /\.sass$/,
         use: [
-          'vue-style-loader',
+          isProduction
+            ? MiniCssExtractPlugin.loader
+            : 'vue-style-loader',
           'css-loader',
           {
             loader: 'sass-loader',
@@ -57,7 +60,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
+          isProduction
+            ? MiniCssExtractPlugin.loader
+            : 'vue-style-loader',
           'css-loader'
         ]
       },

@@ -22,7 +22,8 @@ module.exports = {
     // path
     ASSETS_ROOT: r('./dist'),
     STATIC_ROOT: r('./dist/static'),
-    PUBLIC_PATH: ''
+    PUBLIC_PATH: '',
+    BUNDLE_ANALYZER: process.env.npm_config_report
   }
 }
 

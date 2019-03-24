@@ -18,7 +18,7 @@ const webpackPromise = promisify(webpack)
 
 spinner.start()
 
-rmPromise(config.PROD.STATIC_ROOT)
+rmPromise(config.PROD.ASSETS_ROOT)
   .then(() => webpackPromise(webpackConfig))
   .then((stats) => {
     spinner.stop()
