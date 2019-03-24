@@ -36,7 +36,7 @@ const webpackConfig = merge(baseWebpackConf, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: 'tpl.html',
       inject: true,
       minify: {
         removeComments: true,

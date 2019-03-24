@@ -38,7 +38,7 @@ const devWebpackConf = merge(baseWebpackConf, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: 'tpl.html'
     }),
   ]
 })
