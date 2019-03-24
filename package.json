@@ -1,7 +1,7 @@
 {
-  "name": "webpack_cli",
+  "name": "blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "rehellinen's blog",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rehellinen/webpack_cli.git"
+    "url": "https://github.com/rehellinen/rehellinen.github.io"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rehellinen/webpack_cli/issues"
+    "url": "https://github.com/rehellinen/rehellinen.github.io/issues"
   },
-  "homepage": "https://github.com/rehellinen/webpack_cli#readme",
+  "homepage": "https://github.com/rehellinen/rehellinen.github.io#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-transform-runtime": "^7.1.0",
@@ -58,6 +58,7 @@
     "@babel/plugin-proposal-decorators": "^7.1.2",
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "bookshelf": "^0.13.3",
     "element-ui": "^2.6.0",
     "glob": "^7.1.3",
