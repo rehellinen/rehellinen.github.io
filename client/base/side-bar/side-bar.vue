@@ -11,7 +11,6 @@
         div.text-container
           p.title {{article.title}}
           p.subtitle {{article.subtitle}}
-      .line
 </template>
 
 <script>
