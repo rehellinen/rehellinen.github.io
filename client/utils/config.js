@@ -5,5 +5,5 @@
  */
 
 export default {
-  restUrl: 'http://rehellinen.cn/api',
+  restUrl: 'http://api.rehellinen.cn',
 }

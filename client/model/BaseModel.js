@@ -25,7 +25,7 @@ export class BaseModel {
    */
   async request ({url, reqData, message, method = 'get', contentType = 'application/json'}) {
     const config = {
-      url: `${this.baseUrl}/${url}`,
+      url: `${this.baseUrl}/${url.startsWith('/') ? url.substr(1) : url}`,
       method: method,
       headers: {
         'content-type': contentType,
