@@ -19,7 +19,6 @@
   import MyHeader from './components/header/header'
   import MyFooter from './components/footer/footer'
   import LeftMenu from './components/left-menu/left-menu'
-  import {Token} from "./utils/Token"
 
   export default {
     data () {
