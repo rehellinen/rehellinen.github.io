@@ -4,21 +4,23 @@
  *  Create On 2019/3/23 15:24
  */
 process.env.NODE_ENV = 'production'
+
 const ora = require('ora')
 const {promisify} = require('util')
 const rm = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
+
 const config = require('./config')
 const webpackConfig = require('./webpack.prod.conf')
+const {type} = require('./utils')
 
 const spinner = ora('building ...')
 const rmPromise = promisify(rm)
 const webpackPromise = promisify(webpack)
-
 spinner.start()
 
-rmPromise(config.PROD.ASSETS_ROOT)
+rmPromise(`${config.PROD.ASSETS_ROOT}/${type}`)
   .then(() => webpackPromise(webpackConfig))
   .then((stats) => {
     spinner.stop()

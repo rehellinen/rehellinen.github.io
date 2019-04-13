@@ -3,15 +3,16 @@
  *  Create By rehellinen
  *  Create On 2018/11/8 16:41
  */
-const merge = require('webpack-merge')
 const webpack = require('webpack')
+const {promisify} = require('util')
 const portFinder = require('portfinder')
+const merge = require('webpack-merge')
 const webpackDevServer = require('webpack-dev-server')
 const friendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const config = require('./config')
 const baseWebpackConf = require('./webpack.base.conf')
-const {promisify} = require('util')
 const {logError} = require('./utils')
 
 portFinder.basePort = process.env.PORT || config.DEV.PORT
@@ -38,7 +39,7 @@ const devWebpackConf = merge(baseWebpackConf, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'tpl.html'
+      template: './index.html'
     }),
   ]
 })

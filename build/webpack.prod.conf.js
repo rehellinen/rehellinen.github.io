@@ -3,11 +3,8 @@
  *  Create By rehellinen
  *  Create On 2019/3/23 15:18
  */
-const {r} = require('./utils')
 const glob = require('glob')
 const merge = require('webpack-merge')
-const config = require('./config')
-const baseWebpackConf = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
@@ -15,6 +12,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
+
+const {r, type} = require('./utils')
+const config = require('./config')
+const baseWebpackConf = require('./webpack.base.conf')
 
 const webpackConfig = merge(baseWebpackConf, {
   optimization: {
@@ -30,13 +31,14 @@ const webpackConfig = merge(baseWebpackConf, {
     minimizer: [
       new UglifyJsPlugin({
         parallel: true,
+        cache: true
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'tpl.html',
+      template: 'index.html',
       inject: true,
       minify: {
         removeComments: true,
@@ -45,8 +47,8 @@ const webpackConfig = merge(baseWebpackConf, {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash:8].css',
-      chunkFilename: 'css/[name].[hash:8].css',
+      filename: `css/[name].[hash:5].css`,
+      chunkFilename: `css/[name].[hash:5].css`,
     })
   ]
 })

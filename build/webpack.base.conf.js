@@ -3,30 +3,31 @@
  *  Create By rehellinen
  *  Create On 2018/11/5 11:37
  */
-const config = require('./config')
-const {r,isProduction} = require('./utils')
 const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const config = require('./config')
+const {r,isProduction, type} = require('./utils')
 
 module.exports = {
   context: r('./'),
   mode: isProduction ? 'production' : 'development',
   entry: {
-    app: `./client/index.js`,
+    app: `./${type}/index.js`,
   },
   output: {
-    path: config.PROD.ASSETS_ROOT,
-    filename: 'js/[name].[hash:8].bundle.js',
-    chunkFilename: "js/[name].[hash:8].chunk.js",
+    path: config.PROD.ASSETS_ROOT + '/' + type,
+    filename: `js/[name].[hash:5].bundle.js`,
+    chunkFilename: `js/[name].[hash:5].chunk.js`,
     publicPath: isProduction
       ? config.PROD.PUBLIC_PATH
       : config.DEV.PUBLIC_PATH
   },
   resolve: {
     alias: {
-      sass: r('./static/sass'),
-      assets: r('./static'),
+      sass: r(`./${type}/assets/sass`),
+      assets: r(`./${type}/assets`),
     },
     extensions: ['.js', '.vue', '.json']
   },
@@ -38,7 +39,8 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.pug$/,
@@ -70,7 +72,7 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 15000,
         }
       },
       {

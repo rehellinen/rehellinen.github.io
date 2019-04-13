@@ -9,9 +9,13 @@ const {resolve} = require('path')
 exports.r = path => resolve(__dirname, '../', path)
 // 是否为生产环境
 exports.isProduction = process.env.NODE_ENV === 'production'
+// 类型（cms/client）
+exports.type = process.argv[process.argv.length - 1]
+  .replace(/-/g, '')
 
 exports.logError = (severity, errors) => {
   if (severity !== 'error') return
   const error = errors[0]
+  if (error.webpackError) console.log(error.webpackError)
   console.log(`${severity}: ${error.name}\n`)
 }
