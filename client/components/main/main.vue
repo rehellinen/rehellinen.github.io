@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    el-row(:gutter="20")
-      el-col(:xl="18" :lg="18" :md="17" :sm="24" :xs="24")
+    el-row(:gutter="5")
+      el-col(:xl="17" :lg="17" :md="16" :sm="24" :xs="24")
         router-view
-      el-col.hidden-sm-and-down(:xl="6" :lg="6" :md="7")
+      el-col.hidden-sm-and-down(:xl="7" :lg="7" :md="8")
         side-bar
 </template>
 

@@ -1,6 +1,6 @@
 <template lang="pug">
   div.side-bar-container
-    div.recommend
+    div.recommend.card
       p.title Most Popular Articles
       router-link.article(
         v-for="article in popularArticles"

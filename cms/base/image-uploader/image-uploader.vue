@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import config from '../../utils/config'
   import {Token} from "../../utils/Token"
 
   export default {
@@ -25,7 +26,7 @@
       }
     },
     async created () {
-      this.uploadUrl = $config.restUrl + '/image'
+      this.uploadUrl = config.restUrl + '/image'
       this.header.token = await new Token().getTokenFromCache()
     },
     methods: {
