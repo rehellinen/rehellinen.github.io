@@ -12,12 +12,14 @@ export class CommonValidate extends Validate{
       id: ['require', 'id'],
       order: ['require', 'order'],
       status: ['require', 'status'],
+      name: ['require', 'name']
     }
 
     this.scene = {
       status: ['id', 'status'],
       order: ['id', 'order'],
-      id: ['id']
+      id: ['id'],
+      name: ['name'],
     }
   }
 }

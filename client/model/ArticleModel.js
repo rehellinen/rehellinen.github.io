@@ -17,4 +17,11 @@ export class ArticleModel extends BaseModel{
   async getPopularArticles () {
     return await this.request({url: 'article/popular'})
   }
+
+  async getMenuArticles (name) {
+    return await this.request({
+      url: 'article/menu',
+      reqData: {name}
+    })
+  }
 }

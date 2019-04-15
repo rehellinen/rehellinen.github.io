@@ -2,16 +2,11 @@
   .container
     .header
       p.name 陈棋轩
-      p 求职意向：
-        span 前端开发
+      p 方向：
+        span Web全栈
       p Tel: 13229438008
       p Email: rehellinen@foxmail.com
     .main
-      .title-container
-        .dot
-        .title
-          p 教育背景
-        //.line
     .de
 </template>
 
@@ -26,17 +21,19 @@ export default {
   .container
     display: flex
     flex-direction: column
-    width: 100%
+    /*width: 100%*/
+    background-color: white
     .header
+      padding: 30px 0 25px 35px
       background-color: $cv-color
-      padding: 30px 0 15px 20px
-      .name
-        font-size: 30px
-        font-weight: bold
-        margin-bottom: 10px
-        margin-left: 20px
       p
         color: white
+        margin-bottom: 3px
+      .name
+        font-size: 35px
+        font-weight: bold
+        margin-bottom: 5px
+        letter-spacing: 3px
     .main
       padding: 10px 10%
       .title-container

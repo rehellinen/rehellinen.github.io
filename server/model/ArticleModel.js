@@ -4,6 +4,7 @@
  *  Create On 2019/3/4 17:58
  */
 import {BaseModel} from "./BaseModel"
+import {MenuModel} from "./MenuModel"
 
 export class ArticleModel extends BaseModel{
   constructor () {
@@ -59,5 +60,15 @@ export class ArticleModel extends BaseModel{
 
   async delArticles (id) {
     return await this.deleteById(id)
+  }
+
+  async getMenuArticles (name) {
+    const id = await new MenuModel().getIdByName(name)
+
+    const articles = await this.getAll({
+      condition: {menu_id: id}
+    })
+    articles.forEach(item => this._processArticle(item))
+    return articles
   }
 }

@@ -44,4 +44,14 @@ export class MenuModel extends BaseModel{
   async delMenu (id) {
     return await this.deleteById(id)
   }
+
+  async getIdByName (name) {
+    const res =  await this.getAll({
+      condition: {
+        url: `/list/${name.startsWith('/') ? name.substr(1) : name}`
+      }
+    })
+
+    return res[0].id
+  }
 }

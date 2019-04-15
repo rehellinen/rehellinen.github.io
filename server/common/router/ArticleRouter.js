@@ -33,6 +33,12 @@ class TokenRouter {
     await article.getPopularArticles(ctx, next)
   }
 
+  @get('menu')
+  @validate({name: 'Common', scene: 'name'})
+  async getMenuArticles (ctx, next) {
+    await article.getMenuArticles(ctx, next)
+  }
+
   @put('')
   // @auth('super')
   @validate({name: 'Article', scene: 'edit'})

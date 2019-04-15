@@ -1,7 +1,7 @@
 <template lang="pug">
   div.side-bar-container
     div.recommend.card
-      p.title Most Popular Articles
+      p.title.top-title Most Popular Articles
       router-link.article(
         v-for="article in popularArticles"
         :key="article.id"
@@ -47,6 +47,8 @@
         font-size: $big-font-size
         font-weight: bold
         color: $normal-font-color
+      .top-title
+        margin-left: 5px
   .article
     display: flex
     margin-top: 10px

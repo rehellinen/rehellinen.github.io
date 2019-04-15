@@ -59,6 +59,15 @@ export class ArticleController extends BaseController{
     })
   }
 
+  async getMenuArticles (ctx, next) {
+    const name = ctx.checkedParams.name
+    const data = await this.model.getMenuArticles(name)
+    throw new SuccessMessage({
+      message: '获取文章成功',
+      data: data.slice(0, 4)
+    })
+  }
+
   async getById (ctx, next) {
     const id = ctx.checkedParams.id
     let data = await this.model.getOneById({

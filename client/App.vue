@@ -29,6 +29,7 @@
   @import "~sass/base"
   .wrapper
     min-height: 100vh
+    font-family: "Microsoft YaHei"
     .el-header
       padding: 0
       border-bottom: 1px solid $border-one
