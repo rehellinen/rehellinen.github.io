@@ -51,7 +51,9 @@ export class ArticleModel extends BaseModel{
   }
 
   async editArticles (id, data) {
-    data.main_img_url = data.main_img_url.replace(/http.*\.(cn|com)/g, '')
+    if (data.main_img_url) {
+      data.main_img_url = data.main_img_url.replace(/http.*\.(cn|com)/g, '')
+    }
     return await this.editOne({
       condition: {id},
       data
@@ -70,5 +72,16 @@ export class ArticleModel extends BaseModel{
     })
     articles.forEach(item => this._processArticle(item))
     return articles
+  }
+
+  async getArticleById (id) {
+    const article = await this.getOneById({
+      id, condition: {status: $config.STATUS.NORMAL}
+    })
+    this._processArticle(article)
+    await this.editArticles(id, {
+      count: article.count + 1
+    })
+    return article
   }
 }

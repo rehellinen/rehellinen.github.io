@@ -63,17 +63,13 @@ export class ArticleController extends BaseController{
     const name = ctx.checkedParams.name
     const data = await this.model.getMenuArticles(name)
     throw new SuccessMessage({
-      message: '获取文章成功',
-      data: data.slice(0, 4)
+      message: '获取文章成功'
     })
   }
 
   async getById (ctx, next) {
     const id = ctx.checkedParams.id
-    let data = await this.model.getOneById({
-      id, condition: {status: $config.STATUS.NORMAL}
-    })
-    this.model._processArticle(data)
+    let data = await this.model.getArticleById(id)
 
     throw new SuccessMessage({
       message: '获取数据成功',
