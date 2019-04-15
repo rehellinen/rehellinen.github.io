@@ -47,15 +47,24 @@
   import {dialogMixin} from "../../mixins/dialogMixin"
   import {ArticleModel} from "../../model/ArticleModel"
   import config from '../../utils/config'
-  const Article = new ArticleModel()
+  import {MenuModel} from "../../model/MenuModel"
+  const article = new ArticleModel()
+  const menu = new MenuModel()
 
   export default {
+    data () {
+      return {
+        menu: []
+      }
+    },
     methods: {
       async _getData () {
-        this.data = await Article.getAllArticles()
+        this.menu = await menu.getFrontMenu()
+        this.data = await article.getAllArticles()
       },
       _initCMS () {
-        this._setModel(Article)
+        const selectOpt = this.getMenuSelectOpt()
+        this._setModel(article)
         this._pushBread('文章管理')
         this._setForm([
           {
@@ -70,6 +79,12 @@
             name: 'main_img_url',
             label: '主图',
             type: config.FORM.IMAGE
+          },
+          {
+            name: 'menu_id',
+            label: '菜单名称',
+            type: config.FORM.SELECT,
+            options: selectOpt
           },
           {
             name: 'content',
@@ -87,6 +102,16 @@
             label: '副标题'
           },
         ])
+      },
+      getMenuSelectOpt () {
+        const res = []
+        this.menu.forEach(item => {
+          res.push({
+            label: item.name,
+            value: item.id
+          })
+        })
+        return res
       }
     },
     mixins: [cmsMixin, dialogMixin]

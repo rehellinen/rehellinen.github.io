@@ -17,5 +17,9 @@ export class MenuModel extends BaseModel{
   async getBackMenu () {
     return await this.request({url: 'menu/back'})
   }
+
+  async getFrontMenu () {
+    return await this.request({url: 'menu/front'})
+  }
 }
 

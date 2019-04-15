@@ -30,8 +30,8 @@ export const cmsMixin = {
   // CMS初始化
   async created () {
     await this.checkLogin()
-    this._initCMS()
     await this._getData()
+    this._initCMS()
   },
   methods: {
     // 新组件需覆盖的方法

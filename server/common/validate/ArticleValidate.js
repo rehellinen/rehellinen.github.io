@@ -14,11 +14,12 @@ export class ArticleValidate extends Validate{
       subtitle: ['require', 'subtitle'],
       content: ['require', 'content'],
       main_img_url: ['require', 'main_img_url'],
+      menu_id: ['require', 'menu_id'],
     }
 
     this.scene = {
-      add: ['title', 'subtitle', 'content', 'main_img_url'],
-      edit: ['id', 'title', 'subtitle', 'content', 'main_img_url'],
+      add: ['title', 'subtitle', 'content', 'main_img_url', 'menu_id'],
+      edit: ['id', 'title', 'subtitle', 'content', 'main_img_url', 'menu_id'],
       del: ['id']
     }
   }
