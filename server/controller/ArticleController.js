@@ -55,7 +55,7 @@ export class ArticleController extends BaseController{
     const data = await this.model.getPopularArticles()
     throw new SuccessMessage({
       message: '获取文章成功',
-      data: data.slice(0, 4)
+      data: data.slice(0, 3)
     })
   }
 
@@ -63,7 +63,8 @@ export class ArticleController extends BaseController{
     const name = ctx.checkedParams.name
     const data = await this.model.getMenuArticles(name)
     throw new SuccessMessage({
-      message: '获取文章成功'
+      message: '获取文章成功',
+      data
     })
   }
 
