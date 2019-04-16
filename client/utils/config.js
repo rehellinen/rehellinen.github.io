@@ -5,6 +5,6 @@
  */
 
 export default {
-  // restUrl: 'http://api.rehellinen.cn',
-  restUrl: 'http://127.0.0.1:9528',
+  restUrl: 'http://api.rehellinen.cn',
+  // restUrl: 'http://127.0.0.1:9528',
 }

@@ -4,11 +4,13 @@
     p.title {{article.title}}
     p.sub-title {{article.subtitle}}
     .line
-    p.content(v-html="article.content")
+    div.ql-container.ql-snow.no-border
+      div.ql-editor.content(v-html="article.content")
 </template>
 
 <script>
   import {ArticleModel} from "../../model/ArticleModel"
+  import 'quill/dist/quill.snow.css'
 
   const article = new ArticleModel()
 
@@ -54,8 +56,11 @@
     .sub-title
       color: $minor-font-color
       margin-top: 5px
-    .content
-      margin: 20px 0
+    .no-border
+      border: 0
+      .content
+        margin-bottom: 20px
+        padding: 0
     .side-bar
       width: 30%
     .de
