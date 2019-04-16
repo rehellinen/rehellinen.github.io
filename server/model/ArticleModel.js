@@ -68,7 +68,10 @@ export class ArticleModel extends BaseModel{
     const id = await new MenuModel().getIdByName(name)
 
     const articles = await this.getAll({
-      condition: {menu_id: id}
+      condition: {
+        menu_id: id,
+        status: $config.STATUS.NORMAL
+      }
     })
     articles.forEach(item => this._processArticle(item))
     return articles
