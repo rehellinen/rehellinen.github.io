@@ -1,6 +1,16 @@
 {
-  "presets": [["@babel/preset-env", { "modules": false }]],
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": false,
+      "useBuiltIns": "usage",
+      "targets": {
+        "chrome": "58",
+        "ie": "10"
+      }
+    }]
+  ],
   "plugins": [
+    "@babel/plugin-transform-runtime",
     ["component", {
       "libraryName": "element-ui",
       "styleLibraryName": "theme-chalk"
