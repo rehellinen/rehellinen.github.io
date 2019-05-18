@@ -23,7 +23,7 @@ export class Token {
   }
 
   async _verifyFromServer (token) {
-    const {data, status} = await axios({
+    const { data } = await axios({
       url: this.verifyUrl,
       method: 'get',
       headers: { token },
@@ -34,13 +34,13 @@ export class Token {
 
   // 从服务器获取Token
   async getTokenFromServer () {
-    let {data, status} = await axios({
+    let { data, status } = await axios({
       url: this.tokenUrl,
       method: 'post',
       validateStatus: status => status >= 200 && status < 500,
       data: {
         name: this.name,
-        password: this.password,
+        password: this.password
       }
     })
 

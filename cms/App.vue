@@ -16,35 +16,35 @@
 </template>
 
 <script>
-  import MyHeader from './components/header/header'
-  import MyFooter from './components/footer/footer'
-  import LeftMenu from './components/left-menu/left-menu'
+import MyHeader from './components/header/header'
+import MyFooter from './components/footer/footer'
+import LeftMenu from './components/left-menu/left-menu'
 
-  export default {
-    data () {
-      return {
-        isLoginPage: false
-      }
-    },
-    created () {
+export default {
+  components: {
+    MyHeader,
+    MyFooter,
+    LeftMenu
+  },
+  data () {
+    return {
+      isLoginPage: false
+    }
+  },
+  watch: {
+    $route () {
       this.updateLayout()
-    },
-    watch: {
-      $route () {
-        this.updateLayout()
-      }
-    },
-    methods: {
-      updateLayout () {
-        this.isLoginPage = this.$route.path === '/login';
-      }
-    },
-    components: {
-      MyHeader,
-      MyFooter,
-      LeftMenu,
+    }
+  },
+  created () {
+    this.updateLayout()
+  },
+  methods: {
+    updateLayout () {
+      this.isLoginPage = this.$route.path === '/login'
     }
   }
+}
 </script>
 
 <style lang="sass" rel="stylesheet/sass">

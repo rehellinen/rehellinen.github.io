@@ -6,10 +6,10 @@
 import config from '../utils/config'
 import axios from 'axios'
 import router from 'vue-router'
-import {Token} from "../utils/Token"
+import { Token } from '../utils/Token'
 
 export class BaseModel {
-  constructor(modelName) {
+  constructor (modelName) {
     this.modelName = modelName
     this.baseUrl = config.restUrl
   }
@@ -24,19 +24,19 @@ export class BaseModel {
    *  4. message Boolean [是否在结果中携带message]
    *  5. contentType String [设置content-type]
    */
-  async request ({url, reqData, message, method = 'get', contentType = 'application/json'}) {
+  async request ({ url, reqData, message, method = 'get', contentType = 'application/json' }) {
     const token = new Token().getTokenFromCache()
     const config = {
       url: `${this.baseUrl}/${url.startsWith('/') ? url.substr(1) : url}`,
       method: method,
       headers: {
         token,
-        'content-type': contentType,
+        'content-type': contentType
       },
       validateStatus: (status) => status < 500
     }
     method === 'get' ? config.params = reqData : config.data = reqData
-    const {data, status} = await axios(config)
+    const { data, status } = await axios(config)
       .catch(ex => {
         console.log(ex)
       })
@@ -46,8 +46,6 @@ export class BaseModel {
     // 2. 401 --- token无效
     // 3. 404 --- 找不到资源
     // 4. 500 --- 服务器错误
-
-
 
     // 参数错误
     if (status === 400) {
@@ -87,7 +85,7 @@ export class BaseModel {
     return await this.request({
       url: this.modelName,
       method: 'delete',
-      reqData: {id},
+      reqData: { id },
       message: true
     })
   }
@@ -96,7 +94,7 @@ export class BaseModel {
     return await this.request({
       url: `${this.modelName}/status`,
       method: 'put',
-      reqData: {id, status},
+      reqData: { id, status },
       message: true
     })
   }
@@ -105,7 +103,7 @@ export class BaseModel {
     return await this.request({
       url: `${this.modelName}/order`,
       method: 'put',
-      reqData: {id, order},
+      reqData: { id, order },
       message: true
     })
   }
@@ -114,9 +112,8 @@ export class BaseModel {
     return await this.request({
       url: `${this.modelName}/one`,
       method: 'get',
-      reqData: {id},
+      reqData: { id },
       message: false
     })
   }
 }
-

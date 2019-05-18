@@ -43,79 +43,79 @@
 </template>
 
 <script>
-  import {cmsMixin} from "../../mixins/cmsMixin"
-  import {dialogMixin} from "../../mixins/dialogMixin"
-  import {ArticleModel} from "../../model/ArticleModel"
-  import config from '../../utils/config'
-  import {MenuModel} from "../../model/MenuModel"
-  const article = new ArticleModel()
-  const menu = new MenuModel()
+import { cmsMixin } from '../../mixins/cmsMixin'
+import { dialogMixin } from '../../mixins/dialogMixin'
+import { ArticleModel } from '../../model/ArticleModel'
+import config from '../../utils/config'
+import { MenuModel } from '../../model/MenuModel'
+const article = new ArticleModel()
+const menu = new MenuModel()
 
-  export default {
-    data () {
-      return {
-        menu: []
-      }
+export default {
+  mixins: [cmsMixin, dialogMixin],
+  data () {
+    return {
+      menu: []
+    }
+  },
+  methods: {
+    async _getData () {
+      this.menu = await menu.getFrontMenu()
+      this.data = await article.getAllArticles()
     },
-    methods: {
-      async _getData () {
-        this.menu = await menu.getFrontMenu()
-        this.data = await article.getAllArticles()
-      },
-      _initCMS () {
-        const selectOpt = this.getMenuSelectOpt()
-        this._setModel(article)
-        this._pushBread('文章管理')
-        this._setForm([
-          {
-            name: 'title',
-            label: '标题'
-          },
-          {
-            name: 'subtitle',
-            label: '副标题'
-          },
-          {
-            name: 'main_img_url',
-            label: '主图',
-            type: config.FORM.IMAGE
-          },
-          {
-            name: 'menu_id',
-            label: '菜单名称',
-            type: config.FORM.SELECT,
-            options: selectOpt
-          },
-          {
-            name: 'content',
-            label: '内容',
-            type: config.FORM.EDITOR
-          },
-        ])
-        this._setTable([
-          {
-            name: 'title',
-            label: '标题'
-          },
-          {
-            name: 'subtitle',
-            label: '副标题'
-          },
-        ])
-      },
-      getMenuSelectOpt () {
-        const res = []
-        this.menu.forEach(item => {
-          res.push({
-            label: item.name,
-            value: item.id
-          })
+    _initCMS () {
+      const selectOpt = this.getMenuSelectOpt()
+      this._setModel(article)
+      this._pushBread('文章管理')
+      this._setForm([
+        {
+          name: 'title',
+          label: '标题'
+        },
+        {
+          name: 'subtitle',
+          label: '副标题'
+        },
+        {
+          name: 'main_img_url',
+          label: '主图',
+          type: config.FORM.IMAGE
+        },
+        {
+          name: 'menu_id',
+          label: '菜单名称',
+          type: config.FORM.SELECT,
+          options: selectOpt
+        },
+        {
+          name: 'content',
+          label: '内容',
+          type: config.FORM.EDITOR
+        }
+      ])
+      this._setTable([
+        {
+          name: 'title',
+          label: '标题'
+        },
+        {
+          name: 'subtitle',
+          label: '副标题'
+        }
+      ])
+    },
+    getMenuSelectOpt () {
+      const res = []
+      this.menu.forEach(item => {
+        res.push({
+          label: item.name,
+          value: item.id
         })
-        return res
-      }
-    },
-    mixins: [cmsMixin, dialogMixin]
+      })
+      return res
+    }
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

@@ -14,20 +14,20 @@
 </template>
 
 <script>
-  import {MenuModel} from "../../model/MenuModel"
+import { MenuModel } from '../../model/MenuModel'
 
-  const menu = new MenuModel()
+const menu = new MenuModel()
 
-  export default {
-    data () {
-      return {
-        menu: [],
-      }
-    },
-    async created () {
-      this.menu = await menu.getBackMenu()
-    },
+export default {
+  data () {
+    return {
+      menu: []
+    }
+  },
+  async created () {
+    this.menu = await menu.getBackMenu()
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
