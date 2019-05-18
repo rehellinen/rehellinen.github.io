@@ -7,29 +7,29 @@
 </template>
 
 <script>
-  import {MenuModel} from "../../model/MenuModel"
-  const Menu = new MenuModel()
+import { MenuModel } from '../../model/MenuModel'
+const Menu = new MenuModel()
 
-  export default {
-    data () {
+export default {
+  data () {
+    return {
+      menu: []
+    }
+  },
+  created () {
+    this._getMenu()
+  },
+  methods: {
+    async _getMenu () {
+      this.menu = await Menu.getFrontMenu()
+    },
+    isActive (path) {
       return {
-        menu: []
-      }
-    },
-    created () {
-      this._getMenu()
-    },
-    methods: {
-      async _getMenu () {
-        this.menu = await Menu.getFrontMenu()
-      },
-      isActive (path) {
-        return {
-          active: this.$route.path === path
-        }
+        active: this.$route.path === path
       }
     }
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

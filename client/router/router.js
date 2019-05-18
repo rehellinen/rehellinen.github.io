@@ -14,10 +14,10 @@ Vue.use(Router)
 
 
 const routes = [
-  { path: '/', component: Index},
+  { path: '/', component: Index },
   { path: '/detail/:article_id', component: Detail },
   { path: '/list/:list_id', component: List },
-  { path: '/cv', component: CV}
+  { path: '/cv', component: CV }
 ]
 
 export const router = new Router({

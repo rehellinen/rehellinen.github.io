@@ -9,19 +9,19 @@
 </template>
 
 <script>
-  import MyMain from './components/main/main'
-  import MyHeader from './components/header/header'
-  import MyFooter from './components/footer/footer'
-  import LeftMenu from '../cms/components/left-menu/left-menu'
+import MyMain from './components/main/main'
+import MyHeader from './components/header/header'
+import MyFooter from './components/footer/footer'
+import LeftMenu from '../cms/components/left-menu/left-menu'
 
-  export default {
-    components: {
-      MyHeader,
-      MyFooter,
-      LeftMenu,
-      MyMain
-    }
+export default {
+  components: {
+    MyHeader,
+    MyFooter,
+    LeftMenu,
+    MyMain
   }
+}
 </script>
 
 <style lang="sass" rel="stylesheet/sass">

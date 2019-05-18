@@ -9,33 +9,33 @@
 </template>
 
 <script>
-  import {ArticleModel} from "../../model/ArticleModel"
-  import 'quill/dist/quill.snow.css'
+import { ArticleModel } from '../../model/ArticleModel'
+import 'quill/dist/quill.snow.css'
 
-  const article = new ArticleModel()
+const article = new ArticleModel()
 
-  export default {
-    data() {
-      return {
-        article: {}
-      }
-    },
-    created() {
-      const articleId = this.$route.params.article_id
+export default {
+  data () {
+    return {
+      article: {}
+    }
+  },
+  watch: {
+    $route (newRoute) {
+      const articleId = newRoute.params.article_id
       this.getData(articleId)
-    },
-    watch: {
-      $route (newRoute) {
-        const articleId = newRoute.params.article_id
-        this.getData(articleId)
-      }
-    },
-    methods: {
-      async getData(id) {
-        this.article = await article.getById(id)
-      }
+    }
+  },
+  created () {
+    const articleId = this.$route.params.article_id
+    this.getData(articleId)
+  },
+  methods: {
+    async getData (id) {
+      this.article = await article.getById(id)
     }
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

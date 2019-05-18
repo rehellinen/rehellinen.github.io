@@ -5,7 +5,7 @@
  */
 import Vue from 'vue'
 import App from './App'
-import {router} from './router/router'
+import { router } from './router/router'
 import {
   Header, Container, Aside, Main, Footer,
   Row, Col
@@ -16,6 +16,7 @@ import {
   Row, Col
 ].forEach(item => Vue.use(item))
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

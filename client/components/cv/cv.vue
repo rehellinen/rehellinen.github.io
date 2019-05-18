@@ -62,8 +62,5 @@ export default {
           p
             color: white
             font-size: $bigger-font-size
-
-
-
   .de
 </style>

@@ -8,14 +8,14 @@
 </template>
 
 <script>
-  import SideBar from '../../base/side-bar/side-bar'
-  import 'element-ui/lib/theme-chalk/display.css'
+import SideBar from '../../base/side-bar/side-bar'
+import 'element-ui/lib/theme-chalk/display.css'
 
-  export default {
-    components: {
-      SideBar
-    }
+export default {
+  components: {
+    SideBar
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

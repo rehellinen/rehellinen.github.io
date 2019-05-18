@@ -14,24 +14,24 @@
 </template>
 
 <script>
-  import {ArticleModel} from "../../model/ArticleModel"
+import { ArticleModel } from '../../model/ArticleModel'
 
-  const article = new ArticleModel()
+const article = new ArticleModel()
 
-  export default {
-    created () {
-      this._getData()
-    },
-    data () {
-      return {
-        popularArticles: []
-      }
-    },
-    methods: {
-      async _getData () {
-        this.popularArticles = await article.getPopularArticles()
-      }
+export default {
+  data () {
+    return {
+      popularArticles: []
     }
+  },
+  created () {
+    this._getData()
+  },
+  methods: {
+    async _getData () {
+      this.popularArticles = await article.getPopularArticles()
+    }
+  }
 }
 </script>
 

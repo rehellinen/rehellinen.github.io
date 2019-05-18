@@ -4,24 +4,24 @@
 </template>
 
 <script>
-  import {ArticleModel} from "../../model/ArticleModel"
-  import ArticleCard from '../../base/article-card/article-card'
+import { ArticleModel } from '../../model/ArticleModel'
+import ArticleCard from '../../base/article-card/article-card'
 
-  const article = new ArticleModel()
+const article = new ArticleModel()
 
-  export default {
-    data () {
-      return {
-        articles: []
-      }
-    },
-    async created () {
-      this.articles = await article.getArticles()
-    },
-    components: {
-      ArticleCard
+export default {
+  components: {
+    ArticleCard
+  },
+  data () {
+    return {
+      articles: []
     }
+  },
+  async created () {
+    this.articles = await article.getArticles()
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

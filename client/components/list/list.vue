@@ -6,35 +6,35 @@
 </template>
 
 <script>
-  import {ArticleModel} from "../../model/ArticleModel"
-  import ArticleCard from '../../base/article-card/article-card'
+import { ArticleModel } from '../../model/ArticleModel'
+import ArticleCard from '../../base/article-card/article-card'
 
-  const article = new ArticleModel()
+const article = new ArticleModel()
 
-  export default {
-    data () {
-      return {
-        articles: []
-      }
-    },
-    created () {
+export default {
+  components: {
+    ArticleCard
+  },
+  data () {
+    return {
+      articles: []
+    }
+  },
+  watch: {
+    $route () {
       this.getData()
-    },
-    methods: {
-      async getData () {
-        const menuUrl = this.$route.path.split('/').pop()
-        this.articles = await article.getMenuArticles(menuUrl)
-      }
-    },
-    watch: {
-      $route () {
-        this.getData()
-      }
-    },
-    components: {
-      ArticleCard
+    }
+  },
+  created () {
+    this.getData()
+  },
+  methods: {
+    async getData () {
+      const menuUrl = this.$route.path.split('/').pop()
+      this.articles = await article.getMenuArticles(menuUrl)
     }
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">

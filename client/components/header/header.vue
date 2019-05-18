@@ -29,14 +29,14 @@
 </template>
 
 <script>
-  import TopMenu from '../../base/top-menu/top-menu'
-  import 'element-ui/lib/theme-chalk/display.css';
+import TopMenu from '../../base/top-menu/top-menu'
+import 'element-ui/lib/theme-chalk/display.css'
 
-  export default {
-    components: {
-      TopMenu
-    }
+export default {
+  components: {
+    TopMenu
   }
+}
 </script>
 
 <style scoped lang="sass" rel="stylesheet/sass">
@@ -65,7 +65,6 @@
     .black
       color: $normal-font-color
   /** header icon **/
-
 
   .container
     display: flex
