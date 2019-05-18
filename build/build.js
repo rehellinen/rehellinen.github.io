@@ -6,14 +6,14 @@
 process.env.NODE_ENV = 'production'
 
 const ora = require('ora')
-const {promisify} = require('util')
+const { promisify } = require('util')
 const rm = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
 
 const config = require('./config')
 const webpackConfig = require('./webpack.prod.conf')
-const {type} = require('./utils')
+const { type } = require('./utils')
 
 const spinner = ora('building ...')
 const rmPromise = promisify(rm)
@@ -40,4 +40,4 @@ rmPromise(`${config.PROD.ASSETS_ROOT}/${type}`)
 
     console.log(chalk.cyan('Building Complete!'))
   })
-  .catch(ex => {throw ex})
+  .catch(ex => { throw ex })

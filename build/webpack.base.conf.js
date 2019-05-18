@@ -3,18 +3,17 @@
  *  Create By rehellinen
  *  Create On 2018/11/5 11:37
  */
-const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = require('./config')
-const {r,isProduction, type} = require('./utils')
+const { r, isProduction, type } = require('./utils')
 
 module.exports = {
   context: r('./'),
   mode: isProduction ? 'production' : 'development',
   entry: {
-    app: `./${type}/index.js`,
+    app: `./${type}/index.js`
   },
   output: {
     path: config.PROD.ASSETS_ROOT + '/' + type,
@@ -27,15 +26,24 @@ module.exports = {
   resolve: {
     alias: {
       sass: r(`./${type}/assets/sass`),
-      assets: r(`./${type}/assets`),
+      assets: r(`./${type}/assets`)
     },
     extensions: ['.js', '.vue', '.json']
   },
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [r('cms'), r('client')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
+      {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -55,7 +63,7 @@ module.exports = {
           'css-loader',
           {
             loader: 'sass-loader',
-            options: {indentedSyntax: true}
+            options: { indentedSyntax: true }
           }
         ]
       },
@@ -72,7 +80,7 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 15000,
+          limit: 15000
         }
       },
       {
@@ -81,7 +89,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
+              limit: 10000
             }
           },
           'image-webpack-loader'

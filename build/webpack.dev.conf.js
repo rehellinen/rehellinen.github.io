@@ -4,16 +4,15 @@
  *  Create On 2018/11/8 16:41
  */
 const webpack = require('webpack')
-const {promisify} = require('util')
+const { promisify } = require('util')
 const portFinder = require('portfinder')
 const merge = require('webpack-merge')
-const webpackDevServer = require('webpack-dev-server')
 const friendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = require('./config')
 const baseWebpackConf = require('./webpack.base.conf')
-const {logError} = require('./utils')
+const { logError } = require('./utils')
 
 portFinder.basePort = process.env.PORT || config.DEV.PORT
 const getPortPromise = promisify(portFinder.getPort)
@@ -40,7 +39,7 @@ const devWebpackConf = merge(baseWebpackConf, {
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html'
-    }),
+    })
   ]
 })
 

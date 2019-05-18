@@ -3,17 +3,15 @@
  *  Create By rehellinen
  *  Create On 2019/3/23 15:18
  */
-const glob = require('glob')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
-const PurgecssPlugin = require('purgecss-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 
-const {r, type} = require('./utils')
+const { r, type } = require('./utils')
 const config = require('./config')
 const baseWebpackConf = require('./webpack.base.conf')
 
@@ -23,15 +21,20 @@ const webpackConfig = merge(baseWebpackConf, {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all"
+          name: 'vendors',
+          chunks: 'all'
         }
       }
     },
     minimizer: [
       new UglifyJsPlugin({
         parallel: true,
-        cache: true
+        cache: true,
+        uglifyOptions: {
+          output: {
+            beautify: false
+          }
+        }
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
@@ -44,17 +47,17 @@ const webpackConfig = merge(baseWebpackConf, {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-      },
+      }
     }),
     new MiniCssExtractPlugin({
       filename: `css/[name].[hash:5].css`,
-      chunkFilename: `css/[name].[hash:5].css`,
+      chunkFilename: `css/[name].[hash:5].css`
     })
   ]
 })
 
 if (config.PROD.BUNDLE_ANALYZER) {
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin)
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = webpackConfig
