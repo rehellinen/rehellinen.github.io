@@ -31,7 +31,8 @@ module.exports = {
       assets: r(`./client/assets`)
     },
     modules: [r('node_modules')],
-    extensions: ['.vue', '.js', '.json']
+    extensions: ['.vue', '.js', '.json'],
+    mainFields: ['jsnext:main', 'browser', 'main']
   },
   module: {
     rules: [

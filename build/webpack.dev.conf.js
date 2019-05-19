@@ -34,8 +34,6 @@ const devWebpackConf = merge(baseWebpackConf, {
     proxy: config.DEV.PROXY
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
       chunks: ['client']
