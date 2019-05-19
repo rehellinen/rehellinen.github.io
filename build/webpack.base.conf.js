@@ -28,7 +28,8 @@ module.exports = {
       sass: r(`./${type}/assets/sass`),
       assets: r(`./${type}/assets`)
     },
-    extensions: ['.js', '.vue', '.json']
+    modules: [r('node_modules')],
+    extensions: ['.vue', '.js', '.json']
   },
   module: {
     rules: [
@@ -48,6 +49,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        include: [r('cms'), r('client')],
         exclude: /node_modules/
       },
       {
