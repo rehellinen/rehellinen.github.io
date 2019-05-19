@@ -7,7 +7,7 @@ const webpack = require('webpack')
 const { promisify } = require('util')
 const portFinder = require('portfinder')
 const merge = require('webpack-merge')
-const friendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = require('./config')
@@ -49,7 +49,7 @@ module.exports = new Promise((resolve, reject) => {
       process.env.PORT = port
       devWebpackConf.devServer.port = port
 
-      devWebpackConf.plugins.push(new friendlyErrorsPlugin({
+      devWebpackConf.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
           messages: [`running at { http://${config.DEV.HOST}:${port} }`]
         },
