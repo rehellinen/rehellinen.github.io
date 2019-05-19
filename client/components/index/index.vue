@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { ArticleModel } from '../../model/ArticleModel'
+import { ArticleModel } from '../../pages/client/model/ArticleModel'
 import ArticleCard from '../../base/article-card/article-card'
 
 const article = new ArticleModel()

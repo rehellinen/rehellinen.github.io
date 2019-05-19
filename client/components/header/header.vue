@@ -8,7 +8,7 @@
           span.yellow rehe
           span.black llinen
       el-col(:xl="8" :lg="8" :md="8" :sm="12")
-        top-menu
+        top-menu(v-if="showMenu")
 
     div.xs-header.hidden-sm-and-up
       div
@@ -16,7 +16,7 @@
           .block
         span.yellow rehe
         span.black llinen
-      top-menu
+      top-menu(v-if="showMenu")
 
     div.sub-header
       div
@@ -35,6 +35,12 @@ import 'element-ui/lib/theme-chalk/display.css'
 export default {
   components: {
     TopMenu
+  },
+  props: {
+    showMenu: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>

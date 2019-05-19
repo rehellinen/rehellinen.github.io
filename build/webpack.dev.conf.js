@@ -35,10 +35,15 @@ const devWebpackConf = merge(baseWebpackConf, {
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: './index.html',
+      chunks: ['client']
+    }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      filename: 'cms.html',
+      chunks: ['cms']
     })
   ]
 })

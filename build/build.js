@@ -13,14 +13,13 @@ const webpack = require('webpack')
 
 const config = require('./config')
 const webpackConfig = require('./webpack.prod.conf')
-const { type } = require('./utils')
 
 const spinner = ora('building ...')
 const rmPromise = promisify(rm)
 const webpackPromise = promisify(webpack)
 spinner.start()
 
-rmPromise(`${config.PROD.ASSETS_ROOT}/${type}`)
+rmPromise(`${config.PROD.ASSETS_ROOT}`)
   .then(() => webpackPromise(webpackConfig))
   .then((stats) => {
     spinner.stop()

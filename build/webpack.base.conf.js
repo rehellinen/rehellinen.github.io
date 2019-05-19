@@ -8,16 +8,17 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = require('./config')
-const { r, isProduction, type } = require('./utils')
+const { r, isProduction } = require('./utils')
 
 module.exports = {
   context: r('./'),
   mode: isProduction ? 'production' : 'development',
   entry: {
-    app: `./${type}/index.js`
+    client: `./client/pages/client/index.js`,
+    cms: './client/pages/cms/index.js'
   },
   output: {
-    path: config.PROD.ASSETS_ROOT + '/' + type,
+    path: config.PROD.ASSETS_ROOT,
     filename: `js/[name].[hash:5].bundle.js`,
     chunkFilename: `js/[name].[hash:5].chunk.js`,
     publicPath: isProduction
@@ -26,8 +27,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      sass: r(`./${type}/assets/sass`),
-      assets: r(`./${type}/assets`)
+      sass: r(`./client/assets/sass`),
+      assets: r(`./client/assets`)
     },
     modules: [r('node_modules')],
     extensions: ['.vue', '.js', '.json']

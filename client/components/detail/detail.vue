@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { ArticleModel } from '../../model/ArticleModel'
+import { ArticleModel } from '../../pages/client/model/ArticleModel'
 import 'quill/dist/quill.snow.css'
 
 const article = new ArticleModel()

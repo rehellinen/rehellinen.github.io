@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { ArticleModel } from '../../model/ArticleModel'
+import { ArticleModel } from '../../pages/client/model/ArticleModel'
 
 const article = new ArticleModel()
 

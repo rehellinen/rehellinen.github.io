@@ -17,14 +17,22 @@ const baseWebpackConf = require('./webpack.base.conf')
 const webpackConfig = merge(baseWebpackConf, {
   optimization: {
     splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
+      chunks: 'all'
     },
+    // splitChunks: {
+    //   cacheGroups: {
+    //     cms_vendors: {
+    //       test: /node_modules/,
+    //       name: 'cms_vendors',
+    //       chunks: ['cms']
+    //     },
+    //     client_vendors: {
+    //       test: /node_modules/,
+    //       name: 'client_vendors',
+    //       chunks: ['client']
+    //     }
+    //   }
+    // },
     minimizer: [
       new UglifyJsPlugin({
         parallel: true,
@@ -41,7 +49,20 @@ const webpackConfig = merge(baseWebpackConf, {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+      filename: 'index.html',
       inject: true,
+      chunks: ['client', 'client_vendors'],
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      filename: 'cms.html',
+      inject: true,
+      chunks: ['cms', 'cms_vendors'],
       minify: {
         removeComments: true,
         collapseWhitespace: true,

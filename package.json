@@ -4,11 +4,9 @@
   "description": "rehellinen's blog",
   "main": "index.js",
   "scripts": {
-    "dev_client": "webpack-dev-server --progress --config build/webpack.dev.conf.js --client",
-    "dev_cms": "webpack-dev-server --progress --config build/webpack.dev.conf.js --cms",
+    "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "server": "nodemon --watch ./server ./server/run.js",
-    "build_client": "node build/build.js --client",
-    "build_cms": "node build/build.js --cms"
+    "build": "node build/build.js"
   },
   "repository": {
     "type": "git",

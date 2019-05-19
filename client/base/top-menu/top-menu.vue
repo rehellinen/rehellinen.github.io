@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { MenuModel } from '../../model/MenuModel'
+import { MenuModel } from '../../pages/client/model/MenuModel'
 const Menu = new MenuModel()
 
 export default {
