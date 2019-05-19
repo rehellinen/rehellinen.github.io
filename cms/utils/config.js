@@ -4,8 +4,9 @@
  *  Create On 2019/3/4 11:35
  */
 export default {
-  restUrl: 'http://api.rehellinen.cn',
-  // restUrl: 'http://127.0.0.1:9528',
+  restUrl: PRODUCTION
+    ? 'http://api.rehellinen.cn'
+    : 'http://127.0.0.1:9528',
   CMS: {
     INDEX: 1,
     ADD: 2,
