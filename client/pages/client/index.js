@@ -10,7 +10,6 @@ import {
   Header, Container, Aside, Main, Footer,
   Row, Col
 } from 'element-ui'
-// import 'assets/theme/index.css'
 
 [
   Header, Container, Aside, Main, Footer,

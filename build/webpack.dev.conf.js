@@ -18,7 +18,6 @@ portFinder.basePort = process.env.PORT || config.DEV.PORT
 const getPortPromise = promisify(portFinder.getPort)
 
 const devWebpackConf = merge(baseWebpackConf, {
-  mode: 'development',
   output: {
     publicPath: config.DEV.PUBLIC_PATH
   },
