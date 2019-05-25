@@ -8,7 +8,7 @@
 |-- server       基于Koa2的API
 ~~~
 
-项目构建：
+### 项目构建：  
 webpack配置完全由自己编写（文件在./client/build），
 实现了的功能有
 1. tree-shaking
@@ -19,10 +19,10 @@ webpack配置完全由自己编写（文件在./client/build），
 6. Babel、Sass、Pug  
 7. 其他优化（图片压缩与转base64、css提取与压缩等）
 
-前端：  
+### 前端：  
 基于Vue.js的多页面应用程序（分为博客和CMS两个页面）  
 
-后台：  
+### 后台：  
 基于Koa2搭建了一个通用后台API框架 - ReAPI
 封装了下列功能：
 1. 路由
