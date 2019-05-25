@@ -9,7 +9,7 @@
 ~~~
 
 ### 项目构建：  
-webpack配置完全由自己编写（文件在./client/build），
+webpack配置完全由自己编写（文件在./client/build）  
 实现了的功能有
 1. tree-shaking
 2. code-spliting
