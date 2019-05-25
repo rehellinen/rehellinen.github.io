@@ -8,7 +8,11 @@ module.exports = {
     ]
   ],
   plugins: [
-    '@babel/plugin-transform-runtime',
+    [
+      '@babel/plugin-transform-runtime', {
+        corejs: 2
+      }
+    ],
     [
       'component', {
         libraryName: 'element-ui',
