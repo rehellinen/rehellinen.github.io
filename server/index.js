@@ -1,8 +1,12 @@
 /**
  *  index.js
  *  Create By rehellinen
- *  Create On 2018/10/25 19:06
+ *  Create On 2019/3/4 10:29
  */
-import {Server} from "./libs/Server"
-
-(new Server()).start()
+// 启动服务器
+if (process.env.NODE_ENV === 'production') {
+  require('./dist/libs/index.js')
+} else {
+  require('@babel/register')
+  require('./src/libs/index.js')
+}

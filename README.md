@@ -1,14 +1,9 @@
 我的博客
 =================
 地址：www.rehellinen.cn
+
 ### 目录：
 ~~~
-|-- client            前端
-|-- cms               CMS
-|-- server            后台
+|-- client       前端和CMS（基于Vue.js的多页面）
+|-- server       基于Koa2的API
 ~~~
-
-```
-前端: vue.js
-后台: Koa2
-```
