@@ -1,11 +1,11 @@
 {
-  "name": "blog",
+  "name": "rehellinen-blog-api",
   "version": "1.0.0",
-  "description": "rehellinen's blog",
+  "description": "api base on ReAPI",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch ./src --exec node index.js",
-    "prod": "cross-env NODE_ENV=production pm2 start index.js",
+    "prod": "cross-env NODE_ENV=production pm2 start index.js -n blog-api",
     "build": "babel src --out-dir dist"
   },
   "repository": {
@@ -17,10 +17,6 @@
   "bugs": {
     "url": "https://github.com/rehellinen/rehellinen.github.io/issues"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
   "homepage": "https://github.com/rehellinen/rehellinen.github.io#readme",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
